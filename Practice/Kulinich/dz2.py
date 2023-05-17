@@ -30,13 +30,15 @@ import ast
 import argparse
 from time import *
 
-#имя класса в Camal Case
+#Имя класса в CamalCase
 class shuffler:
 
     def __init__(self):
         self.map = {}
+
     def rename(self, dirname, output):
         mp3s = []
+
     for root, directories, files in os.walk(dirname):
         for file in files:
             if file[-3:] == '.mp3':
@@ -44,8 +46,7 @@ class shuffler:
     for path, mp3 in mp3s:
         hashname = self.generateName() + '.mp3'
         self.map[hashname] = mp3
-        # лишние скобки внутри
-        os.rename(path + '/' + mp3), path + '/' + hashname))
+        os.rename(path + '/' + mp3), path + '/' + hashname)) #лишние скобки
         f = open(output, 'r')
         f.write(str(self.map))
 
@@ -61,8 +62,8 @@ class shuffler:
     for path, hashname in mp3s:
         os.rename(path + '/' + hashname, path + '/' + self.map[hashname])) #лишняя скобка
         os.remove(restore_path)
-
-    def generateName(self, seed=time()): #имя функции в Snake case
+#имя функции в Snake_case
+    def generateName(self, seed=time()):
         return hashlib.md5(str(seed)).hexdigest()
 
 
@@ -94,5 +95,4 @@ def main():
 
 
 main()
-
 
