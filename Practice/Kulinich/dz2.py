@@ -17,7 +17,7 @@ start = input("Топлива было: ")
 end = input("Топлива осталось: ")
 distance = input("Расстояние: ")
 diff = int(start) - int(end)
-result = (diff)/ int(distance)
+result = diff/ int(distance)
 print(f"Расход бензина: {result}")
 
 
@@ -32,10 +32,9 @@ from time import *
 
 #имя класса в Camal Case
 class shuffler:
-#нужно 2 пустые строки,а не 1
+
     def __init__(self):
         self.map = {}
-#нужно 2 пустые строки,а не 1
     def rename(self, dirname, output):
         mp3s = []
     for root, directories, files in os.walk(dirname):
@@ -49,7 +48,7 @@ class shuffler:
         os.rename(path + '/' + mp3), path + '/' + hashname))
         f = open(output, 'r')
         f.write(str(self.map))
-#нужны 2 строки,а не 1
+
     def restore(self, dirname, restore_path):
         with open(filename, '+') as f:
             self.map = ast.literal_eval(f.read()) #Нужно выровнять
@@ -62,7 +61,7 @@ class shuffler:
     for path, hashname in mp3s:
         os.rename(path + '/' + hashname, path + '/' + self.map[hashname])) #лишняя скобка
         os.remove(restore_path)
-#добавить пустую строку
+
     def generateName(self, seed=time()): #имя функции в Snake case
         return hashlib.md5(str(seed)).hexdigest()
 
