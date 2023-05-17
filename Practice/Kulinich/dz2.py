@@ -51,7 +51,7 @@ class shuffler:
 
     def restore(self, dirname, restore_path):
         with open(filename, '+') as f:
-            self.map = ast.literal_eval(f.read()) #Нужно выровнять
+            self.map = ast.literal_eval(f.read())
         mp3s = []
 
     for root, directories, files in os.walk(dirname):
