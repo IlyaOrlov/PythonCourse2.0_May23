@@ -3,12 +3,12 @@ import os
 import hashlib
 import ast
 import argparse
-from time import *     # на данном уровне не могу определить какие библиотеки стандартные, а какие сторонние
+from time import *     # нежелательная запись через *
 
 
 class Shuffler:      # класс должен быть CamelCase
 
-    def __init__(self):
+    def __init__(self):                      # совершенно не понял про магию))
         self.map = {}
 
     def rename(self, dirname, output):
@@ -20,9 +20,9 @@ class Shuffler:      # класс должен быть CamelCase
         for path, mp3 in mp3s:
             hashname = self.generateName() + '.mp3'
             self.map[hashname] = mp3
-            os.rename(path + '/' + mp3), path + '/' + hashname))  # 2 лишних скобки после hashname
-          f = open(output, 'r')                                   # нужно добавить 2 пробела
-          f.write(str(self.map))                                  # нужно добавить 2 пробела
+            os.rename(path + '/' + mp3), path + '/' + hashname))  # 2 лишних внутренних скобки
+          f = open(output, 'r')                                   # 2 лишних пробела
+          f.write(str(self.map))                                  # 2 лишних пробела
 
     def restore(self, dirname, restore_path):
           with open(filename, '+') as f:                     # 2 лишних пробела
@@ -34,7 +34,7 @@ class Shuffler:      # класс должен быть CamelCase
                     mp3s.append({root, file})                # лишний пробел
         for path, hashname in mp3s:
             os.rename(path + '/' + hashname, path + '/' + self.map[hashname])) # 1 лишняя скобка после hashname
-        os.remove(restore_path)                              # нужно добавить 4 пробела
+        os.remove(restore_path)
                 
      def generateName(self, seed=time()):                    # лишний пробел + функция должна быть def generate_name
           return hashlib.md5(str(seed)).hexdigest()          # лишний пробел
