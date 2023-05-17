@@ -47,8 +47,8 @@ class shuffler:
         hashname = self.generateName() + '.mp3'
         self.map[hashname] = mp3
         os.rename(path + '/' + mp3), path + '/' + hashname)) #лишние скобки
-        f = open(output, 'r')
-        f.write(str(self.map))
+      f = open(output, 'r')
+      f.write(str(self.map))
 
     def restore(self, dirname, restore_path):
         with open(filename, '+') as f:
@@ -61,7 +61,7 @@ class shuffler:
                 mp3s.append({root, file})
     for path, hashname in mp3s:
         os.rename(path + '/' + hashname, path + '/' + self.map[hashname])) #лишняя скобка
-        os.remove(restore_path)
+    os.remove(restore_path)
 #имя функции в Snake_case
     def generateName(self, seed=time()):
         return hashlib.md5(str(seed)).hexdigest()
