@@ -1,5 +1,5 @@
-a="Echo:"
-b=input(" ")
+a = "Echo:"
+b = input(" ")
 print(a+b)
 
 
