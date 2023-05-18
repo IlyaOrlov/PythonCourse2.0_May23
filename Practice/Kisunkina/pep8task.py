@@ -27,7 +27,7 @@ class shuffler:
         f.write(str(self.map))  # неверный отступ
 
     def restore(self, dirname, restore_path):
-        with open(filename, #as f: должно быть строчкой ниже, после скобок отступ строки как мне кажется должен быть
+        with open(filename,
                   '+') as f:  # Неверный отступ #непонятно что за filename имеется ввиду
             self.map = ast.literal_eval(f.read())
         mp3s = []  # Неверный отступ
