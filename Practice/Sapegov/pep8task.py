@@ -8,7 +8,7 @@ from time import *     # нежелательная запись через *
 
 class Shuffler:      # класс должен быть CamelCase
 
-    def __init__(self):                      # совершенно не понял про магию))
+    def __init__(self):
         self.map = {}
 
     def rename(self, dirname, output):
