@@ -6,7 +6,6 @@ txt = input("Привет! Введи слово фразу или чиcло, а
 if txt.lower().replace(" ", "") == txt[::-1].lower().replace(" ",""):
     print("Это палиндром!")
 else:
-    print(txt[::-1])
     print("Не похоже на палиндром :)")
 
 #def chet(a):
