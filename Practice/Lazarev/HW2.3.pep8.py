@@ -17,7 +17,7 @@ class shuffler:             # Shuffler с большой буквы
             for file in files:
                 if file[-3:] == '.mp3':
                     mp3s.append([root, file])
-        for path, mp3 in mp3s:                          # удалить отступ перед for
+        for path, mp3 in mp3s:
             hashname = self.generateName() + '.mp3'
             self.map[hashname] = mp3
             os.rename(path + '/' + mp3), path + '/' + hashname)) # 2 скобки внутри лишние
