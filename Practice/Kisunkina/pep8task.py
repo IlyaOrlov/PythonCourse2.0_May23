@@ -27,8 +27,7 @@ class shuffler:
         f.write(str(self.map))  # неверный отступ
 
     def restore(self, dirname, restore_path):
-        with open(filename,
-                  '+') as f:  # Неверный отступ #непонятно что за filename имеется ввиду
+        with open(filename, '+') as f:  # Убрала лишний перенос строки #непонятно что за filename имеется ввиду
             self.map = ast.literal_eval(f.read())
         mp3s = []  # Неверный отступ
         for root, directories, files in os.walk(dirname):
@@ -39,8 +38,8 @@ class shuffler:
             os.rename(path + '/' + hashname, path + '/' + self.map[hashname])  # лишняя скобка на закрытие
         os.remove(restore_path)
 
-
-def generateName(self, seed=time()):  # неверный отступ - один лишний пробел #имя функции должно быть snake_case и без большой буквы
+#имя функции должно быть snake_case и без большой буквы
+def generateName(self, seed=time()):  # неверный отступ - один лишний пробел
     return hashlib.md5(str(seed)).hexdigest()  # неверный отступ
 
 
