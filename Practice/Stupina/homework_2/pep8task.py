@@ -7,7 +7,7 @@ from time import *
 
 
 class shuffler:
-#отделять функцию и класс 2 пустыми строками
+
     def __init__(self):
         self.map = {}
 
@@ -18,13 +18,13 @@ class shuffler:
                 if file[-3:] == '.mp3':
                     mp3s.append([root, file])
         for path, mp3 in mp3s:
-            hashname = self.generateName() + '.mp3' #имя переменной в snake_case
+            hashname = self.generateName() + '.mp3'
             self.map[hashname] = mp3
             os.rename(path + '/' + mp3), path + '/' + hashname)) #лишняя скобка в середине и в конце
-          f = open(output, 'r')  #не хватает пробелов
+          f = open(output, 'r')  #убрать пробелы
           f.write(str(self.map))
 
-    def restore(self, dirname, restore_path): #в конце функции нет return
+    def restore(self, dirname, restore_path):
           with open(filename, '+') as f:  #filename переменная не объявлена (не определена), лишние пробелы
             self.map = ast.literal_eval(f.read())  #не хватает пробелов
           mp3s = []   #неправильный отступ
