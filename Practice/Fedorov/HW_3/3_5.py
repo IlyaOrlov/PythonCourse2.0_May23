@@ -1,10 +1,10 @@
-txt = input("Привет! Введи слово фразу или чиcло, а я скажу палиндром это или нет: ")
+txt = input("Привет! Введи слово, фразу или чиcло, а я скажу палиндром это или нет: ")
 
 
-def preobrazovanie(self):
-    self = self.lower()
-    self = self.replace(" ", "")
-    return self
+def preobrazovanie(x):
+    x = x.lower()
+    x = x.replace(" ", "")
+    return x
 
 
 txt = preobrazovanie(txt)

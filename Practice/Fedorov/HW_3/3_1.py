@@ -3,11 +3,8 @@ print("Привет Эта мини программа, создана для р
 
 # Проверка верно введенных данных Длинны и Ширины
 def isnum(t):
-    x = "Текст"
-    while not x.replace(".", "").isnumeric():
-        x = input(f"Введите {t} прямоугольника: ")
-        if not x.replace(".", "").isnumeric():
-            print(f"Ошибка! {x} - не является числом")
+    while not (x := input(f"Введите {t} прямоугольника: ")).replace(".", "").isnumeric():
+        print(f"Ошибка! {x} - не является числом")
     return x
 
 

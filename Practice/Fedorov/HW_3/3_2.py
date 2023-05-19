@@ -3,11 +3,8 @@ print("Привет Эта мини программа, создана для р
 
 # Проверка верно введенных данных Скорости и Расстояния
 def isnum(t):
-    x = "Текст"
-    while not x.replace(".", "").isnumeric():
-        x = input(f"Введите {t}")
-        if not x.replace(".", "").isnumeric():
-            print(f"Ошибка! {x} - не является числом")
+    while not (x := input(f"Введите {t}")).replace(".", "").isnumeric():
+        print(f"Ошибка! {x} - не является числом")
     return x
 
 
