@@ -1,23 +1,14 @@
 txt = input("Привет! Введи слово фразу или чиcло, а я скажу палиндром это или нет: ")
 
-#Сначала я пытался изобрести в голове логику с циклом и перебором массива символов, даже начал писать внизу.
-#Потом я вспомнил что вроде был простой reverse и тут всё решилось быстро.
 
-if txt.lower().replace(" ", "") == txt[::-1].lower().replace(" ",""):
+def preobrazovanie(self):
+    self = self.lower()
+    self = self.replace(" ", "")
+    return self
+
+
+txt = preobrazovanie(txt)
+if txt == txt[::-1]:
     print("Это палиндром!")
 else:
     print("Не похоже на палиндром :)")
-
-#def chet(a):
-#    if a % 2 == 0:
-#        return 1
-#    else:
-#        return 0
-
-
-#if chet(len(txt)):
-#    print("На палиндром не похоже :)")
-#else:
-#    celoe = len(txt)//2
-#    print(celoe)
-   # ll = txt.find("то")
