@@ -6,7 +6,7 @@ import argparse
 from time import *
 
 
-class shuffler: #имя класса без пробела и с большой буквы каждое слово
+class shuffler: #имя класса без пробела и с большой буквы каждое слово, корректно будет class Shuffler
 
     def __init__(self):
         self.map = {}
@@ -20,7 +20,8 @@ class shuffler: #имя класса без пробела и с большой 
         for path, mp3 in mp3s:
             hashname = self.generateName() + '.mp3'
             self.map[hashname] = mp3
-            os.rename(path + '/' + mp3), path + '/' + hashname)) #лишние 2 скобки
+            os.rename(path + '/' + mp3), path + '/' + hashname)) #лишние 2 и 3или 4 (тут не принципиально,
+        # скобка открывается в начале и закрывается в конце функции)
           f = open(output, 'r')
           f.write(str(self.map))
 
