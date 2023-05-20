@@ -1,0 +1,5 @@
+MySuperClass - CamelCase
+
+my_super_fun - snake_case
+
+kebab-case
