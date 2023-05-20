@@ -1,2 +1,2 @@
-x =  input ("What is your name:")
-print ("echo:" +x)
+x = input("What is your name and surname:")
+print("echo:" +x) 
