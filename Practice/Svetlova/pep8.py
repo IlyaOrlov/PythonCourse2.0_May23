@@ -12,7 +12,7 @@ class shuffler:
         self.map = {}
 
     def rename(self, dirname, output):
-        # отступ должен быть 4 пробела, здесь отступили лишнего строка ниже
+
         mp3s = []
     for root, directories, files in os.walk(dirname):
         for file in files:
@@ -24,7 +24,7 @@ class shuffler:
         self.map[hashname] = mp3
         os.rename(path + '/' + mp3), path + '/' + hashname))
         # лишние скобки после мр3 и в конце, надо было только в начале скобку и в конце
-        # строки ниже опять лишний отступ 28,29, 32,34
+        # строки ниже опять лишний отступ 28,29
         f = open(output, 'r')
         f.write(str(self.map))
 
@@ -42,7 +42,7 @@ class shuffler:
         os.remove(restore_path)
 
     def generateName(self, seed=time()):
-        # лишнй пробел перед seed
+
         return hashlib.md5(str(seed)).hexdigest()
 
 
