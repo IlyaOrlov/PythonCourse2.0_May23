@@ -6,4 +6,5 @@ def square(r):
 
 radius = input("Введите радиус: ")
 result = square(int(radius))
+
 print(f"Площадь круга: {result}")
