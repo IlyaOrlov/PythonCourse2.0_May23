@@ -10,7 +10,7 @@ class shuffler:
 
     def __init__(self):
         self.map = {}
-#Имя функции rename должно быть в Snake_case
+#Имя функции rename должно быть в snake_case
         def rename(self, dirname, output):
             mp3s = []
         #Не верный отступ
@@ -19,7 +19,7 @@ class shuffler:
                 if file[-3:] == '.mp3':
                     mp3s.append([root, file])
         for path, mp3 in mp3s:
-            # Имя функции generateName должно быть в Snake_case
+            # Имя функции generateName должно быть в snake_case
             hashname = self.generateName() + '.mp3'
             self.map[hashname] = mp3
             # 2 лишние скобки в середине после mp3 и в конце
@@ -27,22 +27,23 @@ class shuffler:
             f = open(output, 'r')
             f.write(str(self.map))
 
- # Имя функции restore должно быть в Snake_case
+ # Имя функции restore должно быть в snake_case
 def restore(self, dirname, restore_path):
     with open(filename, '+') as f:
         self.map = ast.literal_eval(f.read())
     mp3s = []
-
-
+#Не верный отступ
 for root, directories, files in os.walk(dirname):
     for file in files:
         if file[-3:] == '.mp3':
             mp3s.append({root, file})
+# Не верный отступ
 for path, hashname in mp3s:
+    #в конце строки лишняя скобка
     os.rename(path + '/' + hashname, path + '/' + self.map[hashname]))
     os.remove(restore_path)
 
-# Имя функции generateName должно быть в Snake_case
+# Имя функции generateName должно быть в snake_case
 def generateName(self, seed=time()):
     return hashlib.md5(str(seed)).hexdigest()
 
