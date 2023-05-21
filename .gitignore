@@ -1,3 +1,6 @@
 /.idea/
 /Practice/.idea/
 *.pyc
+/Practice/Pripisnov/venv/.idea/
+/Practice/Pripisnov/venv/
+/Practice/Pripisnov/work/.idea/
