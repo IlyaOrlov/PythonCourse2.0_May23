@@ -9,7 +9,5 @@ if x.replace('.', '').isnumeric() and y.replace('.', '').isnumeric():
         print(f'Средняя скорость = {speed} км/ч')
     else:
         print('Введенные значения некорректны, попробуйте еще раз')
-        exit()
 else:
     print('Введенные значения некорректны, попробуйте еще раз')
-    exit()

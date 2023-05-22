@@ -9,7 +9,6 @@ if x.replace('.', '').isdigit() and y.replace('.', '').isdigit():
         print(f'Периметр прямоугольника = {perimetr}')
     else:
         print('Введенные значения некорректны, попробуйте еще раз')
-        exit()
 else:
     print('Введенные значения некорректны, попробуйте еще раз')
-    exit()
+
