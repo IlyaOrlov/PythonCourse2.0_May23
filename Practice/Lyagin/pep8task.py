@@ -6,45 +6,38 @@ import argparse
 from time import *
 
 
-# CamelCase Название пишется с большой буквы правильно - Shuffler
-class shuffler:
+class shuffler:                                                     # Имя класса должно быть в стиле CamelCase
 
     def __init__(self):
         self.map = {}
 
     def rename(self, dirname, output):
-        # Здесь отступ: 6 пробелов - правильно по PEP 8 отступ- 4 пробела.
-          mp3s = []
+          mp3s = []                                                  # Два лишних пробела
         for root, directories, files in os.walk(dirname):
             for file in files:
                 if file[-3:] == '.mp3':
-                    mp3s.append([root, file])
+                    mp3s.append([root, file]) #
         for path, mp3 in mp3s:
             hashname = self.generateName() + '.mp3'
             self.map[hashname] = mp3
-            # В конце двойная скобка и в середине закрывающая скобка. Убрав их РС подчеркивает красной конец строки. Перенесла на 4 пробела влево - ошибка ушла. Значит здесь ещё одна ошибка лишние пробелы
-            os.rename(path + '/' + mp3), path + '/' + hashname))
+            os.rename(path + '/' + mp3), path + '/' + hashname))      # Две Лишних закрывающих скобки
           f = open(output, 'r')
           f.write(str(self.map))
 
     def restore(self, dirname, restore_path):
           with open(filename, '+') as f:
             self.map = ast.literal_eval(f.read())
-          mp3s = []
+          mp3s = []                                                   # Два лишних пробела
         for root, directories, files in os.walk(dirname):
             for file in files:
                if file[-3:] == '.mp3':
-                   # Один пробел лишний
-                    mp3s.append({root, file})
+                    mp3s.append({root, file})                          # Два лишних пробела
         for path, hashname in mp3s:
-            # Последняя скобка лишняя
-            os.rename(path + '/' + hashname, path + '/' + self.map[hashname]))
-            #  отступ 4 пробела должны быть относительно "for"
+            os.rename(path + '/' + hashname, path + '/' + self.map[hashname])) # Лишняя закрывающая скобка
         os.remove(restore_path)
-
-        # лишний пробел
-     def generateName(self, seed=time()):
-          return hashlib.md5(str(seed)).hexdigest()
+                
+     def generateName(self, seed=time()):                              # Имя функции должно быть snake_case
+          return hashlib.md5(str(seed)).hexdigest()                    # Лишний пробел
 
 
 def parse_arguments():
@@ -58,17 +51,14 @@ def parse_arguments():
     restore_parser.add_argument('restore_map')
     args = parser.parse_args()
     return args
-
+                                                                         # Отступ должен быть две строки
 def main():
     args = parse_arguments()
-    # Имя Класса CamelCase
     Shuffler = shuffler()
     if args.subcommand == 'rename':
           if args.output:
-              # Удалить 2 лиших пробела
                 Shuffler.rename(args.dirname, 'restore.info')
           else:
-              # Удалить 2 лиших пробела
                 Shuffler.rename(args.dirname, args.output)
     elif args.subcommand == 'restore':
         Shuffler.restore(args.dirname, args.restore_map)
