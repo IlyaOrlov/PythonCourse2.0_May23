@@ -1,0 +1,11 @@
+and
+False and False => False
+False and True => False
+True and False => False
+True and True => True
+
+or
+False or False => False
+False or True => True
+True or False => True
+True or True => True
