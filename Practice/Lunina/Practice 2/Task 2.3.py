@@ -13,7 +13,7 @@ class shuffler:
         self.map = {}
 
     def rename(self, dirname, output):
-        # Здесь отступ: 6 пробелов - правильно по PEP 8 отступ- 4 пробела.
+        # Здесь 6 пробелов - по PEP8 отступ- 4 пробела. 2 удалить. Пробелы выставляются относительно верхней строки
           mp3s = []
         for root, directories, files in os.walk(dirname):
             for file in files:
