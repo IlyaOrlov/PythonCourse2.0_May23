@@ -19,10 +19,11 @@ str1 = "Fizz"
 str2 = "Buzz"
 y = 3
 z = 5
+w = y*z
 
 for x in range(1, 101):
-    if x % (y*z) == 0:
-        print (str1+str2)
+    if x % w == 0:
+        print(str1+str2)
     elif x % y == 0:
         print(str1)
     elif x % z == 0:
