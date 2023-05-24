@@ -6,10 +6,8 @@ x = ""
 while x.lower() != "stop":
     x = input("Введите числовой символ: ")
     if x.isdecimal() and len(x) == 1:
-        a = a + x
+        a += x
         print(f"Сформированное число: {a}")
-    elif x.lower() == "stop":
-        break
     else:
         print(f"Предупреждение!\nВы ввели НЕ число или НЕ 1 символ. Вы ввели: {x}\n")
 print(f"Вы остановили ввод символов, введя {x}")
