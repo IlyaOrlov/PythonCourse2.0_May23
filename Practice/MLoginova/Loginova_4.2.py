@@ -2,8 +2,7 @@
 #После чего, каждую цифру этого числа необходимо вывести в новой строке
 x = input("Введите пятизначное число: ")
 if x.isdecimal() and len(x) == 5:
-    new_x = str(x)
-    for i in range(0, len(new_x)):
-        print(str(i+1) + " цифра равна {}".format(new_x[i]))
+    for i in range(0, len(x)):
+        print(str(i+1) + " цифра равна {}".format(x[i]))
 else:
     print("Ошибка! Вы ввели или Не число или НЕ пятизначное число.")
