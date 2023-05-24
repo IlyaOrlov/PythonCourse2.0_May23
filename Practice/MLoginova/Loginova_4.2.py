@@ -3,6 +3,6 @@
 x = input("Введите пятизначное число: ")
 if x.isdecimal() and len(x) == 5:
     for i in range(0, len(x)):
-        print(str(i+1) + " цифра равна {}".format(x[i]))
+        print("{} цифра равна {}".format(i+1, x[i]))
 else:
     print("Ошибка! Вы ввели или Не число или НЕ пятизначное число.")
