@@ -6,7 +6,7 @@ maximum = int(input('Введите верхнюю границу: '))
 number = random.randint(minimum, maximum)
 while True:
     i = input("Введите целое число: ")
-    if isinstance(i, str):
+    if not i.isdigit():
         print('Вы ввели нечисловой символ!\nGame Over!')
         break
     elif int(i) < number:
