@@ -9,9 +9,10 @@ while True:
     if not i.isdigit():
         print('Вы ввели нечисловой символ!\nGame Over!')
         break
-    elif int(i) < number:
+    j = int(i)
+    if j < number:
         print('Не угадали! Загаданное число больше вашего.')
-    elif int(i) > number:
+    elif j > number:
         print('Не угадали! Загаданное число меньше вашего.')
     else:
         print('Поздравляю! Вы отгадали загаданное число!')
