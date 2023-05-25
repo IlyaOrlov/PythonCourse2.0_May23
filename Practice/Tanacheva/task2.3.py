@@ -9,7 +9,7 @@ from time import *
 # имя класса должно быть с большой буквы
 class shuffler:
 
-# имя функции содержит лишние символы. Оно должно быть init
+
     def __init__(self):
         self.map = {}
 
