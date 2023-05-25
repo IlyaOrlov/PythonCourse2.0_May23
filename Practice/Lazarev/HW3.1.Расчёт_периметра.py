@@ -4,6 +4,6 @@ width = float(input('Введите ширину (в см): '))
 perimeter = (length + width) * 2
 if length != width:
     print('Периметр прямоугольника =', perimeter ,'см')
-elif length == width:
+else:
     print('Периметр квадрата =', perimeter ,'см')
 

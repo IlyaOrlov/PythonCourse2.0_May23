@@ -1,5 +1,2 @@
-word = input("Введите слово: ")
-if word == word[::-1]:
-  print(True)
-else:
-  print(False)
+word = input("Введите слово: ").upper()
+print(word == word[::-1])
