@@ -1,7 +1,7 @@
 import random
 x = int(input("Задайте числовой диапазон игры\nВведи левую границу диапазона: "))
 y = int(input("Введи правую границу диапазона: "))
-chislo = random.randint (x, y)
+chislo = random.randint(x, y)
 while True:
     if  z := input("Угадай число, которое я загадал: "):
         if not z.isdigit():
