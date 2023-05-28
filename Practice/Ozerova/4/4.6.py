@@ -1,6 +1,3 @@
-x = int(input("Введите первое число: "))
-y = int(input("Введите второе число: "))
-
 def maxmin(x, y):
     if x > y:
         print(f"Максимальное число равно {x}")
@@ -10,4 +7,7 @@ def maxmin(x, y):
         a = y
     return a
 
+
+x = int(input("Введите первое число: "))
+y = int(input("Введите второе число: "))
 z = maxmin(x, y)
