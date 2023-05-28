@@ -1,10 +1,11 @@
 answers = ["Ты сам‐то понял, что написал?","Аргументируй","И?"]
 request = ""
 i = 0
-#print(len(answers))
-while request.lower() != "хватит" and i <= len(answers)-1:
+while request.lower() != "хватит":
     request = input("Введите Ваш запрос: ")
-    if request.lower() != "хватит":
-        print(answers[i])
+    print(answers[i])
+    if i <= len(answers)-2:
         i += 1
-print(f"Вы остановили ввод символов, введя {request} или ответы из списка закончились!=)")
+    else:
+        i = 0
+print(f"Ввод запросов завершён, так как Вы ввели слово - {request}")
