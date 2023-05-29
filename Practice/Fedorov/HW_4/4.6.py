@@ -1,12 +1,15 @@
 
 
-def poiskMax(num1, num2):
-    x = max(num1, num2)
+def poisk_max(num1, num2):
+    if num1 > num2:
+        x = num1
+    else:
+        x = num2
     return x
 
 
-def printMax(val):
+def print_max(val):
     print(val)
 
 
-printMax(poiskMax(14, 5))
+print_max(poisk_max(14, 20))

@@ -10,12 +10,12 @@ tableWin = [["ножницы", "бумага", "Ты"],
 print("Сыграем в камень ножницы бумага? Если устали напишите: хватит")
 lst = ["камень", "ножницы", "бумага"]
 
-while not (player1 := input("Введите камень ножнницы или бумага: ")).lower() == "хватит":
+while not (player1 := input("Введите камень ножнницы или бумага: ").lower()) == "хватит":
     if player1 not in lst:
         print("Ха-ха ты проиграл! Вводить можно только 3 возможных варианта")
         continue
     player2 = random.choice(lst)
-    if player2 == player1.lower().replace(" ", ""):
+    if player2 == player1:
         print(f"Ничья! У обоих игроков {player2}")
         continue
     for i in range(len(tableWin)):

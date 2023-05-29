@@ -1,8 +1,8 @@
 
 def decorate(func):
-    def inner():
+    def inner(*args, **kwargs):
         print("========")
-        func()
+        func(*args, **kwargs)
         print("========")
     return inner()
 

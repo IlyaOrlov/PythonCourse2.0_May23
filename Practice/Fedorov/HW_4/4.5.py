@@ -3,7 +3,7 @@ import random
 
 def numprov(x, txt):
     while not (x := input(f"Введите {txt} значение загадываемого числа :")).isnumeric():
-        None
+        pass
     return int(x)
 
 
