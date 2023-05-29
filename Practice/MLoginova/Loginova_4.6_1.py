@@ -2,10 +2,8 @@
 def myfun1(x, y):
     if int(x) < int(y):
         print(y)
-        return y
     else:
         print(x)
-        return x
 
 
 myfun1(3, 20)
