@@ -1,10 +1,9 @@
 answers = ["Ты сам‐то понял, что написал?","Аргументируй","И?"]
 request = ""
 i = 0
-while request.lower() != "хватит":
-    request = input("Введите Ваш запрос: ")
+while (request :=input("Введите Ваш запрос: ")).lower() != "хватит":
     print(answers[i])
-    if i <= len(answers)-2:
+    if i < len(answers)-1:
         i += 1
     else:
         i = 0
