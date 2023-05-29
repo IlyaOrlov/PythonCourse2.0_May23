@@ -1,16 +1,16 @@
-import random
-
-x = ""
-num = random.randint(1, 100)
 # Лист кратных значений
 krat = [3, 5, 15]
 # Лист выводимых значений кратных листу krat
 dan = ["Fizz", "Buzz", "FizzBuzz"]
-for i in krat:
-    if num % i == 0:
-        x += f"{dan[krat.index(i)]}\n"
+num = 1
+while num < 101:
+    x = ""
+    for i in krat:
+        if num % i == 0:
+            x += f"{dan[krat.index(i)]}; "
 
-if x == "":
-    print(num)
-else:
-    print(x)
+    if x == "":
+        print(num)
+    else:
+        print(x)
+    num += 1

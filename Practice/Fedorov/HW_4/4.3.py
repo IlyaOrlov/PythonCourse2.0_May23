@@ -1,6 +1,7 @@
 num = ""
 while not (x := input("Введите числовые символы: ")).lower() == "stop":
-    while not x.isnumeric():
-        x = input("Ошибка! Введите цифры: ")
+    if not x.isnumeric():
+        print("Ошибка! Нужно вводить цифры.")
+        x = ""
     num += x
 print(f"Вы ввели : {num}")
