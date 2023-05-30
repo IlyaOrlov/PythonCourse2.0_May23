@@ -1,48 +1,60 @@
 import random
 
-
 m = 0
 n = 0
+
+def win(chel, comp):
+        if (chel == comp):
+            return "Ничья"
+        elif (chel == 1 and comp == 2) or (chel == 2 and comp == 3) or (chel == 3 and comp == 1):
+            return "Победил человек!"
+        else:
+            return "Победил компьютер!"
+
+
 while True:
-        chel = int(input("1 - камень, 2 - ножницы, 3 - бумага, 4 - конeц игры "))
-        if chel == 4:
-                print(f"Стоп игра\nОбщий счёт: Человек {m} Компьютер {n} ")
-                break
-        if chel == 1:
-                print("Вы выбрали камень")
-        if chel == 2:
-                print("Вы выбрали ножницы")
-        if chel == 3:
-                print("Вы выбрали бумагу")
+    chel = int(input("1 - камень, 2 - ножницы, 3 - бумага, 4 - конeц игры "))
+    if chel == 4:
+        print(f"Стоп игра\nОбщий счёт: Человек {m} Компьютер {n} ")
+        break
+    elif chel == 1:
+        print("Человек выбрал камень")
+    elif chel == 2:
+        print("Человек выбрал ножницы")
+    elif chel == 3:
+        print("Человек выбрал бумагу")
+    else:
+        print("Ввели что то не то. Введите цифру от 1 до 4")
+        continue    # наконец то нашёл , чего мне так не хватало)
 
 
-        comp = random.randint(1, 3)
-        if comp == 1:
-                print("Компьютер выбрал камень")
-        if comp == 2:
-                print("Компьютер выбрал ножницы")
-        if comp == 3:
-                print("Компьютер выбрал бумагу")
+    comp = random.randint(1, 3)
+    if comp == 1:
+        print("Компьютер выбрал камень")
+    elif comp == 2:
+        print("Компьютер выбрал ножницы")
+    elif comp == 3:
+        print("Компьютер выбрал бумагу")
 
-        if chel == comp:
-                s = 0
-        if chel == 1 and comp == 2:
-                s = 1
-        if chel == 1 and comp == 3:
-                s = 2
-        if chel == 2 and comp == 1:
-                s = 2
-        if chel == 2 and comp == 3:
-                s = 1
-        if chel == 3 and comp == 1:
-                s = 1
-        if chel == 3 and comp == 2:
-                s = 2
-        if s == 0:
-                print("Ничья!)")
-        if s == 1:
-                print("Победил человек!")
-                m += 1
-        if s == 2:
-                print("Победил компьютер!")
-                n += 1
+    winner = win(chel,comp)
+    if winner == "Победил человек!":
+        m += 1
+    elif winner == "Победил компьютер!":
+        n += 1
+    print(winner)
+
+
+    # if chel == comp:
+    #     s = 0
+    # elif chel == 1 and comp == 2:
+    #     s = 1
+    # elif chel == 1 and comp == 3:
+    #     s = 2
+    # elif chel == 2 and comp == 1:
+    #     s = 2
+    # elif chel == 2 and comp == 3:
+    #     s = 1
+    # elif chel == 3 and comp == 1:
+    #     s = 1
+    # elif chel == 3 and comp == 2:
+    #     s = 2
