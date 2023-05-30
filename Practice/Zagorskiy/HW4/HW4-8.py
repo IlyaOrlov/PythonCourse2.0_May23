@@ -4,17 +4,14 @@
 import random
 
 
-def fun():
-    ans_list = ["КАМЕНЬ", "НОЖНИЦЫ", "БУМАГА"]
-    y = random.choice(ans_list)
-    return y
-
-
 print('Сыграем в "Камень, ножницы, бумага" ?\n'
       'Будем играть, пока тебе не надоест! Если ты устал, просто напиши "устал".')
+
+ans_list = ["КАМЕНЬ", "НОЖНИЦЫ", "БУМАГА"]
+
 while (x := input('Введи значение: ').upper()) != "УСТАЛ":
-    if x == "КАМЕНЬ" or x == "НОЖНИЦЫ" or x == "БУМАГА":
-        y = fun()
+    if x in ans_list:
+        y = random.choice(ans_list)
         if x == y:
             print(f"Машина: {y} = Ничья!")
         elif x == "КАМЕНЬ":

@@ -20,6 +20,7 @@ while (x := input("Введи значение: ")).upper() != "ХВАТИТ":
         x = int(x)
         if x == num:
             print(f'Ты угадал! Я выбрал число {num}')
+            break
         elif x < num:
             print("Почти, число больше! Попробуй еще.")
         else:
