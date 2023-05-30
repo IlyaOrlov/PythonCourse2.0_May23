@@ -9,7 +9,7 @@ def win(chel, comp):
     elif chel == 1 and comp == 2 or chel == 2 and comp == 3 or chel == 3 and comp == 1:
         return "Победил человек!"
     else:
-         return "Победил компьютер!"
+        return "Победил компьютер!"
 
 
 while True:
