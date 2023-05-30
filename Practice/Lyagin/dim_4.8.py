@@ -4,12 +4,12 @@ m = 0
 n = 0
 
 def win(chel, comp):
-        if (chel == comp):
-            return "Ничья"
-        elif (chel == 1 and comp == 2) or (chel == 2 and comp == 3) or (chel == 3 and comp == 1):
-            return "Победил человек!"
-        else:
-            return "Победил компьютер!"
+    if chel == comp:
+        return "Ничья"
+    elif chel == 1 and comp == 2 or chel == 2 and comp == 3 or chel == 3 and comp == 1:
+        return "Победил человек!"
+    else:
+         return "Победил компьютер!"
 
 
 while True:
@@ -33,7 +33,7 @@ while True:
         print("Компьютер выбрал камень")
     elif comp == 2:
         print("Компьютер выбрал ножницы")
-    elif comp == 3:
+    else:
         print("Компьютер выбрал бумагу")
 
     winner = win(chel,comp)
@@ -42,19 +42,3 @@ while True:
     elif winner == "Победил компьютер!":
         n += 1
     print(winner)
-
-
-    # if chel == comp:
-    #     s = 0
-    # elif chel == 1 and comp == 2:
-    #     s = 1
-    # elif chel == 1 and comp == 3:
-    #     s = 2
-    # elif chel == 2 and comp == 1:
-    #     s = 2
-    # elif chel == 2 and comp == 3:
-    #     s = 1
-    # elif chel == 3 and comp == 1:
-    #     s = 1
-    # elif chel == 3 and comp == 2:
-    #     s = 2
