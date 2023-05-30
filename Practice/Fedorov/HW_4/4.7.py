@@ -1,12 +1,21 @@
-
 def decorate(func):
     def inner(*args, **kwargs):
         print("========")
-        func(*args, **kwargs)
+        res = func(*args, **kwargs)
         print("========")
-    return inner()
+        return res
+    return inner
 
 
 @decorate
 def prosto():
     print("Hi")
+
+
+@decorate
+def fun(x, y):
+    return x + y
+
+
+print(prosto())
+print(fun(1, 2))
