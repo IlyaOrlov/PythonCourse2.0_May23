@@ -13,7 +13,7 @@ if language.upper() == "ДА" or language.upper() == "LF":
     b1 = b.replace("а", "*")
     print(b1)
     time.sleep(2)
-if language.upper() == "НЕТ":
+elif language.upper() == "НЕТ":
     e = input("Введите фразу на английском языке с буквой 'a': ")
     e1 = e.replace("a", "*")
     f = input("напиши еще что-нибудь с буквой 'a': ")
