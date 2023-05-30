@@ -13,10 +13,10 @@ def fun_max_2(x, y):
     elif x < y:
         return y
     else:
-        print('Числа равны')
-        return x
+        out = 'Числа равны'
+        return out
 
 
 fun_max_1(10, 15)
-res = fun_max_2(100, 15)
-#print(res)
+res = fun_max_2(100, 100)
+# print(res)
