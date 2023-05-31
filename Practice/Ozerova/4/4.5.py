@@ -6,9 +6,8 @@ y = int(input("Введите максимальное значение диап
 z = random.randint(x, y)
 while True:
     n = input("Угадайте, загаданное число из диапазона: ")
-    if n.isdigit():
+    if not n.isdigit():
         print("Вы ввели не число, введите число: ")
-        break
     a = int(n)
     if a < x:
         print("Нет, загаданное число больше, введите другое: ")
