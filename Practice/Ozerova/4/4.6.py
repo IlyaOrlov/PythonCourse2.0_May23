@@ -1,13 +1,19 @@
 def maxmin(x, y):
     if x > y:
         print(f"Максимальное число равно {x}")
-        a = x
     else:
         print(f"Максимальное число равно {y}")
-        a = y
-    return a
 
 
-x = int(input("Введите первое число: "))
-y = int(input("Введите второе число: "))
-z = maxmin(x, y)
+def maxmin2(x, y):
+    if x > y:
+        return x
+    else:
+        return y
+
+
+a = int(input("Введите первое число: "))
+b = int(input("Введите второе число: "))
+maxmin(a,b)
+z = maxmin2(a, b)
+print(z)
