@@ -1,14 +1,16 @@
 import random
 
 
-number = random.randint(0,10)
-print("Я загадала число от 0 до 10. Попробуй отгадать!")
+x = input("Введите минимальное число диапазона от:  ")
+y = input("Введите максимальное число диапазона до:  ")
+v = random.randint(int(x),int(y))
+print(f"Загаданное число от {x} до {y}. Попробуй отгадать!")
 answer = int(input("Введите целое число : "))
 
-while answer != number:
-    if answer < number:
+while answer != v:
+    if answer < v:
         print("Нет, загаданное число немного больше этого. Попробуй еще раз!")
-    elif answer > number:
+    elif answer > v:
         print("Нет, загаданное число немного меньше этого. Попробуй еще раз!")
 
     answer = int(input("Введите целое число : "))
