@@ -1,5 +1,4 @@
 while len((a := input("Введите пятизначное число: "))) != 5 or not a.isdigit():
-    if len(a) != 5 or not a.isdigit():
         print("Число не пятизначное или это не число.")
 
 
