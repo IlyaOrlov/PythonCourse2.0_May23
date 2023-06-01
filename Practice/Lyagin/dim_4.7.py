@@ -1,10 +1,9 @@
-
-def out_decor(maxmin):
+def out_decor(fun):
     def decor(*args, **kwargs):
         print("===========")
-        rez = maxmin(*args, **kwargs)
+        rez = fun(*args, **kwargs)
         print("===========")
-        return()
+        return rez
     return decor
 
 
@@ -18,9 +17,7 @@ def maxmin(a, b):
         s = b
     return s
 
+
 a = int(input("Введите число a: "))
 b = int(input("Введите число b: "))
 maxmin(a, b)
-
-
-
