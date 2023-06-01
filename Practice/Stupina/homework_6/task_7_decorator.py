@@ -3,8 +3,10 @@ def wrapper(fun):
 
     def new_fun(*args, **kwargs):
         print('==========')
-        print(fun(*args, **kwargs))
+        res = fun(*args, **kwargs)
+        print(res)
         print('==========')
+        return res
 
     return new_fun
 #  а здесь одна?
