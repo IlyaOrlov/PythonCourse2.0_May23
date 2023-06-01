@@ -1,6 +1,6 @@
 def fun(x):
     for i in range(len(x)):
-        for j in range(len(x) - 1):
+        for j in range(i):
             if i != j:
                 if x[i] == x[j]:
                     return x[i]
