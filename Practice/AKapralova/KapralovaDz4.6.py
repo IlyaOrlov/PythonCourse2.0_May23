@@ -1,7 +1,6 @@
 def maxmin(x, y):
     if int(x) < int(y):
         print(y)
-
     else:
         print(x)
 
@@ -12,11 +11,10 @@ maxmin(x, y)
 
 
 def maxmin(x, y):
-    if int(x) < int(y):
-        return int(y)
-
+    if x < y:
+        return y
     else:
-        return int(x)
+        return x
 
 
 x = int(input("Введите х: "))
