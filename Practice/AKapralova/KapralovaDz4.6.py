@@ -10,7 +10,7 @@ y = int(input(f"Введите y: "))
 maxmin(x, y)
 
 
-def maxmin(x, y):
+def maxmin2(x, y):
     if x < y:
         return y
     else:
@@ -19,4 +19,4 @@ def maxmin(x, y):
 
 x = int(input("Введите х: "))
 y = int(input(f"Введите y: "))
-print(f"Большее из вводимых числе: {maxmin(x, y)}")
+print(f"Большее из вводимых числе: {maxmin2(x, y)}")
