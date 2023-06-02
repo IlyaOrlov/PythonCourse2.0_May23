@@ -1,5 +1,5 @@
 def maxmin(x, y):
-    if int(x) < int(y):
+    if x < y:
         print(y)
     else:
         print(x)
