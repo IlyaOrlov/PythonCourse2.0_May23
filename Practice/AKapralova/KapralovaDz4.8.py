@@ -30,4 +30,4 @@ while (x := input("Введи свой вариант: ").lower()) != "стоп"
         continue
 
 else:
-    print("Игра окончена!")
+    print('Игра окончена!')
