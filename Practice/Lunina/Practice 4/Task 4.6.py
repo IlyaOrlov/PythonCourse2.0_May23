@@ -7,6 +7,7 @@ def myf1(x, y):
     else:
         print(f"Наибольшее значение в паре {y}.")
 
+
 def myf2(x, y):
     if x > y:
         return x
@@ -15,6 +16,7 @@ def myf2(x, y):
     else:
         return y
 
+
 a = int(input(f"Введите любое число: "))
 b = int(input(f"Введите любое число: "))
 
@@ -22,6 +24,3 @@ myf1(a, b)
 
 res = myf2(a, b)
 print(f"Наибольшее  возвращаемое значение {res}")
-
-
-
