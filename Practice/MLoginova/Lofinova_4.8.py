@@ -1,14 +1,15 @@
 #Написать приложение – игру "камень, ножницы, бумага".
 import random
 
-lst = [0, 1, 2]
+t = (0, 1, 2)
+#print(type(t))
 print("Привет! Давай сыграем в игру - 'камень, ножницы, бумага'\nЧтобы закончить игру напиши - СТОП или стоп.")
 while not (player1 := input("\nВведите цифру соответствующую выбору:\n0 - камень, 1 - ножницы, 2 - бумага: ").lower()) =="стоп":
     player1 = int(player1)
-    if player1 not in lst:
+    if player1 not in t:
         print(f"Вы ввели число  - {player1} НЕ удовлетворяющее возможным вариантам. Повторите попытку ввода: ")
         continue
-    player2 = random.choice(lst)
+    player2 = random.choice(t)
     if player1 == player2:
         print(f"Победила дружба! У нас с тобой - {player2}")
         continue
