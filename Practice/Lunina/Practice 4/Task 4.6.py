@@ -9,9 +9,7 @@ def myf1(x, y):
 
 
 def myf2(x, y):
-    if x > y:
-        return x
-    elif x == y:
+    if x >= y:
         return x
     else:
         return y
