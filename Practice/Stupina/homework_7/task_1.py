@@ -1,10 +1,10 @@
 def fun_min(lst):
-    j = float('inf')
-    for i, val in enumerate(lst):
-        if j > val:
-            j = val
-            j_index = i
-    return j, j_index
+    y = float('inf')
+    for x, val in enumerate(lst):
+        if y > val:
+            y = val
+            y_index = x
+    return y, y_index
 
 
 arr = [0, 3, 24, 2, 3, 7]
