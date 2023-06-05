@@ -14,10 +14,10 @@ def myf2(x, y):
     else:
         return y
 
+
 while not (a := input(f"Введите 1 число: ")).isdecimal() \
         or not (b := input(f"Введите 2 число: ")).isdecimal():
     print("Вы ввели не число.")
-
 else:
     print("Отлично! Приступим к сравнению.")
     a = int(a)
