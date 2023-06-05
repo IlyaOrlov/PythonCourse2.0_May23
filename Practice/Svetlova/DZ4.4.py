@@ -1,8 +1,7 @@
 x = 0
 
 while True:
-    x1 = input("Задайте вопрос: ")
-    if x1.lower() == "хватит":
+    if input("Задайте вопрос: ").lower() == "хватит":
         break
 
     x += 1
