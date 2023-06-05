@@ -3,15 +3,16 @@
 # Необходимо реализовать функцию, которая удаляет столбец, который содержит заданную цифру.
 
 def del_column(matrix, num):
-    del_col = []
+    del_col = set()
     for i in matrix:
         for index, j in enumerate(i):
-            if j == num and index not in del_col:
-                del_col.append(index)
-    del_col.sort()
+            if j == num:
+                del_col.add(index)
+    del_col = list(del_col)
+    del_col.sort(reverse=True)
     for index, i in enumerate(matrix):
-        for index2, j in enumerate(del_col):
-            matrix[index].pop(j-index2)
+        for index2 in del_col:
+            matrix[index].pop(index2)
     return matrix
 
 
