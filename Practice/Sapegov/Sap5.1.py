@@ -11,8 +11,6 @@ def minimal(x):
 lst = [0, 3, 24, 2, 3, 7]
 y = 0
 while y < len(lst):
-    # print(lst[y:])
-    # print(minimal(lst[y:]))
     index, min_number = minimal(lst[y:])
     lst[index + y] = lst[y]
     lst[y] = min_number
