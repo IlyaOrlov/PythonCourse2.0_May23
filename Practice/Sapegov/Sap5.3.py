@@ -1,7 +1,6 @@
 def chainger_str(x, y):
     for i, j in x.items():
-        if i in y:
-            y = y.replace(i, j)
+        y = y.replace(i, j)
     return y
 
 
