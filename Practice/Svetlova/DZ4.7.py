@@ -5,6 +5,8 @@ def outer(fun):
         print('=========')
         return res
     return inner
+
+
 @outer
 def s_fun():
     print("Hello")
