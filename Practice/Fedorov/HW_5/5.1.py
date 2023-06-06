@@ -9,7 +9,7 @@ def minim(x):
 
 arr = [0, 3, 24, 2, 3, 7]
 
-for index, i in enumerate(arr):
+for index, _ in enumerate(arr):
     num_min, idx = minim(arr[index:])
     arr[idx + index] = arr[index]
     arr[index] = num_min
