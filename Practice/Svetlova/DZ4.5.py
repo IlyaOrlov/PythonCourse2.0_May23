@@ -18,7 +18,6 @@ import random
 #             print("Загаданное число меньше.")
 #
 # guess_number()
-import random
 
 
 def guess_number(x, y):

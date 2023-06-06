@@ -2,11 +2,10 @@ import random
 
 
 def play_game():
-    x = ['камень', 'ножницы', 'бумага']
+    x =  ('камень', 'ножницы', 'бумага')
 
     while True:
-        print("Выберите: камень, ножницы, бумага (или 'выход' для завершения):")
-        igrok_y = input().lower()
+        igrok_y = input(f"Выберите: {x} (или 'выход' для завершения):").lower()
 
         if igrok_y == 'выход':
             break
@@ -22,11 +21,11 @@ def play_game():
 
         if igrok_y == computer_z:
             print("Ничья!")
-        elif ((igrok_y == 'камень') and (computer_z == 'ножницы')):
+        elif (igrok_y == 'камень') and (computer_z == 'ножницы'):
             print("Вы победили!")
-        elif ((igrok_y == 'ножницы') and (computer_z == 'бумага')):
+        elif (igrok_y == 'ножницы') and (computer_z == 'бумага'):
             print("Вы победили!")
-        elif ((igrok_y == 'бумага') and (computer_z == 'камень')):
+        elif (igrok_y == 'бумага') and (computer_z == 'камень'):
             print("Вы победили!")
         else:
             print("Компьютер победил!")
@@ -34,3 +33,4 @@ def play_game():
         print()
 
 play_game()
+
