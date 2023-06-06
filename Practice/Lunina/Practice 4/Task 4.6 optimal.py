@@ -15,15 +15,16 @@ def myf2(x, y):
         return y
 
 
-while not (a := input(f"Введите 1 число: ")).isdecimal() \
-        or not (b := input(f"Введите 2 число: ")).isdecimal():
-    print("Вы ввели не число.")
-else:
-    print("Отлично! Приступим к сравнению.")
-    a = int(a)
-    b = int(b)
-    myf1(a, b)
+def check_num(n):
+    while not (x := input(f"Введите {n} число: ")).isdecimal():
+        print("Вы ввели не число.")
+    return x
 
+
+a = int(check_num(1))
+b = int(check_num(2))
+print("Отлично! Приступим к сравнению.")
+myf1(a, b)
 
 res = myf2(a, b)
 print(f"Наибольшее  возвращаемое значение {res}")
