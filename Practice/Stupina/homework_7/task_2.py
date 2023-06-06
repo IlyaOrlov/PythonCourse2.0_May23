@@ -1,10 +1,11 @@
 def fun(lst):
-    idx = []
-    for idx_i, i in enumerate(lst):
-        idx_i += 1
-        idx += [(idx_j + idx_i) for idx_j, j in enumerate(lst[idx_i:]) if i == j]
-    return lst[min(idx)]
+    k = set()
+    for elem in lst:
+        if elem in k:
+            return elem
+        else:
+            k.add(elem)
 
 
-lst = [4, 12, 1, 12, 3, 4]
+lst = [0, 12, 120, 10, 12, 4, 4]
 print(f'Исходная строка: {lst} \nПервый повторившийся символ: {fun(lst)}')
