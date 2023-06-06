@@ -2,7 +2,7 @@ def myfun(x, y):
     rez = 0
     if x >= y:
         rez = x
-    if x < y:
+    else:
         rez = y
     return rez
 

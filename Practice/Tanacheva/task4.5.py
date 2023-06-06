@@ -11,8 +11,8 @@ print("Угадай число!")
 while (number2 := input('Введите число:')).isdigit():
     if int(number2) > number1:
         print("Введенное число больше загаданного")
-    if int(number2) < number1:
+    elif int(number2) < number1:
         print("Введенное число меньше загаданного")
-    if int(number2) == number1:
+    elif int(number2) == number1:
         print("Вы угадали число")
         break
