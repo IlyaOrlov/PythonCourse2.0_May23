@@ -7,11 +7,12 @@ def minim(x):
     return num_min, idx_min
 
 
-arr = [0, 3, 24, 2, 3, 7]
+arr = [0, 54, 55, 53, 100, 51, 0, 8, 9, 0]
 
 for index, _ in enumerate(arr):
     num_min, idx = minim(arr[index:])
-    arr[idx + index] = arr[index]
-    arr[index] = num_min
+    if idx != 0:
+        arr[idx + index] = arr[index]
+        arr[index] = num_min
 
 print(arr)
