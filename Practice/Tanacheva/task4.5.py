@@ -9,10 +9,11 @@ print("")
 print("Угадай число!")
 
 while (number2 := input('Введите число:')).isdigit():
-    if int(number2) > number1:
+    number2 = int(number2)
+    if number2 > number1:
         print("Введенное число больше загаданного")
-    elif int(number2) < number1:
+    elif number2 < number1:
         print("Введенное число меньше загаданного")
-    elif int(number2) == number1:
+    else:
         print("Вы угадали число")
         break
