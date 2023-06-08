@@ -1,14 +1,13 @@
-def add(x,y):
-    print(x+y)
+def Dec_mydec(fun):
+    def mydec():
+        print("===========")
+        fun()
+        print("===========")
+    return mydec
 
-def mydec(fun, *args):
-    print("===========")
-    fun(args[0],args[1])
-    print("===========")
-
-x = int(input("Введите 1ое число   "))
-y = int(input("Введите 2ое число   "))
-mydec(add,x,y)
+@Dec_mydec
+def Hello():
+    print("Hello World")
 
 
 
