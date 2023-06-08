@@ -1,5 +1,5 @@
 d = {'работать': 'в отпуск', '!': '!!!'}
-message = ('Я хочу Работать!').lower()
+message = 'Я хочу Работать!'.lower()
 print(f'старая строка: {message}')
 
 for key, val in d.items():
