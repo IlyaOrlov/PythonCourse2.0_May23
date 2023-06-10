@@ -1,12 +1,14 @@
-arr = [0,3,-8,2,3,7]
-
 
 def min_el(arr):
-    ind = 0
-    for i in range(1,len(arr)):
-        if arr[i] < arr[ind]:
-           ind = i
-           arr[0], arr[ind] = arr[ind], arr[0]
+    for i in range(len(arr)):
+        for k in range(i):
+            if arr[k] > arr[i]:
+                arr[k],arr[i] = arr[i],arr[k]
+    return(arr)
+
+
+
+
+arr = [0, 3, -8, 2, 3, 7]
 print(arr)
-min_el(arr)
-print(arr)
+print(min_el(arr))
