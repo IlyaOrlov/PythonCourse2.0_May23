@@ -7,7 +7,6 @@ while True:
         break
     elif not s.isdigit():
         print('Вы ввели не цифры!')
-        continue
     else:
         r = r * 10 + int(s)
 print(f'Число равно {r}')
