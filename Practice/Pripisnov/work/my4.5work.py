@@ -1,8 +1,7 @@
 import random
 
+
 def secret_number():
-
-
     a = int(input("Введите начало диапазона: "))
     b = int(input("Введите конец диапазона: "))
     x = random.randint(a, b)
@@ -19,4 +18,6 @@ def secret_number():
                 print("Загаданное число меньше.")
         except ValueError:
             print("Некорректный ввод. Введите целое число.")
+
+
 secret_number()

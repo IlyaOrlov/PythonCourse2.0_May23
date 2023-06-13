@@ -2,7 +2,7 @@ a = "Fizz"
 b = "Buzz"
 
 for x in range (1,101):
-    if x % (15) == 0:
+    if x % 15 == 0:
         print(a+b)
     elif x % 3 == 0:
         print(a)

@@ -1,6 +1,4 @@
 def find_first_duplicate(lst):
-
-
     x = set()
 
     for i in lst:
@@ -9,6 +7,7 @@ def find_first_duplicate(lst):
         x.add(i)
 
     return None
+
 
 # Пример функции
 my_list = [2, 3, 4, 5, 3, 2]

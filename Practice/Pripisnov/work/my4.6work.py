@@ -1,8 +1,4 @@
-
-
 def print_big(a, b):
-
-
     if a > b:
         print("Большее число:", a)
     else:
@@ -10,8 +6,6 @@ def print_big(a, b):
 
 
 def return_big(a, b):
-
-
     if a > b:
         return a
     else:

@@ -2,8 +2,6 @@ import random
 
 
 def play_game():
-
-
     print("Игра 'Камень, Ножницы, Бумага'")
     print("Выберите один из вариантов:")
     print("1 - Камень")
@@ -32,5 +30,6 @@ def play_game():
         print("Вы победили!")
     else:
         print("Вы проиграли!")
+
 
 play_game()
