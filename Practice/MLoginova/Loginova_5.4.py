@@ -1,14 +1,20 @@
 #4.Есть список списков (матрица). Каждый внутренний список – это строка матрицы.
 # Необходимо реализовать функцию, которая удаляет столбец, который содержит заданную цифру.
-def del_int(arr1, x):
-    for i in range(len(arr1)):
-        a = arr1[i].pop(x)
+def del_int(arr1, x_del):
+    for i in arr1:
+        j = 0
+        while j < len(i):
+            if i[j] == x_del:
+                k = 0
+                while k < len(arr1):
+                    del arr1[k][j]
+                    k += 1
+            else:
+                j += 1
     return arr1
 
 
-arr1 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-print(arr1)
-while (x := int(input("Введите число: "))) > len(arr1):
-    print("Вы ввели число большее чем колличество столбцов. Повторите попытку!")
-del_int(arr1, x)
-print(arr1)
+arr1 = [[5, 2, 3], [1, 5, 2], [7, 2, 9]]
+print(f"Исходная матрица:\n{arr1}")
+x_del = int(input("Будут удалены столбцы, содержащие цифру: "))
+print(del_int(arr1, x_del))
