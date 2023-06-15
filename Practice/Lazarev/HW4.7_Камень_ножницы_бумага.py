@@ -29,3 +29,5 @@ while True:
     play_again = input('Сыграем еще? (да/нет): ')
     if play_again.lower() != 'да':
         break
+    else:
+        print('Напишите Камень, Ножницы или Бумага')
