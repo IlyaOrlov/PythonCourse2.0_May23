@@ -1,5 +1,4 @@
 def fist_func(a, b):
-    while True:
         if a > b:
             print(f'Большее число: {a}')
         else:
