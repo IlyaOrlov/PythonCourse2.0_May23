@@ -1,8 +1,12 @@
 def first_func():
-    while not (x := input('Введите число: ')).isdecimal():
-        print('Это не число!')
-    return int(x)
+    a = int(input('Введите первое число: '))
+    b = int(input('Введите второе число: '))
+    if a > b:
+        print(f'Большее число: {a}')
+    else:
+        print(f'Большее число: {b}')
+    return
+    
 
-a = first_func()
-b = first_func()
-print(f'Большее число: {max(a,b)}')
+first_func()
+
