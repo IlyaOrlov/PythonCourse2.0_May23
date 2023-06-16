@@ -6,5 +6,5 @@ def fist_func(a, b):
     return True 
 
 
-(fist_func(10, 20))
+fist_func(10, 20)
 
