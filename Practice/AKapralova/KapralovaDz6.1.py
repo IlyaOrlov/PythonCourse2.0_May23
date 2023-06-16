@@ -9,7 +9,7 @@ class Tanks:
     def __init__(self, name1, classification1, weight1, crew1):
         self.name = name1
         self.classification = classification1
-        self. weight = weight1
+        self.weight = weight1
         self.crew = crew1
         self.speed = 50
         self.firing_range = 3
@@ -17,11 +17,11 @@ class Tanks:
     def say_my_name(self):
         print(f"Перед вами танк: {self.name}, {self.classification}, {self.weight}, {self.crew}.")
 
-    def add_speed(emp, bonus):
-        emp.speed += bonus
+    def add_speed(self, bonus):
+        self.speed += bonus
 
-    def add_firing_range(emp, bonus):
-        emp.firing_range += bonus
+    def add_firing_range(self, bonus):
+        self.firing_range += bonus
 
 
 t1 = Tanks("T-90ам", "Средний и основной танк", "48 т.", "3 чел")
