@@ -2,9 +2,9 @@ import random
 
 print('You wanna play??? Lets play!!!\nЧтобы начать напишите Камень, Ножницы или Бумага'
           '\nКамень бьёт ножницы, бумага оборачивает камень, ножницы режут бумагу.')
+z = ('камень', 'ножницы', 'бумага')
 while True:
-    z = ['камень', 'ножницы', 'бумага']
-    user = (input('')).lower()
+    user = input('').lower()
     bot = random.choice(z)
     print(f'Компьютер вбрал: {bot}')
     if user == bot:

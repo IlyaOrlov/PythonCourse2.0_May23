@@ -1,12 +1,10 @@
-def first_func():
-    a = int(input('Введите первое число: '))
-    b = int(input('Введите второе число: '))
+def first_func(a, b):
     if a > b:
-        print(f'Большее число: {a}')
+        return f'Большее число: {a}'
     else:
-        print(f'Большее число: {b}')
-    return
-    
+        return f'Большее число: {b}'
 
-first_func()
 
+a = int(input('Введите первое число: '))
+b = int(input('Введите второе число: '))
+print(first_func())
