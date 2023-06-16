@@ -1,5 +1,5 @@
 def fun_sort(lst):
-    for i in range(len(lst)):
+    for i in range(len(lst)-1):
         minimum = i
         for j in range(i + 1, len(lst)):
             if lst[j] < lst[minimum]:
