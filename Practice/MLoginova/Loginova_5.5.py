@@ -2,7 +2,7 @@ def file_actions(file, choice, tab, spase):
     with open(file, 'r', encoding="utf8") as f:
         data = f.read()
         #print(data)
-        if k == 1:
+        if choice == 1:
             if tab in data:
                 data = data.replace(tab, spase)
                 print(f"В файле {file} присутствует символ(ы) табуляции и он(и) заменены на 4 пробела")
