@@ -4,7 +4,8 @@ def fun_sort(lst):
         for j in range(i + 1, len(lst)):
             if lst[j] < lst[minimum]:
                 minimum = j
-        lst[minimum], lst[i] = lst[i], lst[minimum]
+        if minimum != i:
+            lst[minimum], lst[i] = lst[i], lst[minimum]
     return lst
 
 
