@@ -12,9 +12,8 @@ class WrapStrToFile:
         # попытка чтения из файла, в случае успеха возвращаем содержимое
         # в случае неудачи возвращаем 'File doesn't exist'
         try:
-            file = open(self.filepath)
-            s = file.read()
-            file.close()
+            with open(self.filepath) as my_file:
+                s = my_file.read()
             return s
         except:
             return "File doesn't exist"
@@ -22,7 +21,8 @@ class WrapStrToFile:
     @content.setter
     def content(self, value):
         # попытка записи в файл указанного содержимого
-        open(self.filepath, "w").write(value)
+        with open(self.filepath, "w") as my_file:
+            my_file.write(value)
 
     @content.deleter
     def content(self):

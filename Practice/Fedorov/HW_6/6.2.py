@@ -1,3 +1,5 @@
+import random
+
 class Duck:
     color = "White"
 
@@ -21,11 +23,21 @@ class Duck:
         return self._weight != other._weight
 
     def __add__(self, other):
-        return self._weight + other._weight
+        return Duck(self.generate_duck_name(), self._weight + other._weight)
 
     @staticmethod
     def hello():
         print("Сrack")
+
+    @staticmethod
+    def generate_duck_name():
+        s = "DAERTHY"
+        i = 0
+        name = ""
+        while i < 3:
+            name += random.choice(s)
+            i += 1
+        return name
 
     @classmethod
     def which_color(cls):
@@ -38,5 +50,7 @@ class Duck:
 x = Duck("Беляш", 10)
 x1 = Duck("Марта", 10)
 print(x < x1)
-print(x + x1)
 x.say_hello()
+
+x2 = x + x1
+x2.say_hello()

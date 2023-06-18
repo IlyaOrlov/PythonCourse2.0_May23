@@ -1,5 +1,7 @@
 import random
-class Tanks:
+
+
+class Tanks():
 
     def __init__(self, name=None):
         self.name = name if name else self.generate()
@@ -36,14 +38,10 @@ class Tanks:
     def generate_hp_dmg():
         hp = int(random.randint(5, 10) * 10)
         return hp, 100 // (hp / 10)
+
     @staticmethod
     def random_heal():
-        hp = random.choice([True, False])
-        if hp:
-            heal = 10
-        else:
-            heal = 0
-        return heal
+        return 10 if random.randint(0, 1) else 0
 
 
 t1 = Tanks()
@@ -55,7 +53,3 @@ t2.heal()
 t1.say_charactiristic()
 t2.say_charactiristic()
 print(t1 > t2)
-
-
-
-
