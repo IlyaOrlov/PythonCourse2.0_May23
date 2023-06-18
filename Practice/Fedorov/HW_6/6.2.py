@@ -1,5 +1,6 @@
 import random
 
+
 class Duck:
     color = "White"
 
