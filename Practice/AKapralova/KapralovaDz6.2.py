@@ -6,7 +6,7 @@ class Duck:
         self.weight = weight1
 
     def __repr__(self):
-        print(f"Привет, меня зовут уточка {self.name}, мой вес: {self.weight} кг.")
+        return f"{self.name} {self.weight}"
 
     def __lt__(self, other):  # Меньше чем
         return self.weight < other.weight
@@ -22,7 +22,7 @@ class Duck:
 
     def __add__(self, other):
         summa = self.weight + other.weight
-        return summa
+        return Duck('Помпушка', summa)
 
     @staticmethod
     def say():
@@ -33,13 +33,13 @@ class Duck:
         print(f"Мой цвет: {cls.color}.")
 
 
-d1 = Duck("Поночка", "3")
-d1.__repr__()
+d1 = Duck("Поночка", 3)
+print(f"Привет, меня зовут уточка {d1.name}, мой вес {d1.weight} кг.")
 d1.say()
 d1.mycolor()
 
-d2 = Duck("Лапочка", "5")
-d2.__repr__()
+d2 = Duck("Лапочка", 5)
+print(f"Привет, меня зовут уточка {d2.name}, мой вес {d2.weight} кг.")
 d2.say()
 d1.mycolor()
 
@@ -48,4 +48,4 @@ print(d2 > d1)
 print(d2 == d1)
 print(d2 != d1)
 d3 = d1 + d2
-print(f"Общий вес уток: {d3}")
+print(f"Самая аппетитная уточка: {d3} кг.")
