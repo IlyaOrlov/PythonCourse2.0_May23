@@ -17,9 +17,8 @@ class Tanks:
 
     #стоимость танка в рублях(стоимость танка в долларах * на курс)
     def price_tank(self, kurs_usd):
-        price = PRICE_TANK_USB * kurs_usd
+        price = PRICE_TANK_USD * kurs_usd
         return price
-
 
     def info_tanks(self):
         dt_now = datetime.date.today()
@@ -29,15 +28,13 @@ class Tanks:
 list_country = ["Russia", "USA", "Gourmania", "Ukraine", "Poland"]
 # пока не знаю как курс взять с сайта ЦБ РФ, пусть его введёт пользователь для дальнейшего расчёта стоимости танка в руб.:
 kurs_usd = float(input("Enter the course 'USD' for today: "))
-PRICE_TANK_USB = 2500000
+PRICE_TANK_USD = 2500000
 
 t1 = Tanks("T-90")
 t1.info_tanks()
 
-
 t2 = Tanks("Тигр")
 t2.info_tanks()
-
 
 t3 = Tanks("Пантера")
 t3.info_tanks()
