@@ -7,43 +7,23 @@
 #     return arr
 
 
-arr = [0, 3, 24, 2, 3, 7]
+
 # print(arr)
 # print(min_el(arr))
-j = 0
-for i in range(len(arr)):
-    if arr[i] <= arr[j]:
-        arr[i],arr[j] = arr[j],arr[i]
-        print(arr[i])
-        print(arr)
-j += 1
-for i in range(j,len(arr)):
-    if arr[i] <= arr[j]:
-        arr[i],arr[j] = arr[j],arr[i]
-        print(arr[i])
-        print(arr)
-
-j += 1
-for i in range(j,len(arr)):
-    if arr[i] <= arr[j]:
-        arr[i],arr[j] = arr[j],arr[i]
-        print(arr[i])
-        print(arr)
-
-j += 1
-for i in range(j,len(arr)):
-    if arr[i] <= arr[j]:
-        arr[i],arr[j] = arr[j],arr[i]
-        print(arr[i])
-        print(arr)
-
-j += 1
-for i in range(j,len(arr)):
-    if arr[i] <= arr[j]:
-        arr[i],arr[j] = arr[j],arr[i]
-        print(arr[i])
-        print(arr)
 
 
+arr = [0, 3, 24, 2, 3, 7]
 
+i = 0
+while i < len(arr)-1:
+    m = i
+    j = i + 1
 
+    while j < len(arr):
+        if arr[j] < arr[m]:
+            m = j
+        j = j+1
+    arr[i], arr[m] = arr[m], arr[i]
+    i += 1
+
+    print(arr)
