@@ -11,6 +11,7 @@ def del_col(x, y):
                     a += 1
     return x
 
+
 arr = [[1, 2, 3, 4], [4, 5, 6, 7], [7, 8, 9, 10]]
 number = 4
 print(del_col(arr, number))
