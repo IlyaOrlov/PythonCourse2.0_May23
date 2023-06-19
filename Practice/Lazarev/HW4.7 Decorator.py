@@ -6,7 +6,7 @@ def my_decorator(func):
 
 @my_decorator
 def anyfunc(y):
-    return (y)
-
-print(anyfunc('привет'))
-
+    return y ** 2
+# def anyfunc(y):
+#     return (y)
+z = anyfunc(10) * 2
