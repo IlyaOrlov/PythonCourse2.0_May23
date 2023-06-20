@@ -5,8 +5,11 @@ class Duck:
         self.name = name1
         self.weight = weight1
 
+    def say_hello(self):
+        print(f"Привет, меня зовут уточка {self.name}, мой вес {self.weight} кг.")
+
     def __repr__(self):
-        return f"{self.name} {self.weight}"
+        return f"Привет, меня зовут уточка {self.name}, мой вес {self.weight} кг."
 
     def __lt__(self, other):  # Меньше чем
         return self.weight < other.weight
@@ -29,23 +32,23 @@ class Duck:
         print("Сrack")
 
     @classmethod
-    def mycolor(cls):
+    def my_color(cls):
         print(f"Мой цвет: {cls.color}.")
 
 
 d1 = Duck("Поночка", 3)
-print(f"Привет, меня зовут уточка {d1.name}, мой вес {d1.weight} кг.")
+d1.say_hello()
 d1.say()
-d1.mycolor()
+d1.my_color()
 
 d2 = Duck("Лапочка", 5)
-print(f"Привет, меня зовут уточка {d2.name}, мой вес {d2.weight} кг.")
+d2.say_hello()
 d2.say()
-d1.mycolor()
+d1.my_color()
 
 print(d2 < d1)
 print(d2 > d1)
 print(d2 == d1)
 print(d2 != d1)
 d3 = d1 + d2
-print(f"Самая аппетитная уточка: {d3} кг.")
+print(d3)
