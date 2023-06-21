@@ -6,8 +6,7 @@ class Man:
     def __init__(self, name):
         self.name = name
 
-    @staticmethod
-    def solve_task():
+    def solve_task(self):
         print("I'm not ready yet")
 
 
@@ -16,9 +15,9 @@ class Pupil(Man):
         super().__init__(name)
         self.surname = surname
 
-    @staticmethod
-    def solve_task():
+    def solve_task(self):
         time.sleep(random.randint(3, 6))
+        super().solve_task()
 
 
 m = Pupil('Dima', 'Sapegov')
