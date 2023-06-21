@@ -5,8 +5,14 @@ class Duck:
         self.name = name1
         self.weight = weight1
 
+    # def say_hello(self):
+    #     print(f"Привет, меня зовут уточка {self.name}, мой вес {self.weight} кг.")
+    #
+    # def __repr__(self):
+    #     return f"{self.name} {self.weight}"
+
     def say_hello(self):
-        print(f"Привет, меня зовут уточка {self.name}, мой вес {self.weight} кг.")
+        print(self)
 
     def __repr__(self):
         return f"Привет, меня зовут уточка {self.name}, мой вес {self.weight} кг."
