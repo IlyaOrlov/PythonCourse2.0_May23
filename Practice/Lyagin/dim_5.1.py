@@ -23,7 +23,8 @@ while i < len(arr)-1:
         if arr[j] < arr[m]:
             m = j
         j = j+1
-    arr[i], arr[m] = arr[m], arr[i]
+    if m != i:
+        arr[i], arr[m] = arr[m], arr[i]
     i += 1
 
     print(arr)
