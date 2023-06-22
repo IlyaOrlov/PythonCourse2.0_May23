@@ -1,11 +1,11 @@
 
 d = {"Зимой" : "Щи", "летом" : "каша", "одним" : "пища", "цветом" : "наша"}
-str = "Зимой и летом одним цветом"
+st_r = "Зимой и летом одним цветом"
 
-print(f"Было: ", str)
+print(f"Было: ", st_r)
 
 for k,v in d.items():
-    str = str.replace(k,v)
-    print((k,v))
+    st_r = st_r.replace(k,v)
+    print(k,v)
 
-print(f"Стало: ", str)
+print(f"Стало: ", st_r)
