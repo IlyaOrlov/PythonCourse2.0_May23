@@ -28,8 +28,8 @@ class Duck:
         return self.weight != other.weight
 
     def __add__(self, other):
-        sum = self.weight + other.weight
-        return Duck('Ponka', sum)
+        summa = self.weight + other.weight
+        return Duck('Ponka', summa)
 
 
 d1 = Duck("Ponka", 7850)
