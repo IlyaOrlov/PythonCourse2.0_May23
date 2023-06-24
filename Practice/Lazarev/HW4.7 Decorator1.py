@@ -9,16 +9,22 @@ def my_dec(t):
     return result
 
 
+
 @my_dec('====')
 def anyfunc(y):
     return y ** 2
 
+
+
 z = anyfunc(10) * 2
+
 
 
 @my_dec('====')
 def anyfunc2(y):
     return y
+
+
 
 anyfunc2("hello")
 
