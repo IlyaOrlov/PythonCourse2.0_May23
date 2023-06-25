@@ -1,11 +1,29 @@
 class ATM:
-    operations = ['снятие наличных', 'внесение наличных', 'баланс', 'онлайн-платеж']
+    _operations = 'снятие наличных', 'внесение наличных', 'баланс', 'онлайн-платеж'
     __num = 0
 
     def __init__(self, summa, bank):
         self.__summa = summa
-        self.bank = bank
-        self.name = self.__generator_name()
+        self._bank = bank
+        self._name = self.__generator_name()
+
+    @property
+    def name(self):
+        return self._name
+
+    @property
+    def bank(self):
+        return self._bank
+
+    @name.setter
+    def name(self, *args):
+        print('Имя банкомата не может быть изменено!')
+
+    @bank.setter
+    def bank(self, x):
+        if input('Вы действительно хотите поменять банк? Введите да/нет:').lower() == 'да':
+            self._bank = x
+            print(f'Банк банкомата {self._name} был изменен')
 
     @classmethod
     def __generator_name(cls):
@@ -14,46 +32,47 @@ class ATM:
 
     def cash_in(self, value):
         self.__summa += value
-        print(f'{self.name}: Вы положили на счет: {value}')
+        print(f'{self._name}: Вы положили на счет: {value}')
 
     def cash_out(self, value):
         if self.__summa > value:
             self.__summa -= value
-            print(f'{self.name}: Выдача наличных: {value}')
+            print(f'{self._name}: Выдача наличных: {value}')
         else:
             print('Неудачная попытка снятия: В банкомате недостаточно средств!')
 
     def balance(self):
-        print(f'Остаток {self.name}: {self.__summa}')
+        print(f'Остаток {self._name}: {self.__summa}')
 
     def info_operations(self):
-        print(f'\nДоступные операции банкомата {self.name}: {self.operations}')
+        print(f'\nДоступные операции банкомата {self._name}: {self._operations}')
 
     def info_num(self):
         print(f'Всего банкоматов типа {type(self).__name__} - {self.__num} шт.')
 
     @staticmethod
-    def info_bank(lst_ob):
+    def info_bank(set_ob):
         print('\n------ Информация по банкам ------')
         d = {}
-        for i in lst_ob:
+        set_atm = set()
+        for i in set_ob:
+            set_atm.add(type(i).__name__)
             if i.bank in d:
-                d[i.bank] += 1
+                b = d[i.bank]
+                if type(i).__name__ in b:
+                    b[type(i).__name__] += 1
+                else:
+                    b[type(i).__name__] = 1
             else:
-                d[i.bank] = 1
+                d[i.bank] = {type(i).__name__: 1}
 
         for i in d:
-            b = {}
-            for j in lst_ob:
-                if j.bank == i:
-                    if type(j).__name__ in b:
-                        b[type(j).__name__] += 1
-                    else:
-                        b[type(j).__name__] = 1
-
-            print(f'Всего банкоматов банка {i} - {d[i]} шт:')
-            for j in b:
-                print(f' - банкоматы типа {j} - {b[j]} шт')
+            n = 0
+            s = ''
+            for j in set_atm:
+                n += d[i].get(j, 0)
+                s = s + f'\n  - {j}: {d[i].get(j,0)} шт'
+            print(f'Банкоматы банка {i} - {n} шт:{s}')
 
     def test(self):
         self.info_operations()
@@ -64,28 +83,29 @@ class ATM:
 
 
 class ATMCashInOut(ATM):
-    operations = ATM.operations[0:3]
+    _operations = ATM._operations[0:3]
 
 
 class ATMPayments(ATM):
     def payments(self):
-        print(f'{self.name}: Совершен онлайн-платеж')
+        print(f'{self._name}: Совершен онлайн-платеж')
 
 
-atm_1 = ATMCashInOut(100000, 'Sber')
+atm_1 = ATMCashInOut(600000, 'Sber')
 atm_1.cash_out(500000)
 
-atm_2 = ATMPayments(100000, 'Tinkoff')
+atm_2 = ATMPayments(200000, 'Sber')
 atm_2.cash_in(3000)
-
-atm_3 = ATMPayments(200000, 'Sber')
 atm_2.payments()
 
+atm_3 = ATMPayments(500000, 'Sber')
 atm_4 = ATMCashInOut(100000, 'Alfa')
+atm_5 = ATMPayments(400000, 'Tinkoff')
 
-atm = {atm_1, atm_2, atm_3, atm_4}
-
-for t in atm:
-    t.test()
+atm = {atm_1, atm_2, atm_3, atm_4, atm_5}
 
 ATM.info_bank(atm)
+[t.test() for t in atm]
+
+atm_1.bank = 'fgdf'
+print(atm_1.bank)
