@@ -11,7 +11,6 @@ class ATM:
         self.name = name
         self.balance = float(balance)
 
-
     def about_atm(self):
         print(f"Банкомат: {self.name} Баланс: {self.balance}")
         print("Банкомат может осуществлять следующие операции:\n"
@@ -31,9 +30,11 @@ class ATM:
 class BaseATM(ATM):
     pass
 
+
 class NewATM(ATM):
-    def online_payments(self):
-        pass
+    
+    def online_payment(self):
+        print("Создание онлайн платежа")
 
     def about_atm(self):
         super().about_atm()
@@ -46,15 +47,6 @@ b2 = NewATM("ccc", 1000)
 
 lst = [b, b1, b2]
 
-i = 0
-while i < len(lst):
-    lst[i].give_money(200)
-    lst[i].about_atm()
-    i += 1
-
-
-
-
-
-
-
+for i in lst:
+    i.give_money(200)
+    i.about_atm()
