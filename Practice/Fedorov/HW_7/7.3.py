@@ -9,7 +9,7 @@
 class ATM:
     def __init__(self, name, balance=0):
         self.name = name
-        self.balance = float(balance)
+        self._balance = float(balance)
 
     def about_atm(self):
         print(f"Банкомат: {self.name} Баланс: {self.balance}")
@@ -18,13 +18,13 @@ class ATM:
               "give_money - выдача банкоматом наличных")
         
     def get_money(self, money):
-        self.balance += money
+        self._balance += money
 
     def give_money(self, money):
-        if self.balance - money < 0:
+        if self._balance - money < 0:
             print(f"В Банкомате:{self.name} недостаточно денежных средств.")
         else:
-            self.balance -= money
+            self._balance -= money
 
 
 class BaseATM(ATM):
