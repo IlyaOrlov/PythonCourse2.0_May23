@@ -105,7 +105,7 @@ atm_5 = ATMPayments(400000, 'Tinkoff')
 atm = {atm_1, atm_2, atm_3, atm_4, atm_5}
 
 ATM.info_bank(atm)
-[t.test() for t in atm]
+for t in atm:
+    t.test()
 
 atm_1.bank = 'fgdf'
-print(atm_1.bank)
