@@ -1,10 +1,10 @@
 # Найти и заменить некие шаблоны в строке:есть строка с определенного вида форматированием
 # ,необходимо заменить в этой строке все вхождения шаблонов на их значение из словаря.
 
-def format_str(dict, str):
-    for i, j in dict.items():
-        str = str.replace(i, j)
-    return str
+def format_str(d, s):
+    for i, j in d.items():
+        s = s.replace(i, j)
+    return s
 
 
 str1 = input(f"Введите какую-либо фразу:")
