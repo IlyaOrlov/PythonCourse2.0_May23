@@ -41,8 +41,9 @@ class OldATM(ATM):
 
 class NewATM(ATM):
     
-    def online_payment(self, money):
-        self._balance -= money
+    def online_payment(self):
+        input("Введите номер получателя")
+        input("Введите сумму")
 
     def about_atm(self):
         super().about_atm()
@@ -52,7 +53,7 @@ class NewATM(ATM):
 b = OldATM("aaa", 200)
 b1 = ATM("bbb", 0)
 b2 = NewATM("ccc", 1000)
-
+b2.online_payment()
 
 lst = [b, b1, b2]
 
