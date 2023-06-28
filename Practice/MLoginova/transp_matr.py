@@ -11,5 +11,5 @@ print(a)
 #for i in range(len(lst)):
    # for j in range(3):
         #a[j][i] = lst[i][j]
-a = [[lst[i][j] for i in range(len(lst)) for j in range(len(lst[0]))]]
+a = [[lst[i][j] for i in range(len(lst))] for j in range(len(lst[0]))]
 print(a)
