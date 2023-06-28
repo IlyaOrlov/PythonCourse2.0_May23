@@ -15,9 +15,9 @@ class ATM:
     def balance(self):
         return self._balance
 
-    @balance.setter
-    def balance(self, _money):
-        print("Запрещено менять баланс")
+    # @balance.setter
+    # def balance(self, _money):
+    #     print("Запрещено менять баланс")
 
     def about_atm(self):
         print(f"Банкомат: {self._name} Баланс: {self._balance}")
@@ -52,7 +52,7 @@ class NewATM(ATM):
 b = OldATM("aaa", 200)
 b1 = ATM("bbb", 0)
 b2 = NewATM("ccc", 1000)
-b1.balance = 100
+
 
 lst = [b, b1, b2]
 
