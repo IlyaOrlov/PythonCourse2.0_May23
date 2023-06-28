@@ -20,8 +20,10 @@ def diapazone(x, y):
     if x < y:
         return list(range(x, y + 1))
     elif x > y:
-        return list(range(y, x - 1))
-
+        return list(range(y, x + 1))
+    else:
+        y = check("Значение границы не могут быть равны! Введите конец диапазона другим целым числом: ")
+        return diapazone(x, y)
 
 x = check("Введите начало диапазона целым числом: ")
 y = check("Введите конец диапазона целым числом: ")
@@ -32,6 +34,6 @@ num = check("Вы должны отгадать загаданное число 
 while num != rand:
     if num < rand:
         num = check("Введенное число меньше загаданного, введите число ещё раз: ")
-    elif num > rand:
+    else:
         num = check("Введенное число больше загаданного, введите число ещё раз: ")
 print("Ура! Вы угадали!")
