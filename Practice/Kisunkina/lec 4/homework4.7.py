@@ -6,11 +6,11 @@ def decor_fun(function_to_decorate):
         res = function_to_decorate(*args, **kwargs)
         print('"==========="')
         return res
-    return inner_fun()
+    return inner_fun
 
-
+@decor_fun
 def alone():
     print("Я просто функция, для проверки")
 
 
-alone = decor_fun(alone)
+alone()
