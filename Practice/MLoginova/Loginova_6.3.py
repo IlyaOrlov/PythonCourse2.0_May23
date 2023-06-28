@@ -7,6 +7,7 @@ class WrapStrToFile:
     def __init__(self):
     #здесь инициализируется атрибут filepath, он содержит путь до файла-хранилища
         self.filepath = tempfile.mktemp()
+        
     @property
     def content(self):
         try:
