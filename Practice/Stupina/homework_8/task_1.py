@@ -20,7 +20,6 @@ class MyIter:
             self._i = j
             return res
         else:
-            pass
             raise StopIteration(self.__s_ex)
 
 
