@@ -16,6 +16,7 @@ class Pupil(Man):
         time.sleep(random.randint(3, 6))
         super().solve_task()
 
+
 p = Pupil("Ivan")
 p.solve_task()
 
