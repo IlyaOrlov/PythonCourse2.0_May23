@@ -1,26 +1,23 @@
 #Алгоритм сортировки выбором
 def find_min(lst):
-    m = lst[0]
-    i = 1
-    while i < len(lst):
-        if m > lst[i]:
-            m = lst[i]
-        i += 1
-    return m
+    index, m = 0, lst[0]
+    for i, j in enumerate(lst[1:]):
+        if j < m:
+            index, m = i + 1, j
+    return (index, m)
 
 
 def sort(lst):
     i = 0
     while i < len(lst):
-        m = find_min(lst[i:])  # поиск минимума
-        ind = lst.index(m, i)
-        lst[i], lst[ind] = lst[ind], lst[i]
-        i += 1
+        ind, m = find_min(lst[i:])  # поиск минимума
+        lst[i], lst[ind + i] = lst[ind + i], lst[i]
+        i +=1
     return lst
 
 
 lst = []
-while j := input("Введите список: "):
-    lst.append(j)
+while j := (input("Введите список: ")):
+    lst.append(int(j))
 
 print(f"Отсортированный список: {sort(lst)}")

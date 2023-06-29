@@ -24,7 +24,7 @@ class Duck:
         return self.weight != other.weight
 
     def __add__(self, other):
-        return self.weight+other.weight
+        return Duck("Duck_Add", self.weight + other.weight)
 
     @staticmethod
     def print_crack():
@@ -45,3 +45,6 @@ print(d1 == d2)
 print(d1 != d2)
 d3 = d1 + d2
 print(d3)
+d4 = Duck("SuperDuck", 6)
+d5 = d1+d2+d4
+print(d5)
