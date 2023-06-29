@@ -3,7 +3,6 @@ class Paragraph:
     def __init__(self, txt, simvol):
         self._i = 0
         self._j = 0
-        self._last = False
         self.txt = txt
         self.simvol = simvol
 
@@ -12,18 +11,18 @@ class Paragraph:
 
     def __next__(self):
         if self._i < len(self.txt):
-            if self.txt[self._i:self._i + 1] == self.simvol:
+            if self.txt[self._i] == self.simvol:
                 res = self.txt[self._j:self._i + 1]
                 self._j = self._i + 1
                 self._i += 1
                 return res
             self._i += 1
         else:
-            if self._last:
+            if self._j == 0:
                 raise StopIteration
             else:
-                res = self.txt[self._j:len(self.txt)]
-                self._last = True
+                res = self.txt[self._j:]
+                self._j = 0
                 return res
 
 
@@ -32,6 +31,6 @@ text = "Много дней грустил король; Не знал наро�
        "На пол вдруг король упал;"
 
 
-for element in Paragraph(text, "м"):
+for element in Paragraph(text, ";"):
     if element:
         print(element)

@@ -1,15 +1,17 @@
-import datetime
+import datetime as dt
 import time
 
 
 class MangerContext:
-    new_now = datetime.datetime.now()
+
+    def __init__(self):
+        self.new_now = dt.datetime.now()
 
     def __enter__(self):
         print(self.new_now)
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        print(f"Зaтраченное время : {datetime.datetime.now() - self.new_now}")
+        print(f"Зaтраченное время : {dt.datetime.now() - self.new_now}")
 
 
 with MangerContext():
