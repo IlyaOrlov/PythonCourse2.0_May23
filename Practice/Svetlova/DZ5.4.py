@@ -1,7 +1,13 @@
 def remove_column(matrix, digit):
+    num_columns = len(matrix[0])
+    indices_to_remove = []
+    for i in range(num_columns):
+        column = [row[i] for row in matrix]
+        if digit in column:
+            indices_to_remove.append(i)
     new_matrix = []
     for row in matrix:
-        new_row = [elem for elem in row if elem != digit]
+        new_row = [row[i] for i in range(num_columns) if i not in indices_to_remove]
         new_matrix.append(new_row)
     return new_matrix
 
