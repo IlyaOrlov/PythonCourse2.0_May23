@@ -1,14 +1,8 @@
-import os.path
-
-
 class MyIter:
     __p = '§'
 
     def __init__(self, name_file):
-        if os.path.exists(name_file):
-            self.__f = open(name_file, encoding='utf-8')
-        else:
-            raise FileNotFoundError
+        self.__f = open(name_file, encoding='utf-8')
         self.__s = self.__f.read(1)
 
     def __iter__(self):
