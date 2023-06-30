@@ -1,10 +1,6 @@
 import os.path
 
 
-class FileNotExists(Exception):
-    pass
-
-
 class MyIter:
     __p = '§'
 
@@ -12,7 +8,7 @@ class MyIter:
         if os.path.exists(name_file):
             self.__f = open(name_file, encoding='utf-8')
         else:
-            raise FileNotExists('Файл не существует')
+            raise FileNotFoundError
         self.__s = self.__f.read(1)
 
     def __iter__(self):
@@ -37,6 +33,6 @@ class MyIter:
             print('Файл закрыт')
 
 
-for i in MyIter('task_11text.txt'):
+for i in MyIter('task_1text.txt'):
     print(i)
     print('---')
