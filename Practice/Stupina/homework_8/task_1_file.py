@@ -3,7 +3,8 @@ class MyIter:
 
     def __init__(self, name_file):
         self.__f = open(name_file, encoding='utf-8')
-        print('Файл открыт')
+        if hasattr(self, '_MyIter__f'):
+            print('Файл открыт\n')
         self.__s = self.__f.read(1)
 
     def __iter__(self):
@@ -16,16 +17,16 @@ class MyIter:
                 raise StopIteration
             self.__s = self.__f.read(1)
         res += self.__s
-        while self.__s:
+        self.__s = self.__f.read(1)
+        while self.__s != self.__p and self.__s != '':
+            res += self.__s
             self.__s = self.__f.read(1)
-            while self.__s != self.__p and self.__s != '':
-                res += self.__s
-                self.__s = self.__f.read(1)
-            return res
+        return res
 
     def __del__(self):
-        self.__f.close()
-        print('Файл закрыт')
+        if hasattr(self, '_MyIter__f'):
+            self.__f.close()
+            print('Файл закрыт')
 
 
 for i in MyIter('task_1text.txt'):
