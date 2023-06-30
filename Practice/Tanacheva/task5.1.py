@@ -1,18 +1,19 @@
-#Алгоритм сортировки выбором
+# Алгоритм сортировки выбором
 def find_min(lst):
     index, m = 0, lst[0]
     for i, j in enumerate(lst[1:]):
         if j < m:
             index, m = i + 1, j
-    return (index, m)
+    return index, m
 
 
 def sort(lst):
     i = 0
     while i < len(lst):
         ind, m = find_min(lst[i:])  # поиск минимума
-        lst[i], lst[ind + i] = lst[ind + i], lst[i]
-        i +=1
+        if ind != 0:
+            lst[i], lst[ind + i] = lst[ind + i], lst[i]
+        i += 1
     return lst
 
 

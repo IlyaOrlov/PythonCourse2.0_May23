@@ -46,5 +46,5 @@ print(d1 != d2)
 d3 = d1 + d2
 print(d3)
 d4 = Duck("SuperDuck", 6)
-d5 = d1+d2+d4
+d5 = d1 + d2 + d4
 print(d5)
