@@ -2,25 +2,31 @@ import datetime
 
 
 def fun(d_1, d_2):
-    i = 0
-    while d_1 <= d_2:
-        if d_1.weekday() < 5:
-            i += 1
-        d_1 += datetime.timedelta(days=1)
-    return i
+    d = d_1
+    n = 0
+    while d <= d_2:
+        if d.weekday() < 5:
+            n += 1
+        d += datetime.timedelta(days=1)
+    print(f'Количество рабочих дней в период с {d_1} по {d_2}: {n}')
 
 
-try:
-    data_1 = input('Введите первую дату в формате год, месяц, число: ').split(',')
-    data_2 = input('Введите вторую дату в формате год, месяц, число: ').split(',')
-    data_1 = datetime.date(int(data_1[0]), int(data_1[1]), int(data_1[2]))
-    data_2 = datetime.date(int(data_2[0]), int(data_2[1]), int(data_2[2]))
-except Exception:
-    print('Некорректно заданы даты')
-else:
-    if data_1 > data_2:
-        res = fun(data_2, data_1)
-        print(f'Количество рабочих дней в период с {data_2} по {data_1}: {res}')
+data = []
+j = 0
+while j < 2 and (s_in := input('Введите дату в формате ГГГГ-ММ-ДД: ')):
+    s = ''
+    for i in s_in:
+        if i.isdecimal():
+            s += i
+    if len(s) != 8:
+        print('Некорректная дата! Возможно надо добавить "0" к числу/месяцу?')
+        continue
     else:
-        res = fun(data_1, data_2)
-        print(f'Количество рабочих дней в период с {data_1} по {data_2}: {res}')
+        try:
+            data.append(datetime.date.fromisoformat(s))
+            j += 1
+        except Exception as ex:
+            print(f'Некорректно задана дата: {ex}')
+            continue
+
+fun(data[1], data[0]) if data[0] > data[1] else fun(data[0], data[1])
