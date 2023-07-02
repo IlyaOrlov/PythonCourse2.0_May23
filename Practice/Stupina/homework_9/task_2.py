@@ -29,4 +29,7 @@ while j < 2 and (s_in := input('Введите дату в формате ГГГ
             print(f'Некорректно задана дата: {ex}')
             continue
 
-fun(data[1], data[0]) if data[0] > data[1] else fun(data[0], data[1])
+if data[0] > data[1]:
+    fun(data[1], data[0])
+else:
+    fun(data[0], data[1])
