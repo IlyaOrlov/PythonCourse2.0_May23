@@ -1,6 +1,9 @@
 class MainATM:
     __NAME_BANK = "ТСБ"
 
+    def name_bank(self):
+        return self.__NAME_BANK
+
     def __init__(self, id_atm, balance=0):
         self._id_atm = id_atm
         self._balance = balance
@@ -39,7 +42,7 @@ class OnlineOperATM(MainATM):
 
     def online_perevod(self):
         print("******************************************************")
-        print(f"{self.__NAME_BANK} ID банкомата:{self._id_atm}\nОперация перевод-онлайн.")
+        print(f"{super().name_bank()} ID банкомата:{self._id_atm}\nОперация перевод-онлайн.")
         inform = input("Введите номер телефона/карты или счёта получателя: ")
         summa = input("Введите сумму перевода: ")
         return inform, summa
@@ -50,13 +53,13 @@ class OnlineOperATM(MainATM):
 
 
 ATM1 = AcceptGiveCash("12340", 500000)
-#ATM1.deposit_money()
+#  ATM1.deposit_money()
 ATM2 = AcceptGiveCash("12341", 300000)
-#ATM2.inf_balance()
+#  ATM2.inf_balance()
 ATM3 = OnlineOperATM("2102314", 1500000)
-#ATM3.online_perevod()
+#  ATM3.online_perevod()
 ATM4 = OnlineOperATM("2102315", 100000)
-ATM4.withdraw_money()
+#  ATM4.withdraw_money()
 
 ATM = {ATM1, ATM2, ATM3, ATM4}
 for i in ATM:
