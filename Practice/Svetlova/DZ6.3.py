@@ -23,6 +23,7 @@ class WrapStrToFile:
         if os.path.exists(self._file_path):
             os.remove(self._file_path)
 
+
 wrap = WrapStrToFile()
 print(wrap.content)  # Вывод: Файл еще не существует
 

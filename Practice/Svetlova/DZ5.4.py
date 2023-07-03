@@ -2,8 +2,12 @@ def remove_column(matrix, digit):
     num_columns = len(matrix[0])
     indices_to_remove = []
     for i in range(num_columns):
-        column = [row[i] for row in matrix]
-        if digit in column:
+        has_digit = False
+        for row in matrix:
+            if row[i] == digit:
+                has_digit = True
+                break
+        if has_digit:
             indices_to_remove.append(i)
     new_matrix = []
     for row in matrix:
