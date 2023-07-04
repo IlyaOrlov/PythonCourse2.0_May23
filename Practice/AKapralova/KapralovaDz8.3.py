@@ -15,6 +15,6 @@ with Timer():
     # lst = [1, 3, 24, 2, 3, 7]
     # lst.sort()
     # print(lst)
-    enumerated_numbers = enumerate(list(range(1, 10001)))
+    enumerated_numbers = enumerate(range(1, 10001))
     for i, j in enumerated_numbers:
         print(i, j)
