@@ -6,6 +6,7 @@ import datetime
 def show_dir(cur_dir):
     for i in os.listdir(cur_dir):
         path = os.path.join(cur_dir, i)
+        print(f'путь {path}')
         d_creation = os.path.getctime(path)
         d_creation = datetime.datetime.fromtimestamp(d_creation)
         d_exist = datetime.datetime.today() - d_creation
@@ -17,9 +18,9 @@ def show_dir(cur_dir):
                 print(f'Удалили {i}')
         else:
             print(f"Папка: {i}")
-            if os.listdir(path):
+            if next(os.scandir(path), None):
                 show_dir(path)
-            elif d_exist > datetime.timedelta(minutes=2):
+            if d_exist > datetime.timedelta(minutes=2) and not next(os.scandir(path), None):
                 shutil.rmtree(path)
                 print(f'Удалили {i}')
 
