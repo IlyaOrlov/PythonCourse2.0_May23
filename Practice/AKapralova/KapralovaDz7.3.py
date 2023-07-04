@@ -6,6 +6,9 @@ class ATM:
     def about_atm(self):
         print(f"Банкомат: {self._name} Баланс: {self._balance}")
 
+    def operation(self):
+        print("Банкомат может осуществлять операции получения и выдачи наличных.")
+
     def get_money(self, money):
         self._balance += money
 
@@ -17,29 +20,26 @@ class ATM:
 
 
 class GetGiveATM(ATM):
-    @staticmethod
-    def operation():
-        print("Банкомат может осуществлять операцию получения и выдачи наличных.")
+    pass
 
 
 class OnlineATM(ATM):
-    @staticmethod
-    def online_operation():
-        print("Банкомат может осуществлять операцию получения и выдачи наличных, а так же онлайн платежи")
+    def operation(self):
+        super().operation()
+        print("Банкомат может осуществлять онлайн платежи.")
 
     def online_payment(self):
         print(f'{self._name}: Совершен онлайн платеж')
 
 
 b1 = GetGiveATM("Сбер", 1000)
-b1.operation()
 
 b2 = OnlineATM("ВТБ", 2000)
-b2.online_operation()
 b2.online_payment()
 
 lst = [b1, b2]
 for i in lst:
+    i.about_atm()
+    i.operation()
     i.get_money(100)
     i.give_money(200)
-    i.about_atm()
