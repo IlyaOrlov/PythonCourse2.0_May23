@@ -17,7 +17,8 @@ class Reader:
             self.i += 1
             if self.i >= len(self.text):
                 break
-        self.i += 1
+        else:
+            self.i += 1
         return res
 
 
