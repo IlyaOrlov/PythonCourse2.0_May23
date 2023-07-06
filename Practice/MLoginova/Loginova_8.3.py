@@ -10,7 +10,8 @@ class TestTime:
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         print(f"Time end: {datetime.now()}")
-        print(f'Время выполнения:{datetime.now() - self.start_time}')
+        res = datetime.now() - self.start_time
+        print(f'Время выполнения:{res}')
 
 
 with TestTime():
