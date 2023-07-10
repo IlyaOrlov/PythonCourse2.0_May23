@@ -5,12 +5,10 @@ import datetime as dt
 def difference_time(path, minut):
     return (dt.datetime.now() - dt.datetime.fromtimestamp(os.path.getctime(path)) > dt.timedelta(minutes=minut))
 
-tfs_path = input("Введите путь")
-#tfs_path = os.path.dirname(os.path.abspath(__file__)) + r"\TFS_chanale"
-while True:
-    walk_generator = os.walk(tfs_path)
 
-    for root, dirs, files in walk_generator:
+tfs_path = input("Введите путь")
+while True:
+    for root, dirs, files in os.walk(tfs_path):
         for file in files:
             file_path = root + f"\\{file}"
             if difference_time(file_path, 1):
