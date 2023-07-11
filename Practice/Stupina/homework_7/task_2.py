@@ -1,11 +1,21 @@
-def fun(lst):
-    k = set()
-    for elem in lst:
-        if elem in k:
-            return elem
-        else:
-            k.add(elem)
+import time
+import random
 
 
-lst = [0, 12, 120, 10, 12, 4, 4]
-print(f'Исходная строка: {lst} \nПервый повторившийся символ: {fun(lst)}')
+class Man:
+    def __init__(self, name):
+        self.name = name
+
+    @staticmethod
+    def solve_task():
+        print("I'm not ready yet")
+
+
+class Pupil(Man):
+    def solve_task(self):
+        time.sleep(random.randint(3, 6))
+        super().solve_task()
+
+
+ob = Pupil('Alexandr')
+ob.solve_task()

@@ -1,0 +1,15 @@
+class Bird: 
+    def says(self): 
+        raise NotImplementedError 
+
+class Duck(Bird): 
+    def says(self): 
+        return "Quack-quack" 
+
+class Cuckoo(Bird): 
+    def says(self): 
+        return "Cuckoo" 
+
+birds = [Duck(), Cuckoo()] 
+for bird in birds: 
+    print(bird.says()) 

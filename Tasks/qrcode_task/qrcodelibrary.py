@@ -14,8 +14,6 @@ def txt_to_qrcode(txt, qr_filepath, qr_filetype='JPEG'):
 
 if __name__ == '__main__':
     cur_dir = os.path.dirname(os.path.abspath(__file__))
-    path_to_qr = os.path.join(cur_dir, 'qr_pythonyashka.jpg')
-    #txt_to_qrcode("https://t.me/avtozavodetz", path_to_qr)
-    #txt_to_qrcode("https://t.me/pythonyashkapy", path_to_qr)
+    path_to_qr = os.path.join(cur_dir, 'qr_mysite.jpg')
     txt_to_qrcode("https://stm-labs.ru/ru/", path_to_qr)
     print(path_to_qr)
