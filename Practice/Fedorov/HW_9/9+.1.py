@@ -4,5 +4,5 @@
 
 lst = ["10", "5", "a", "3", "b"]
 
-new_lst = [int(i)**2 for i in lst if i.isdigit() and int(i) % 5 == 0]
+new_lst = [x**2 for i in lst if i.isdigit() and (x := int(i)) % 5 == 0]
 print(new_lst)
