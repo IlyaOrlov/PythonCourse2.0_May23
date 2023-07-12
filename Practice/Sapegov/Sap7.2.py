@@ -1,21 +1,24 @@
-import time
 import random
+import time
 
 
 class Man:
     def __init__(self, name):
         self.name = name
 
-    @staticmethod
-    def solve_task():
+    def solve_task(self):
         print("I'm not ready yet")
 
 
 class Pupil(Man):
+    def __init__(self, name, surname):
+        super().__init__(name)
+        self.surname = surname
+
     def solve_task(self):
         time.sleep(random.randint(3, 6))
         super().solve_task()
 
 
-ob = Pupil('Alexandr')
-ob.solve_task()
+m = Pupil('Dima', 'Sapegov')
+m.solve_task()

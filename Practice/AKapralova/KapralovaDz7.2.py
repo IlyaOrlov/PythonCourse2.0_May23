@@ -1,13 +1,15 @@
-import time
 import random
+import time
 
 
 class Man:
     def __init__(self, name):
         self.name = name
 
-    @staticmethod
-    def solve_task():
+    def say_hello(self):
+        print(f"Привет, меня зовут {self.name}")
+
+    def solve_task(self):
         print("I'm not ready yet")
 
 
@@ -17,5 +19,9 @@ class Pupil(Man):
         super().solve_task()
 
 
-ob = Pupil('Alexandr')
-ob.solve_task()
+n1 = Man("Аня")
+n1.say_hello()
+n1.solve_task()
+n2 = Pupil("Полина")
+n2.say_hello()
+n2.solve_task()

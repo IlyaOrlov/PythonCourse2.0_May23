@@ -1,4 +1,5 @@
 class Man:
+
     def __init__(self, name):
         self.name = name
 
@@ -7,5 +8,5 @@ class Man:
         print("I'm not ready yet")
 
 
-m = Man('Александр')
-m.solve_task()
+n1 = Man("Аня")
+n1.solve_task()

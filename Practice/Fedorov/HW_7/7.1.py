@@ -7,5 +7,6 @@ class Man:
         print("I'm not ready yet")
 
 
-m = Man('Александр')
+m = Man("test")
 m.solve_task()
+
