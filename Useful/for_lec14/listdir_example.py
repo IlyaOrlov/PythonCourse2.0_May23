@@ -18,7 +18,7 @@ show_dir('.')
 #     print(i)
 
 # t = 'mydirectory'
-# f = '1.txt'
+# f = 'композиция_vs_наследование.txt'
 # with open(os.path.join(t, f), 'w'):
 #     pass
 

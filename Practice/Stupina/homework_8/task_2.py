@@ -5,6 +5,6 @@ def my(name):
             print('---')
 
 
-f_name = '1.txt'
+f_name = 'композиция_vs_наследование.txt'
 for i in my(f_name):
     print(i)
