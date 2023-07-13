@@ -1,6 +1,7 @@
 import tempfile
 import os
 
+
 class WrapStrToFile:
     def __init__(self):
         self._file_path = tempfile.mktemp()
@@ -22,6 +23,7 @@ class WrapStrToFile:
     def content(self):
         if os.path.exists(self._file_path):
             os.remove(self._file_path)
+
 
 
 wrap = WrapStrToFile()

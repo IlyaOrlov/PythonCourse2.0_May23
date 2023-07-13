@@ -1,26 +1,33 @@
 class ATM:
     def __init__(self, cash):
-        self.cash = cash
+        self._cash = cash
+
+    @property
+    def cash(self):
+        return self._cash
 
     def withdraw_cash(self, amount):
-        if amount <= self.cash:
-            self.cash -= amount
+        if amount <= self._cash:
+            self._cash -= amount
             print(f"Снял {amount} наличными.")
         else:
             print("Недостаточно наличных средств.")
 
     def deposit_cash(self, amount):
-        self.cash += amount
+        self._cash += amount
         print(f"Внесенная {amount} наличными.")
+
+    def make_payment(self, amount):
+        self.withdraw_cash(amount)
 
 
 class OnlineATM(ATM):
-    def make_online_payment(self, amount):
+    def make_payment(self, amount):
         if amount <= self.cash:
-            self.cash -= amount
+            self._cash -= amount
             print(f"Произвел онлайн-платеж в размере {amount}.")
         else:
-            print("Недостаточно наличных для онлайн-оплаты")
+            print("Недостаточно средств для онлайн-оплаты")
 
 
 def main():
@@ -34,8 +41,7 @@ def main():
         print(f"ATM Тип: {type(atm).__name__}")
         print(f"Доступные наличные: {atm.cash}")
 
-        if isinstance(atm, OnlineATM):
-            atm.make_online_payment(500)
+        atm.make_payment(500)
 
         atm.withdraw_cash(200)
         atm.deposit_cash(300)
@@ -46,3 +52,18 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+'''Вот описание всех изменений, внесенных в код:
+
+#Класс ATM:
+
+Добавлено свойство cash, которое предоставляет доступ только для чтения к атрибуту _cash.
+Метод make_payment() был добавлен, который вызывает метод withdraw_cash() для совершения платежа.
+Класс OnlineATM:
+
+Метод make_payment() переопределен для класса OnlineATM и заменен на make_online_payment(), который производит онлайн-платеж.
+Функция main():
+
+Удалена проверка isinstance(atm, OnlineATM) в цикле for.
+Вместо этого, вызывается метод make_payment() для всех объектов ATM в списке atm_list,
+и в зависимости от типа объекта будет использоваться соответствующая реализация платежа.'''
