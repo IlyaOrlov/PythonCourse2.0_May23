@@ -31,6 +31,9 @@ class Duck:
         summa = self.weight + other.weight
         return Duck('Ponka', summa)
 
+    def __sub__(self, other):
+        return self.weight - other.weight
+
 
 d1 = Duck("Ponka", 7850)
 d2 = Duck("Lina", 3330)
@@ -41,4 +44,5 @@ print(d1 == d2)
 print(d1 != d2)
 dd = d1 + d2
 print(dd)
-
+ddd = d1 - d2
+print(ddd)
