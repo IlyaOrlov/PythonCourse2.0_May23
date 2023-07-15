@@ -4,6 +4,7 @@ class Paragraph:
         self.text = text
         self.par = par
         self.x = 0
+
     def __iter__(self):
         return self
 
