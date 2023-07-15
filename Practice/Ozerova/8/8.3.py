@@ -6,8 +6,8 @@ class MyTiming:
         self.start = time.time()
 
     def __exit__(self,exc_type, exc_val, exc_tb):
-        self.end = time.time() - self.start
-        print(f'Время исполнения кода {self.end} секунд')
+        self = time.time() - self.start
+        print(f'Время исполнения кода {self} секунд')
 
 
 with MyTiming():
