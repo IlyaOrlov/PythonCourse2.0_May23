@@ -6,5 +6,5 @@ def chng(a, b):
 
 
 dic = {"name1": "Alex","name2": "Kate"}
-templ = "Hello, {name1}! My name is {name2}."
+templ = "Hello, {name1}! My name is {name2}. "
 print(chng(templ, dic))
