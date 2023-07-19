@@ -3,7 +3,7 @@ class Bankomate:
         self._name = name
         self._balance = float(balance)
 
-    def AboutBankomate(self):
+    def about_bankomate(self):
         print(f'Банкомат: {self._name}')
 
     def process(self):
@@ -41,7 +41,7 @@ b2.online()
 lst = [b1, b2]
 
 for i in lst:
-    i.AboutBankomate()
+    i.about_bankomate()
     i.process()
     i.get_money(1000)
     i.give_money(5000)
