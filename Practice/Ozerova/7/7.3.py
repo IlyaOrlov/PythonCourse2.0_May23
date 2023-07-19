@@ -45,5 +45,3 @@ for i in lst:
     i.process()
     i.get_money(1000)
     i.give_money(5000)
-
-
