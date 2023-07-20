@@ -8,7 +8,7 @@ class MyHandler(BaseHTTPRequestHandler):
         self.send_header('Content-type', 'text/html')
         self.end_headers()
         # собственно html сообщение
-        self.wfile.write('Hello World!'.encode())
+        self.wfile.write('<h1>Hello World!<h1>'.encode())
 
 
 if __name__ == '__main__':
