@@ -6,7 +6,7 @@ res = 0
 # Производим вычисления
 async def calc_fun(num):
     global res
-    while num > 0:
+    while num >= 0:
         print(num)
         if num % 10 == 0:
             res = num
@@ -27,7 +27,7 @@ async def status_fun():
 
 # if __name__ == '__main__':
 #     ev_loop = asyncio.get_event_loop()
-#     tasks = [ev_loop.create_task(calc_fun(100)), ev_loop.create_task(status_fun())]
+#     tasks = [ev_loop.create_task(calc_fun(10)), ev_loop.create_task(status_fun())]
 #     futures = asyncio.wait(tasks)
 #     ev_loop.run_until_complete(futures)
 #     ev_loop.close()
