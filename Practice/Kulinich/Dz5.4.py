@@ -11,7 +11,8 @@ def DelColumn(arr,a):
     for index, i in enumerate(arr):
         for index1, j in enumerate(i):
             if j == a:
-                delindex.append(index1)
+                if index1 not in delindex:
+                    delindex.append(index1)
     delindex.sort()
     arr = transp(arr)
     for i in range(len(delindex) - 1, -1, -1):
@@ -20,5 +21,5 @@ def DelColumn(arr,a):
     return print(arr)
 
 
-matrix = [[9,2,5],[4,5,6],[7,8,9]]
+matrix = [[9,2,5],[4,5,5],[7,8,9]]
 DelColumn(matrix,5)
