@@ -97,11 +97,18 @@ def authentication2(conn, login, pwd):
 
 def bad_authentication(conn, login, pwd):
     cur = conn.cursor()
+    # Неправильно:
     cur.execute("SELECT E.Id, E.Name, E.Position, EP.ProjectId"
                 " FROM Employees AS E, EmployeeProject AS EP"
                 " WHERE E.Id = EP.EmployeeId"
-                " AND E.Login = '{login}' AND E.Password = '{pwd}'".
+                " AND E.Login = {login} AND E.Password = {pwd}".
                 format(login=login, pwd=pwd))
+    # Тоже неправильно:
+    # cur.execute(f"SELECT E.Id, E.Name, E.Position, EP.ProjectId"
+    #             f" FROM Employees AS E, EmployeeProject AS EP"
+    #             f" WHERE E.Id = EP.EmployeeId"
+    #             f" AND E.Login = {login} AND E.Password = {pwd}".
+    #             format(login=login, pwd=pwd))
     return cur.fetchone()
 
 

@@ -16,13 +16,13 @@ conn.execute('CREATE TABLE COMPANY'
 print('Таблица создана')
 
 # Добавляем данные
-conn.execute("INSERT INTO COMPANY (ID, NAME, AGE, ADDRESS, SALARY)"
+conn.execute("INSERT INTO COMPANY (ID, NAME, AGE, ADDRESS, SALARY) "
              "VALUES (1, 'Paul', 32, 'California', 20000.00)")
-conn.execute("INSERT INTO COMPANY (ID, NAME, AGE, ADDRESS, SALARY)"
+conn.execute("INSERT INTO COMPANY (ID, NAME, AGE, ADDRESS, SALARY) "
              "VALUES (2, 'Allen', 25, 'Texas', 15000.00)")
-conn.execute("INSERT INTO COMPANY (ID, NAME, AGE, ADDRESS, SALARY)"
+conn.execute("INSERT INTO COMPANY (ID, NAME, AGE, ADDRESS, SALARY) "
              "VALUES (3, 'Teddy', 23, 'Norway', 20000.00)")
-conn.execute("INSERT INTO COMPANY (ID, NAME, AGE, ADDRESS, SALARY)"
+conn.execute("INSERT INTO COMPANY (ID, NAME, AGE, ADDRESS, SALARY) "
              "VALUES (4, 'Mark', 25, 'Richmond', 65000.00)")
 conn.commit()
 print('Данные добавлены')
