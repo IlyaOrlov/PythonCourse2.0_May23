@@ -6,20 +6,21 @@ def transp(arr):
     return arrTrans
 
 
-def DelColumn(arr,a):
-    delindex = []
+def Del_Column(arr,a):
+    delindex = set()
     for index, i in enumerate(arr):
         for index1, j in enumerate(i):
             if j == a:
                 if index1 not in delindex:
-                    delindex.append(index1)
-    delindex.sort()
+                    delindex.add(index1)
+    delindex = list(delindex)
+    delindex.sort(reverse=True)
     arr = transp(arr)
-    for i in range(len(delindex) - 1, -1, -1):
-        del arr[delindex[i]]
+    for i in delindex:
+        del arr[i]
     arr = transp(arr)
     return print(arr)
 
 
 matrix = [[9,2,5],[4,5,5],[7,8,9]]
-DelColumn(matrix,5)
+Del_Column(matrix,5)
