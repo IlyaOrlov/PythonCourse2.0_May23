@@ -1,16 +1,11 @@
-class FileLineReader:
-    def __init__(self, filename):
-        self.filename = filename
-
-    def read_lines(self):
-        with open(self.filename, 'r') as file:
-            for line in file:
-                yield line.rstrip('\n')
+def read_lines_from_file(filename):
+    with open(filename, 'r') as file:
+        for line in file:
+            yield line.rstrip('\n')
 
 # Пример использования
 
 filename = 'example.txt'
-line_reader = FileLineReader(filename)
 
-for line in line_reader.read_lines():
+for line in read_lines_from_file(filename):
     print(line)
