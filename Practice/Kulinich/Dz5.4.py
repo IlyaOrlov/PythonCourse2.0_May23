@@ -6,7 +6,7 @@ def transp(arr):
     return arrTrans
 
 
-def Del_Column(arr,a):
+def del_column(arr,a):
     delindex = set()
     for index, i in enumerate(arr):
         for index1, j in enumerate(i):
@@ -23,4 +23,4 @@ def Del_Column(arr,a):
 
 
 matrix = [[9,2,5],[4,5,5],[7,8,9]]
-Del_Column(matrix,5)
+del_column(matrix,5)

@@ -6,18 +6,20 @@ class WrapStrToFile:
 
     def __init__(self):
         self.filepath = tempfile.mktemp()
+
+
     @property
     def content(self):
         try:
-            with open(self.filepath) as OpFile:
-                return OpFile.read()
+            with open(self.filepath) as Op_File:
+                return Op_File.read()
         except:
             return "File doesn't exist"
 
     @content.setter
     def content(self, value):
-        with open(self.filepath, "w") as OpFile:
-            OpFile.write(value)
+        with open(self.filepath, "w") as Op_File:
+            Op_File.write(value)
 
 
     @content.deleter
