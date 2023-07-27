@@ -17,14 +17,20 @@ def configure_db(conn):
                 "     Manufacturer_id   INTEGER,"
                 "     FOREIGN KEY(Manufacturer_id) REFERENCES Manufacturers(Manufacturer_id))")
 
-    # Создаем таблицу Customers
-    cur.execute("CREATE TABLE Customers "
+    # Создаем таблицу Clients
+    cur.execute("CREATE TABLE Clients "
+                "   (Client_id	INTEGER PRIMARY KEY  AUTOINCREMENT,"
+                "    Client_name	CHAR(128) NOT NULL,"
+                "    Client_surname	CHAR(128))")
+
+    # Создаем таблицу Purchases
+    cur.execute("CREATE TABLE Purchases "
                 "   (Purchase_id	INTEGER PRIMARY KEY  AUTOINCREMENT,"
                 "    Product_id	INTEGER NOT NULL,"
-	            "    Customer_name	CHAR(128) NOT NULL,"
-	            "    Customer_surname	CHAR(128),"
+	            "    Client_id INTEGER NOT NULL,"
 	            "    Purchase_date	CHAR(8),"
-	            "    FOREIGN KEY(product_id) REFERENCES Products(Product_id))")
+	            "    FOREIGN KEY(product_id) REFERENCES Products(Product_id),"
+                "    FOREIGN KEY(Client_id) REFERENCES Clients(Client_id))")
 
 # Добавление записей в таблицу Manufacturers
 def insert_manufacturers(conn, name):
@@ -42,13 +48,20 @@ def insert_products(conn, name, id):
                 {'Product_name': name, 'Manufacturer_id': id})
     conn.commit()
 
-    # Добавление записей в таблицу Customers
-def insert_customers(conn, product_id, customer_name, surname, date_op):
+# Добавление записей в таблицу Clients
+def insert_clients(conn, name, surname):
     cur = conn.cursor()
-    cur.execute("INSERT INTO Customers (Product_id, Customer_name, Customer_surname, Purchase_date )"
-                " VALUES (:Product_id, :Customer_name, :Customer_surname, :Purchase_date)",
-                {'Product_id': product_id, 'Customer_name': customer_name, 'Customer_surname': surname,
-                 'Purchase_date': date_op})
+    cur.execute("INSERT INTO Clients (Client_name, Client_surname)"
+                " VALUES (:Client_name, :Client_surname)",
+                {'Client_name': name, 'Client_surname': surname})
+    conn.commit()
+
+    # Добавление записей в таблицу Purchases
+def insert_purchases(conn, product_id, client_id, date_op):
+    cur = conn.cursor()
+    cur.execute("INSERT INTO Purchases (Product_id, Client_id, Purchase_date )"
+                " VALUES (:Product_id, :Client_id, :Purchase_date)",
+                {'Product_id': product_id, 'Client_id': client_id, 'Purchase_date': date_op})
     conn.commit()
 
 # Вывод информации о всех товарах с указанием информации о производителе
@@ -65,8 +78,8 @@ def show_products_info(conn):
 def show_products_ostatok(conn):
     cur = conn.cursor()
     cur.row_factory = None
-    cur.execute("SELECT P.Product_name FROM Products as P WHERE P.Product_id not in (SELECT DISTINCT Product_id "
-                "FROM Customers)")
+    cur.execute("SELECT Pr.Product_id, Pr.Product_name FROM Products as Pr left join Purchases as P "
+                "on Pr.Product_id = P.Product_id where p.Purchase_id is null")
     print("Товары, которые никто не покупал:")
     for row in cur:
         print(row)
@@ -76,22 +89,23 @@ if __name__ == "__main__":
     db_name = "shop.db"
     db_exists = os.path.exists(db_name)
 
-    conn = sqlite3.connect(db_name)
-    conn.row_factory = sqlite3.Row
-    if not db_exists:
-        configure_db(conn)
+    with (sqlite3.connect(db_name)) as db:
+        db.row_factory = sqlite3.Row
+        if not db_exists:
+            configure_db(db)
 
-        insert_manufacturers(conn, "LG")
-        insert_manufacturers(conn, "Samsung")
-        insert_manufacturers(conn, "Haier")
-        insert_products(conn, "Холодильник", 3)
-        insert_products(conn, "Телевизор", 1)
-        insert_products(conn, "Микроволновка", 2)
-        insert_products(conn, "Телефон", 1)
-        insert_customers(conn, 1, "Иван", "Иванов",  '15.05.23')
-        insert_customers(conn, 2, "Пётр", "Петров",  '15.05.23')
+            insert_manufacturers(db, "LG")
+            insert_manufacturers(db, "Samsung")
+            insert_manufacturers(db, "Haier")
+            insert_products(db, "Холодильник", 3)
+            insert_products(db, "Телевизор", 1)
+            insert_products(db, "Микроволновка", 2)
+            insert_products(db, "Телефон", 1)
+            insert_clients(db, "Иван", "Иванов")
+            insert_clients(db, "Пётр", "Петров")
+            insert_purchases(db, 1, 1,  '15.05.23')
+            insert_purchases(db, 2, 2,  '15.05.23')
 
-    show_products_info(conn)
-    print('/*********************************************************************************************************/')
-    show_products_ostatok(conn)
-    conn.close()
+        show_products_info(db)
+        print('/*********************************************************************************************************/')
+        show_products_ostatok(db)
