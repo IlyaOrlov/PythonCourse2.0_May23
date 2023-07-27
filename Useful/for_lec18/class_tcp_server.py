@@ -4,7 +4,7 @@ import socket
 
 class ClientThread(threading.Thread):
     def __init__(self, conn, addr):
-        super().__init__(self)
+        super().__init__()
         self._connection = conn
         self._address = addr
 
