@@ -1,9 +1,6 @@
 # Подключаемся к базе MongoDB на локальной машине
 import mongoengine as me
 
-conn = me.connect('test')
-print(conn)
-
 
 # Объявляем коллекцию
 class User(me.Document):
@@ -17,6 +14,10 @@ class User(me.Document):
                 "email='{}')>".format(self.first_name,
                                       self.last_name,
                                       self.email))
+
+
+conn = me.connect('test')
+print(conn)
 
 # Создаем документ
 ross = User(email='ross@example.com',
