@@ -5,6 +5,7 @@ def fun(a, b):
 def mock_print(arg):
     mock_print.arg = arg
 
+
 class CtxMgr:
     def __enter__(self):
         global print
@@ -14,8 +15,10 @@ class CtxMgr:
         global print
         print = self.bkp_print
 
+
 with CtxMgr():
     fun(1, 2)
+
 
 assert(mock_print.arg == 300)
 print(mock_print.arg)
