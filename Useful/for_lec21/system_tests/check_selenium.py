@@ -6,7 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
 
-os.environ['PATH'] += os.pathsep + r'C:\Soft\ForPython\chromedriver'
+os.environ['PATH'] += os.pathsep + r'C:\Soft\ForPython\chromedriver-win64'
 
 driver = webdriver.Chrome()
 
