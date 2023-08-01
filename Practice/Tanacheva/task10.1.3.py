@@ -1,12 +1,16 @@
 import multiprocessing
+from math import sqrt
 import time
 
 
 def find_primes(start, end):
     lst = []
-    for i in range(start, end+1):
-        if i > 1:
-            for j in range(2, i):
+    if start > 1:
+        for i in range(start, end+1):
+            for j in range(2, int(sqrt(i))+1):
+                if j > int((sqrt(i))+1):
+                    lst.append(i)
+                    break
                 if i % j == 0:
                     break
             else:
@@ -16,12 +20,11 @@ def find_primes(start, end):
 
 if __name__ == '__main__':
     start_time = time.perf_counter()
-    thr1 = multiprocessing.Process(target=find_primes, args=(3, 10000))
-    thr2 = multiprocessing.Process(target=find_primes, args=(10001, 20000))
-    thr3 = multiprocessing.Process(target=find_primes, args=(20001, 30000))
-    threads = [thr1, thr2, thr3]
-    for i in threads:
-        i.start()
+    threads = []
+    for args in ((3, 10000), (10001, 20000), (20001, 30000)):
+        thr = multiprocessing.Process(target=find_primes, args=args)
+        thr.start()
+        threads.append(thr)
     for i in threads:
         i.join()
     end_time = time.perf_counter() - start_time
