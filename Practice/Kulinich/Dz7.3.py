@@ -1,4 +1,4 @@
-class atm:
+class Atm:
     def __init__(self, number, balance=0):
         self._number = number
         self._balance = balance
@@ -7,6 +7,9 @@ class atm:
     def balance(self):
         return self._balance
 
+    @staticmethod
+    def online_pay():
+        pass
 
     def about(self):
         print(f"Банкомат номер: {self._number} баланс: {self._balance}")
@@ -26,12 +29,13 @@ class atm:
             print(f"Была осуществленна выдача наличных (give_cash), баланс: {self._balance}")
 
 
-class atm_v1(atm):
+class AtmV1(Atm):
     pass
 
 
-class atm_v2(atm):
-    def online_pay(self):
+class AtmV2(Atm):
+    @staticmethod
+    def online_pay():
         input("Введите номер карты получателя ")
         input("Введите сумму ")
 
@@ -40,14 +44,13 @@ class atm_v2(atm):
         print("online_pay - оплата онлайн")
 
 
-atm1 = atm('1010023',10000)
-atm2 = atm_v1('1010024',15000)
-atm3 = atm_v2('1010025',25000)
+atm1 = Atm('1010023',10000)
+atm2 = AtmV1('1010024',15000)
+atm3 = AtmV2('1010025',25000)
 lst = [atm1, atm2, atm3]
 
 for i in lst:
     i.about()
     i.get_cash(1000)
     i.give_cash(13000)
-    if "online_pay" in dir(i):
-        i.online_pay()
+    i.online_pay()
