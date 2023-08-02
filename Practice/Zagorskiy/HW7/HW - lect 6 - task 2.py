@@ -21,7 +21,7 @@ class Duck:
         return f"{self.__class__}: {self.name}"
 
     def show_duck(self):
-        return f"{self.name=}, {self.weight=}"
+        print(f"{self.name}, {self.weight}")
 
     def __lt__(self, other):
         return self.weight < other.weight
@@ -37,9 +37,11 @@ class Duck:
 
     def __add__(self, other):
         sum_duck = self.weight + other.weight
-        return sum_duck
+        return Duck('Fat duck', sum_duck)
 
 
 d1 = Duck("Gus", 300)
 d2 = Duck("Mike", 500)
-print(d1.__repr__())
+print(d1)
+d3 = d1 + d2
+d3.show_duck()
