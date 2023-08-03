@@ -3,18 +3,12 @@ import Loginova_14
 
 
 class TestMyProv:
+    _m_test = Loginova_14.MyFun()
 
     def test_to_roman(self):
-        assert (Loginova_14.m1.to_roman(3459) == 'MMMCDLIX')
+        assert (self._m_test.to_roman(3459) == 'MMMCDLIX')
 
-    def test_my_error1(self):
+    @pytest.mark.parametrize("number", ['3459', 5521, -2])
+    def test_my_error1(self, number):
         with pytest.raises(Loginova_14.MyError):
-            Loginova_14.m1.to_roman('3459')
-
-    def test_my_error2(self):
-        with pytest.raises(Loginova_14.MyError):
-            Loginova_14.m1.to_roman(5521)
-
-    def test_my_error3(self):
-        with pytest.raises(Loginova_14.MyError):
-            Loginova_14.m1.to_roman(-2)
+            self._m_test.to_roman(number)

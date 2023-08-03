@@ -17,4 +17,5 @@ class MyFun:
         return roman
 
 
-m1 = MyFun()
+if __name__ == '__main__':
+    m1 = MyFun()
