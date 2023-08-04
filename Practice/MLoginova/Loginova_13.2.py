@@ -37,14 +37,9 @@ if __name__ == "__main__":
                                   name_owner='Сидоров И.И.',
                                   address='Россия, г.Нижний Новгород, ул. Обухова, д.20')
                 org3.save()
-                print(f"Документов в базе:{RegistryUL.objects.count()}.")
-                input_inn = ' '
-                while len(input_inn := input("Введите ИНН ЮЛ(10 символов): ")) != 10:
-                    print(f"Вы ввели ИНН из {len(input_inn)} символов, нужно из 10. Повторите ввод!")
-                print(f"Информация по ЮЛ по ИНН {input_inn}:\n {RegistryUL.objects.filter(inn=input_inn)}")
             else:
                 print(f"Документов в базе:{RegistryUL.objects.count()}. Выход")
-        else:
+        if RegistryUL.objects.count() != 0:
             print(f"Документов в базе:{RegistryUL.objects.count()}.")
             input_inn = ' '
             while len(input_inn := input("Введите ИНН ЮЛ(10 символов): ")) != 10:
