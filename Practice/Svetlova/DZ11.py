@@ -16,25 +16,24 @@ def decrypt_words(words):
 
 
 def main():
-    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server_socket.bind(("127.0.0.1", 12345))
-    server_socket.listen(1)
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
+        server_socket.bind(("127.0.0.1", 12345))
+        server_socket.listen(1)
 
-    print("Сервер запущен, ожидание подключения...")
+        print("Сервер запущен, ожидание подключения...")
 
-    client_socket, client_address = server_socket.accept()
-    print("Подключение от", client_address)
+        client_socket, client_address = server_socket.accept()
+        print("Подключение от", client_address)
 
-    received_data = client_socket.recv(1024).decode()
-    encrypted_words = received_data.split(',')
+        received_data = client_socket.recv(1024).decode()
+        encrypted_words = received_data.split(',')
 
-    decrypted_words = decrypt_words(encrypted_words)
-    response = ','.join(decrypted_words).encode()
+        decrypted_words = decrypt_words(encrypted_words)
+        response = ','.join(decrypted_words).encode()
 
-    client_socket.send(response)
+        client_socket.send(response)
 
-    client_socket.close()
-    server_socket.close()
+    # server_socket будет автоматически закрыт при выходе из блока контекста
 
 
 if __name__ == "__main__":

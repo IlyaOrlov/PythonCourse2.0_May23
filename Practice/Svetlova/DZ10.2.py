@@ -2,6 +2,7 @@
 
 import threading
 
+
 def parallel_addition(*args):
     results = []
 
@@ -12,18 +13,8 @@ def parallel_addition(*args):
         results.append(result)
 
     threads = []
-    for arg in args:
-        if isinstance(arg, int):
-            t = threading.Thread(target=add_elements, args=([arg],))
-            threads.append(t)
-        elif isinstance(arg, str):
-            t = threading.Thread(target=add_elements, args=([arg],))
-            threads.append(t)
-        elif isinstance(arg, list):
-            t = threading.Thread(target=add_elements, args=(arg,))
-            threads.append(t)
-        else:
-            print(f"Unsupported type: {type(arg)}")
+    t = threading.Thread(target=add_elements, args=(args,))
+    threads.append(t)
 
     for thread in threads:
         thread.start()
@@ -32,6 +23,7 @@ def parallel_addition(*args):
         thread.join()
 
     return results
+
 
 # Примеры вызова функции
 integer_result = parallel_addition(1, 2, 3)

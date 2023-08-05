@@ -11,6 +11,7 @@ class SQLiteWrapper:
 
     def __enter__(self):
         self.connection = sqlite3.connect(self.db_name)
+        self.connection.row_factory = sqlite3.Row  # Устанавливаем row_factory
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
@@ -31,10 +32,7 @@ class SQLiteWrapper:
             cursor = self.connection.cursor()
             cursor.execute(query)
             rows = cursor.fetchall()
-            columns = [col[0] for col in cursor.description]
-            results = []
-            for row in rows:
-                results.append(dict(zip(columns, row)))
+            results = [dict(row) for row in rows]  # Используем sqlite3.Row
             return results
         except sqlite3.Error as e:
             return {"status": "error", "message": str(e)}
