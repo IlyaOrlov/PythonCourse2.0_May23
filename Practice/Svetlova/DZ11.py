@@ -32,8 +32,8 @@ def main():
         response = ','.join(decrypted_words).encode()
 
         client_socket.send(response)
-
-    # server_socket будет автоматически закрыт при выходе из блока контекста
+        # Закрываем сокет client_socket с помощью менеджера контекста
+        client_socket.close()
 
 
 if __name__ == "__main__":
