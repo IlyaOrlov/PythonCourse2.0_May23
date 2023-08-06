@@ -1,19 +1,6 @@
 import multiprocessing
 import time
-
-
-def find_primes(start=3, end=None):
-    pr_chisla = []
-    while start <= end:
-        k = 2
-        while k <= start**0.5:
-            if start % k == 0:
-                break
-            k += 1
-        else:
-            pr_chisla.append(start)
-        start += 1
-    #  print(pr_chisla)
+import Loginova_10
 
 
 if __name__ == "__main__":
@@ -21,7 +8,7 @@ if __name__ == "__main__":
     start = time.perf_counter()
     lst = []
     for i in range(len(data)):
-        pr = multiprocessing.Process(target=find_primes, args=data[i])
+        pr = multiprocessing.Process(target=Loginova_10.find_primes, args=data[i])
         pr.start()
         # Если забыть выполнить start для процессов, то аналогично потокам, мы не направим ОС команду на создание
         # процесса
@@ -33,6 +20,6 @@ if __name__ == "__main__":
         #  Если забыть выполнить join для процессов, то программа завершит свое выполнение, не дожидаясь завершения
         #  наших процессов
         print(f'Время вычислений c использованием процессов в секундах: {time.perf_counter() - start}')
-#  1.Время вычислений c использованием процессов в секундах: 0.07713819993659854
-#  2.Время вычислений c использованием процессов в секундах: 0.08733649994246662
-#  3.Время вычислений c использованием процессов в секундах: 0.09783909993711859
+#  1.Время вычислений c использованием процессов в секундах: 0.06695909996051341
+#  2.Время вычислений c использованием процессов в секундах: 0.07362979999743402
+#  3.Время вычислений c использованием процессов в секундах: 0.07697579998057336
