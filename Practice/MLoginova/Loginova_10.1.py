@@ -6,21 +6,24 @@ import time
 
 def find_primes(start=3, end=None):
     pr_chisla = []
-    for i in range(start, end + 1):
-        for j in range(start, i + 1):
-            if i % j == 0:
+    while start <= end:
+        k = 2
+        while k <= start**0.5:
+            if start % k == 0:
                 break
+            k += 1
         else:
-            pr_chisla.append(i)
-    #   print(pr_chisla)
+            pr_chisla.append(start)
+        start += 1
+    #  print(pr_chisla)
 
 
 if __name__ == "__main__":
     data = [(3, 10000), (10001, 20000), (20001, 30000)]
     start = time.perf_counter()
-    for k in range(len(data)):
-        find_primes(*data[k])
-        print(f'{k+1}.Время вычислений в секундах для диапазона {data[k]}: {time.perf_counter() - start}')
-#  1.Время вычислений в секундах для диапазона (3, 10000): 0.23344539990648627
-#  2.Время вычислений в секундах для диапазона (10001, 20000): 1.7803377999225631
-#  3.Время вычислений в секундах для диапазона (20001, 30000): 3.3282438999740407
+    for i in range(len(data)):
+        find_primes(*data[i])
+        print(f'{i+1}.Время вычислений в секундах для диапазона {data[i]}: {time.perf_counter() - start}')
+#  1.Время вычислений в секундах для диапазона (3, 10000): 0.017632799921557307
+#  2.Время вычислений в секундах для диапазона (10001, 20000): 0.04520189994946122
+#  3.Время вычислений в секундах для диапазона (20001, 30000): 0.0779491999419406
