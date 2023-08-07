@@ -15,6 +15,7 @@ class Human:
         return f'Меня зовут {self.name} {self.surname}, мне {self.age} лет, я проживаю в городе ' \
                f'{self.town}, у меня {self.education} образование и владею {self.language} ' \
                f'языками'
+
 def new_human(f):
     new_name = ('Ксения', 'Кристина', 'Варвара', 'Арина', 'Аврора', 'Алена', 'Есения')
     new_surname = ('Озерова', 'Речкина', 'Иванова', 'Петрова', 'Сидорова', 'Гусева')
