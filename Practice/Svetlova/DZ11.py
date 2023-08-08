@@ -2,18 +2,16 @@
 
 import socket
 
-
 def decrypt_words(words):
     dictionary = {
         "xlmrk": "apple",
         "vkrph": "banana",
         "jvsqf": "cherry"
-        # Добавьте другие пары зашифрованное слово -> расшифрованное слово
+
     }
 
     decrypted_words = [dictionary[word] if word in dictionary else "Unknown" for word in words]
     return decrypted_words
-
 
 def main():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
@@ -32,9 +30,8 @@ def main():
         response = ','.join(decrypted_words).encode()
 
         client_socket.send(response)
-        # Закрываем сокет client_socket с помощью менеджера контекста
-        client_socket.close()
 
+    server_socket.close()
 
 if __name__ == "__main__":
     main()
