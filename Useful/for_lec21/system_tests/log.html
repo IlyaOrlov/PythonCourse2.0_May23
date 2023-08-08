@@ -5,7 +5,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="-1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta content="Robot Framework 4.1.2 (Python 3.7.9 on win32)" name="Generator">
+<meta content="Robot Framework 6.1 (Python 3.11.3 on win32)" name="Generator">
 <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKcAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAqAAAAAAAAAAAAAAAAAAAALIAAAD/AAAA4AAAANwAAADcAAAA3AAAANwAAADcAAAA3AAAANwAAADcAAAA4AAAAP8AAACxAAAAAAAAAKYAAAD/AAAAuwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC/AAAA/wAAAKkAAAD6AAAAzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN8AAAD/AAAA+gAAAMMAAAAAAAAAAgAAAGsAAABrAAAAawAAAGsAAABrAAAAawAAAGsAAABrAAAADAAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAAIsAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAANEAAAAAAAAA2gAAAP8AAAD6AAAAwwAAAAAAAAAAAAAAMgAAADIAAAAyAAAAMgAAADIAAAAyAAAAMgAAADIAAAAFAAAAAAAAANoAAAD/AAAA+gAAAMMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAADwAAAB8AAAAAAAAAGAAAABcAAAAAAAAAH8AAABKAAAAAAAAAAAAAAAAAAAA2gAAAP8AAAD6AAAAwwAAAAAAAADCAAAA/wAAACkAAADqAAAA4QAAAAAAAAD7AAAA/wAAALAAAAAGAAAAAAAAANoAAAD/AAAA+gAAAMMAAAAAAAAAIwAAAP4AAAD/AAAA/wAAAGAAAAAAAAAAAAAAAMkAAAD/AAAAigAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAAAAAAAAIAAAAcAAAABkAAAAAAAAAAAAAAAAAAAAAAAAAEgAAAAAAAAAAAAAA2gAAAP8AAAD7AAAAywAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN4AAAD/AAAAqwAAAP8AAACvAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALIAAAD/AAAAsgAAAAAAAAC5AAAA/wAAAMoAAADAAAAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAwAAAAMkAAAD/AAAAvAAAAAAAAAAAAAAAAAAAAKwAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAArQAAAAAAAAAAwAMAAIABAAAf+AAAP/wAAD/8AAAgBAAAP/wAAD/8AAA//AAAJIwAADHEAAA//AAAP/wAAB/4AACAAQAAwAMAAA==">
 <style media="all" type="text/css">
 /* Generic and misc styles */
@@ -319,6 +319,9 @@ th.stats-col-graph:hover {
     padding: 3px;
     cursor: default;
 }
+.element-header .label {
+    margin-right: 0.5em;
+}
 .name {
     font-weight: bold;
 }
@@ -557,6 +560,9 @@ function toggleSuite(suiteId) {
 }
 function toggleTest(testId) {
     toggleElement(testId, ['keyword']);
+    var test = window.testdata.findLoaded(testId);
+    if (test.status == "FAIL" || test.status == "SKIP")
+        expandFailed(test);
 }
 function toggleKeyword(kwId) {
     toggleElement(kwId, ['keyword']);
@@ -620,7 +626,7 @@ function loadAndExpandElementIds(ids) {
     }
 }
 function expandFailed(element) {
-    if (element.status == "FAIL") {
+    if (element.status == "FAIL" || (element.type == "test" && element.status == "SKIP")) {
         window.elementsToExpand = [element];
         window.expandDecider = function (e) {
             return e.status == "FAIL";
@@ -966,6 +972,7 @@ window.model = (function () {
     }
     function Keyword(data) {
         var kw = createModelObject(data);
+        var flatTypes = ['RETURN', 'BREAK', 'CONTINUE'];
         kw.libname = data.libname;
         kw.fullName = (kw.libname ? kw.libname + '.' : '') + kw.name;
         kw.type = data.type;
@@ -1350,8 +1357,8 @@ window.testdata = function () {
     var _statistics = null;
     var LEVELS = ['TRACE', 'DEBUG', 'INFO', 'WARN', 'ERROR', 'FAIL', 'SKIP'];
     var STATUSES = ['FAIL', 'PASS', 'SKIP', 'NOT RUN'];
-    var KEYWORD_TYPES = ['KEYWORD', 'SETUP', 'TEARDOWN', 'FOR', 'VAR', 'IF', 'ELSE IF', 'ELSE'];
-    var MESSAGE_TYPE = 8;
+    var KEYWORD_TYPES = ['KEYWORD', 'SETUP', 'TEARDOWN', 'FOR', 'ITERATION', 'IF', 'ELSE IF', 'ELSE', 'RETURN',
+                         'TRY', 'EXCEPT', 'FINALLY', 'WHILE', 'CONTINUE', 'BREAK', 'ERROR'];
     function addElement(elem) {
         if (!elem.id)
             elem.id = uniqueId();
@@ -1372,10 +1379,10 @@ window.testdata = function () {
                 elapsed];
     }
     function createMessage(element, strings) {
-        return model.Message(LEVELS[element[2]],
-                             util.timestamp(element[1]),
-                             strings.get(element[3]),
-                             strings.get(element[4]));
+        return model.Message(LEVELS[element[1]],
+                             util.timestamp(element[0]),
+                             strings.get(element[2]),
+                             strings.get(element[3]));
     }
     function parseStatus(stats) {
         return STATUSES[stats[0]];
@@ -1386,7 +1393,7 @@ window.testdata = function () {
         };
     }
     function createBodyItem(parent, element, strings, index) {
-        if (element[0] == MESSAGE_TYPE)
+        if (element.length < 5)
             return createMessage(element, strings);
         var messages = util.filter(parent.children(), function (child) {
             return child.type == 'message';
@@ -1799,31 +1806,31 @@ function stopPropagation(event) {
 window.output = {};
 </script>
 <script type="text/javascript">
-window.output["suite"] = [1,2,3,4,[],[0,0,40],[],[[5,0,6,[7],[0,32,7,8],[[1,9,0,0,0,0,0,0,[1,32,2],[[0,10,11,0,12,13,0,0,[1,33,1],[[8,34,2,14]]],[0,15,11,0,16,17,0,0,[1,34,0],[[8,34,2,18]]]]],[0,19,11,0,20,21,0,0,[0,35,1],[[8,36,5,8]]],[0,22,11,0,23,24,0,0,[3,36,0],[]],[0,15,11,0,16,21,0,0,[3,36,0],[]],[0,25,11,0,26,21,27,0,[3,37,0],[]],[0,28,29,0,30,31,0,0,[3,37,0],[]],[2,32,0,0,0,0,0,0,[1,37,2],[[0,33,11,0,34,17,0,0,[1,38,0],[[8,38,2,35]]],[0,33,11,0,34,21,0,0,[1,38,1],[[8,39,2,36]]]]]]]],[],[1,0,1,0]];
+window.output["suite"] = [1,2,3,4,[],[1,0,3985],[],[[5,0,0,[],[1,172,3812],[[0,6,7,0,8,9,0,0,[1,173,1892],[[173,0,10],[173,2,11],[198,1,12],[716,1,13],[717,1,14],[1416,1,15],[1416,1,16],[1416,1,17],[1416,1,18],[1418,1,19],[1418,1,20],[1418,1,17],[1418,1,21],[1419,1,19],[1419,1,20],[1420,1,17],[1420,1,22],[1421,1,19],[1421,1,20],[1421,1,17],[1421,1,23],[2065,1,24],[2065,1,20],[2065,1,17],[2065,1,25],[2065,0,26]]],[0,27,7,0,28,29,0,0,[1,2066,83],[[2066,0,30],[2066,2,31],[2066,1,32],[2075,1,33],[2075,1,34],[2075,1,17],[2075,1,35],[2098,1,36],[2099,1,20],[2099,1,17],[2099,1,37],[2148,1,38],[2148,1,20],[2149,1,17],[2149,0,39]]],[0,40,7,0,41,0,0,0,[1,2149,115],[[2149,0,42],[2149,2,43],[2149,1,44],[2159,1,33],[2159,1,45],[2159,1,17],[2159,1,46],[2166,1,47],[2166,1,48],[2166,1,17],[2167,1,49],[2263,1,50],[2264,1,20],[2264,1,17],[2264,0,39]]],[0,51,52,0,53,54,0,0,[1,2264,1719],[[2265,0,55],[0,56,7,0,57,58,0,0,[1,2265,1718],[[2265,0,59],[2265,1,60],[3983,1,61],[3983,1,62],[3983,1,17],[3983,2,63],[3983,0,39]]],[3983,0,39]]]]]],[],[1,1,0,0]];
 </script>
 <script type="text/javascript">
 window.output["strings"] = [];
 </script>
 <script type="text/javascript">
-window.output["strings"] = window.output["strings"].concat(["*","*Test Copy File","*C:\\Users\\Stmadm\\Documents\\PythonCourseProject2\\PythonCourse2.0_August22\\Useful\\for_lec21\\system_tests\\test_copy_file.robot","*test_copy_file.robot","*<p>Check file actions\x3c/p>","*Test File Copy","*<p>Test file copy script\x3c/p>","*DEBUG","*File 'C:\\Users\\Stmadm\\Documents\\PythonCourseProject2\\PythonCourse2.0_August22\\Useful\\for_lec21\\system_tests\\destination.txt' exists.","*On Test Setup","*Create File","*OperatingSystem","*<p>Creates a file with the given content and encoding.\x3c/p>","*${src_file}, ${exp_content}","eNq9jUEKwjAQRa8Suuku0SxLLUg8QEHcDYSQTqzSNDAzAXt726UXcPkfvPcdYRCcVHotqNo+qJkwXZpjdsa4Dh6MxHCXHKYMtxJrxlUYxk3msrpSiXGk8sYo9gdaffLX+qws1h6RVBdIhfyC0Z6BNxbMXpD3Fu9CRC0faYZ/P/YmDK3+Aj/UYsI=","*File Should Exist","*<p>Fails unless the given <code>path\x3c/code> points to an existing file.\x3c/p>","*${src_file}","eNq9jUEKwjAQRa8Suuku0SxLLUil64K4GwghTmwlaSAzgfb2xqUXcPkf/PemNaBoeyuWjP7S+Do7pcYOHoSZ4M7RPiPckisRNyaYD17SNqaSCeec3uhY/0AtT+ZaXoVY66/ElwA+ZRPQ6TPQQYzRMFJ1UT04lLxzM/y72Cs7tAL3tWL5Aeo/Yoo=","*File Should Not Exist","*<p>Fails if the given path points to an existing file.\x3c/p>","*${dst_file}","*Run","*<p>Runs the given command in the system and returns the output.\x3c/p>","*${copy_script}","*Get File","*<p>Returns the contents of a specified file.\x3c/p>","*${content}","*Should Be True","*BuiltIn","*<p>Fails if the given condition is not true.\x3c/p>","*'${content}' == '${exp_content}'","*On Test Teardown","*Remove File","*<p>Removes a file with the given path.\x3c/p>","eNq9jUEKwjAQRa8Suuku0SxLLUg9QFHcDYSQTqzSdCAzEXt726UXcPkfvPevmOiNo4rPGVXdejVljKdqn40xfQN3xsxwk+THBBcKJeEiDMMqEy09lcw4ZHphEPsDrT64c3kUFmv3SCwzRMpuxmCPwCsLJifIW4s3IaCWj1Tdvx9b47tafwFaO2Lc","eNrFjUEKgzAQRa8ibtwlbZZihWIPIJbuAiGYSU0xGchMSr19ddkTdPPhvcX7E0R8g6t8WKFqOlstGfylPrCVcmj1gyCTvnO0LuobziVCYtLjxgumAUsmGDO+YGb1I5U4mWt5FmKljogvq/aYzQqzOmvaiCEaBtpbbt+QLAdMgj9c93+57aTtG/EFaBFm/g=="]);
+window.output["strings"] = window.output["strings"].concat(["*","*Test Robot Sellib","*C:\\Users\\Stmadm\\Documents\\Python\\PythonCourseForKursia3\\PythonCourse2.0_May23\\Useful\\for_lec21\\system_tests\\test_robot_sellib.robot","*test_robot_sellib.robot","*<p>Test google search\x3c/p>","*Test Google Search","*Open Browser","*SeleniumLibrary","*<p>Opens a new browser instance to the optional <code>url\x3c/code>.\x3c/p>","*<a href=\"http://www.google.com\">http://www.google.com\x3c/a>, chrome, options=add_experimental_option(\"excludeSwitches\", [\"enable-logging\"])","*Arguments: [ '<a href=\"http://www.google.com\">http://www.google.com\x3c/a>' | 'chrome' | options='add_experimental_option(\"excludeSwitches\", [\"enable-logging\"])' ]","*Opening browser 'chrome' to base url '<a href=\"http://www.google.com\">http://www.google.com\x3c/a>'.","*Started executable: `C:\\Soft\\ForPython\\chromedriver-win64\\chromedriver.EXE` in a child process with pid: 14208","*POST <a href=\"http://localhost:62820/session\">http://localhost:62820/session\x3c/a> {\"capabilities\": {\"firstMatch\": [{}], \"alwaysMatch\": {\"browserName\": \"chrome\", \"pageLoadStrategy\": \"normal\", \"goog:chromeOptions\": {\"excludeSwitches\": [\"enable-logging\"], \"extensions\": [], \"args\": []}}}}","*Starting new HTTP connection (1): localhost:62820","*<a href=\"http://localhost:62820\">http://localhost:62820\x3c/a> \"POST /session HTTP/1.1\" 200 0","eNqFU9tu2zAM/RXDe0gLNK2cuz0EWC8bVqDYijbbXgwUtETH2mzJkOikQZZ/H5V02cNufhIPeXg5pB+wsYSRQ99a4zGLPAF1fj4QIvoeKSCYb+MV1B3G2TaW0EKha00afbBBSmzplomyc3iNjhguofZ4FhfOrj26D9AwNZaVs/w4wp/ReW0Ne5JkfC7Ox9NUnCeJ4IiX0FBu/1JOr/5GEIPoJBVYqlEhQE0AkjEilFJBocazZAqYDtNyWoAYp32Hpb8oHBhZ9SsE5S9CkqdUvNm+SnenXLrjzm545hvtuNB1luefGPF5/kgNqCbPL9s2+PP8zkqo83yBTZvnXtoW1ZPSLhkNxOwpnYlkmojRKN6dxUtrl9lhko8t8Qh75RQW3XKJ7lIp1p6huA4ZK+spmwxmg2GgGqS1dd+urTEoA/WtgaJGddS4hSXeWVCP5IBwueE0xroGap6lrYFKNl4WsNZGsfLB4ewzR265gEf6sscfOH+ckes4qSenJb3TNd4aQgeSDjvfHMuSbtB2tB9EN22tpWa2+NVPnA1F+DiZdLqlF5srdqYCo3iGexakpSusYKVtUFtp32jvI3ZHxpIuN9zrGgvoqDIZPhOacACZdKiualv8bPcPITW4Jf4nptHmXps7NEuq/hHWuvI370o76qC+ZAMNaQlknT9E7TX1gXnLIsTD0XCawDiZTnEocAIF4qBMZDoucDIaTES82/FfFm6Rr2z+frG4f79/3/ACTrY9Xjz3Qf1Dl70s6s0mg95ZdHQsNi0GGNqwBAgncvHVW/M6khU43u68o7I/CxQJssK+ZKKzdeAY299jvd3pD3NaYs0=","*Finished Request","eNqtzNENwiAQANBVCAvcAQWU1K5QE12AkmsgqdL0zq/G3V3CN8C7z4+nGrOqB603XUX2BLD1krfaWVKwF4vAxNz6G9zgosnexEgOKeSFyK6mXP1CYbABQdqL+kdYT/+aRsiTOjWXo+2ik/KI+P0BQjY4hg==","*<a href=\"http://localhost:62820\">http://localhost:62820\x3c/a> \"POST /session/34371a5177e30e6abee2f1c95be64260/timeouts HTTP/1.1\" 200 0","*Remote response: status=200 | data={\"value\":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})","eNqtzO0NwiAQANBVCAscHy0oqV2hJrrAlVzDJVQauf4y7u4SvgHefXk81YSqvGm76SJyJIDaMtbSuqTgLs5Ap965vcAPPlocbYzkDQVcidxm83VcKQwuGBDeqZ3S9fyvaQKc1UfzflTOLDop8/0BDG84tw==","eNqtzO0NgjAQANBVmi5w/YBWG2QCE010gQMPSwIe8c5fxt2NO/gGeOfT5Wo6NPVJ08FW1a0ALDziUlm0pLALDoREZn5AbGL22PqcKTpKOBCFyY/7dqDUhORA55X4pWL7f00dYG/edsM7HRlvtpjofj5fJiQ5bA==","eNoL8A8OUbBJVMgoSk2zVcooKSmw0tfPyU9OzMnILy6xMjOyMDLQL04tLs7Mz9M3NjE2N0w0NTQ3TzU2SDVLTEpNNUozTLY0TUo1MzEyM9AvLcpRsqOCITb6iXYK1Uog46wUlNCdV15erpeen5+ek6qXnJ8LtxBVGGSEUi0AUORGSg==","*<a href=\"http://localhost:62820\">http://localhost:62820\x3c/a> \"POST /session/34371a5177e30e6abee2f1c95be64260/url HTTP/1.1\" 200 0","*Opened browser with session id 34371a5177e30e6abee2f1c95be64260.","*Return: 1","*Input Text","*<p>Types the given <code>text\x3c/code> into the text field identified by <code>locator\x3c/code>.\x3c/p>","*name=q, Cheese!","*Arguments: [ 'name=q' | 'Cheese!' ]","*Typing text 'Cheese!' into text field 'name=q'.","eNqtzEsOgjAQANCrNLM26QcoSoAraKI7cTE0g5CUFpnixnh39Q6uX/JOx/NF1CjGlYYGxpSWSkofHfoxcqqs2RslmZinGGSWZ6XGQpclZYos9kRm0O5Q9GRzY5UkTzOFxND+a6oltuIFG0/hDpUAxyz4iy7FFXYCnug3+sE14ExNB48ObvD+AHzPQ3Q=","*<a href=\"http://localhost:62820\">http://localhost:62820\x3c/a> \"POST /session/34371a5177e30e6abee2f1c95be64260/elements HTTP/1.1\" 200 0","*Remote response: status=200 | data={\"value\":[{\"element-6066-11e4-a52e-4f735466cecf\":\"6502A84DD8CC453C9B0E9D8AB0B58A46_element_2\"}]} | headers=HTTPHeaderDict({'Content-Length': '96', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})","eNrFzUsOgjAUQNGtNN3AK/1RCJDQ4lgTnZOCj0BSqaGdGffuxAU4c35P7uV8vZHGk/XApaVrzs8aIMTZhzWmXGtuOIOEKW1xByFFWXhVlCUKhtpPiHwp5kpNqCXXDDDgA/cMWjHeGzkMxjmphKssO1WD6S2zyvRSj99w5DAH9Aft/nVuwHfkRbc7rQn9HdP3B0sHW2g=","*<a href=\"http://localhost:62820\">http://localhost:62820\x3c/a> \"POST /session/34371a5177e30e6abee2f1c95be64260/element/6502A84DD8CC453C9B0E9D8AB0B58A46_element_2/clear HTTP/1.1\" 200 0","eNrFjrEKwjAYhF8l/rOQNE3StFShTZ0VdBORtP4lQrViogjiu2tRnN1cPu7gjrvFfLkiuSXujO0EXAinjNKub2zneh8yxTVn1KP3+/5IYxEnkZVRkmDMUNkakbdRk8oaleCKUezwgMdAlWS80KKqtDFCxiYt2SytdFGyUupCqO0nuOX0arsLwvRfyzm1U3KHgLcAGQHjED2OYEzgfSwjazCDdQPwC/9VI9i8uN8N9d/X4fEEdSVqxg==","*<a href=\"http://localhost:62820\">http://localhost:62820\x3c/a> \"POST /session/34371a5177e30e6abee2f1c95be64260/element/6502A84DD8CC453C9B0E9D8AB0B58A46_element_2/value HTTP/1.1\" 200 0","*Return: None","*Submit Form","*<p>Submits a form identified by <code>locator\x3c/code>.\x3c/p>","*Arguments: [  ]","*Submitting form 'None'.","eNqtzEsKwjAQANCrhFkL+bWJhtorKOgFpmXSFPIpTepGvLt4B7dv8e63x5MNyMJO/gqhtc1xHsuMMZTanFFnJXilWteSue60ldhLa0kLMjgRKS/nSz+R6ZQRnCIlyq3C+K9p4DiyNxx1zQs4Bg0XljERnBi8MB70Q1/2BJ8vW+g/WA==","*Remote response: status=200 | data={\"value\":[{\"element-6066-11e4-a52e-4f735466cecf\":\"6502A84DD8CC453C9B0E9D8AB0B58A46_element_18\"}]} | headers=HTTPHeaderDict({'Content-Length': '97', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})","eNrFzUsKgzAUQNGthGzg5W8UK+Qj3UDnEu0TBT+lyax07510Ax11fg/32t9Im8jyxPlCl1IeDcB2TmlbzlwaI6xgkDHn9TxAKlnxpHlVoWRo0ogoZj7VekSjhGGAG+54FDCaCWdVjDYEpWWoPevraJ1nXlunzPANB27hSDvS7l/nFlJHXnS904bQHzB9fwD8Hlrb","*<a href=\"http://localhost:62820\">http://localhost:62820\x3c/a> \"GET /session/34371a5177e30e6abee2f1c95be64260/element/6502A84DD8CC453C9B0E9D8AB0B58A46_element_18/name HTTP/1.1\" 200 0","*Remote response: status=200 | data={\"value\":\"form\"} | headers=HTTPHeaderDict({'Content-Length': '16', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})","eNqtkstu2zAQRX9lwkUtB7HeomU7DuBX0EWTFG26ioKApkeRAJkUKDpuYPjfS0oK0HbTTTfDAefy8HKGXx++P8I1g0JhPieF1vXU8yrJWVXIRk9pmIa+12DTlFJ4URyNA5YE4zFGPlK2RQzzgE+SLdI4pL6HP5EfNHrNu+Dk5n/Srj12AyfScFXWmkyBeJfQHLb7Ut9KtYdL740pyG06B6ZeD3sUunnyn2eZOBZlheDYoivkDu/ZHuFiDhm5ffh2lxH4xPb1rA0twa2ZMqfvjXQIp0zAB/evokGfM1Hm4FzYitGCLpQ8wkYpqZzBD8G25mItIS/FDrgUmpWiFK8dDyu0JgfDGfyOceVRoFpL3j7hX1AjtsBdL+9hthf4YfgPnssVMo2bN5M7g3YxZzKBrnGm++2ur4Mr0OqAXbQaa7El7sqmZpoXnRyH1uTnx7svdhKb7lVuraSW+r1Gt6O55g9UTtcn45BcATFjaswkn06kb8WI+pSOggDjEUtCHMX5OEpiSjny3I6cJn64SOP1Ol2t4iRaTZb+ZrJOF0t/maSLmL70nJcgJefn8y9xxvHL","*<a href=\"http://localhost:62820\">http://localhost:62820\x3c/a> \"POST /session/34371a5177e30e6abee2f1c95be64260/execute/sync HTTP/1.1\" 200 0","*Wait Until Keyword Succeeds","*BuiltIn","*<p>Runs the specified keyword and retries if it fails.\x3c/p>","*10s, 2s, Title Should Be, Cheese! - Поиск в Google","*Arguments: [ '10s' | '2s' | 'Title Should Be' | 'Cheese! - Поиск в Google' ]","*Title Should Be","*<p>Verifies that the current page title equals <code>title\x3c/code>.\x3c/p>","*Cheese! - Поиск в Google","*Arguments: [ 'Cheese! - Поиск в Google' ]","eNqtzO0JgCAQANBVpAXOr7Si+hct0AKnXBhIRt6/aPeW6A3w1mUTI4p00z41ifkaAHKJmFOpPDjdaQmVaj3KCcYar7BV3pOR5DAQ6V3Fvg3krHYS+OBMzfxLMwLO4nk/q1kxeA==","*<a href=\"http://localhost:62820\">http://localhost:62820\x3c/a> \"GET /session/34371a5177e30e6abee2f1c95be64260/title HTTP/1.1\" 200 0","*Remote response: status=200 | data={\"value\":\"Cheese! - Поиск в Google\"} | headers=HTTPHeaderDict({'Content-Length': '42', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})","*Page title is 'Cheese! - Поиск в Google'."]);
 </script>
 <script type="text/javascript">
-window.output["stats"] = [[{"elapsed":"00:00:00","fail":1,"label":"All Tests","pass":0,"skip":0}],[{"elapsed":"00:00:00","fail":1,"label":"DEBUG","pass":0,"skip":0}],[{"elapsed":"00:00:00","fail":1,"id":"s1","label":"Test Copy File","name":"Test Copy File","pass":0,"skip":0}]];
+window.output["stats"] = [[{"elapsed":"00:00:04","fail":0,"label":"All Tests","pass":1,"skip":0}],[],[{"elapsed":"00:00:04","fail":0,"id":"s1","label":"Test Robot Sellib","name":"Test Robot Sellib","pass":1,"skip":0}]];
 </script>
 <script type="text/javascript">
 window.output["errors"] = [];
 </script>
 <script type="text/javascript">
-window.output["baseMillis"] = 1666634226897;
+window.output["baseMillis"] = 1691161516222;
 </script>
 <script type="text/javascript">
-window.output["generated"] = 52;
+window.output["generated"] = 3990;
 </script>
 <script type="text/javascript">
 window.output["expand_keywords"] = null;
 </script>
 <script type="text/javascript">
-window.settings = {"defaultLevel":"INFO","minLevel":"INFO","reportURL":"report.html","rpa":false,"splitLogBase":"log","title":""};
+window.settings = {"defaultLevel":"TRACE","minLevel":"TRACE","reportURL":"report.html","rpa":false,"splitLogBase":"log","title":""};
 </script>
 <title></title>
 </head>
@@ -1924,8 +1931,8 @@ function makeElementVisible(id) {
         util.map(ids, expandElementWithId);
         if (ids.length) {
             expandFailed(window.testdata.findLoaded(util.last(ids)));
-            window.location.hash = '';
             window.location.hash = id;
+            document.getElementById(id).scrollIntoView();
             highlightLinkTarget();
         }
     });
@@ -2123,7 +2130,7 @@ function addExecutionLog(main) {
     <div class="element-header closed" onclick="toggleKeyword('${id}')">
       <div class="element-header-left" title="${type}  {{if name}}{{html fullName}}  {{/if}}[${status}]">
         <span class="elapsed" title="Elapsed time">${times.elapsedTime}</span>
-        <span class="label keyword ${status.toLowerCase()}">${type}</span>
+        <span class="label ${status.toLowerCase()}">${type}</span>
         <span>{{html assign}}</span>
         <span class="name"><span class="parent-name">{{html libname}}{{if libname}} . {{/if}}</span>{{html name}}</span>
         <span class="arg">{{html arguments}}</span>
@@ -2131,7 +2138,7 @@ function addExecutionLog(main) {
       <div class="element-header-right" onclick="stopPropagation(event)">
         <a class="expand" title="Expand all" href="javascript:expandAll('${id}')"></a>
         <a class="collapse" title="Collapse all" href="javascript:collapseAll('${id}')"></a>
-        <a class="link" title="Link to this keyword" href="#${id}" onclick="makeElementVisible('${id}')"></a>
+        <a class="link" title="Link to this item" href="#${id}" onclick="makeElementVisible('${id}')"></a>
       </div>
       <div class="element-header-toggle" title="Toggle visibility"></div>
     </div>
