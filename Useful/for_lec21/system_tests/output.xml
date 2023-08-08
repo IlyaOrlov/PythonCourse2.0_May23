@@ -1,81 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 4.1.2 (Python 3.7.9 on win32)" generated="20221024 20:57:06.896" rpa="false" schemaversion="2">
-<suite id="s1" name="Test Copy File" source="C:\Users\Stmadm\Documents\PythonCourseProject2\PythonCourse2.0_August22\Useful\for_lec21\system_tests\test_copy_file.robot">
-<test id="s1-t1" name="Test File Copy">
-<kw name="On Test Setup" type="SETUP">
-<kw name="Create File" library="OperatingSystem">
-<arg>${src_file}</arg>
-<arg>${exp_content}</arg>
-<doc>Creates a file with the given content and encoding.</doc>
-<msg timestamp="20221024 20:57:06.931" level="INFO" html="true">Created file '&lt;a href="file://C:\Users\Stmadm\Documents\PythonCourseProject2\PythonCourse2.0_August22\Useful\for_lec21\system_tests\source.txt"&gt;C:\Users\Stmadm\Documents\PythonCourseProject2\PythonCourse2.0_August22\Useful\for_lec21\system_tests\source.txt&lt;/a&gt;'.</msg>
-<status status="PASS" starttime="20221024 20:57:06.930" endtime="20221024 20:57:06.931"/>
+<robot generator="Robot 6.1 (Python 3.11.3 on win32)" generated="20230804 18:05:16.220" rpa="false" schemaversion="4">
+<suite id="s1" name="Test Robot Sellib" source="C:\Users\Stmadm\Documents\Python\PythonCourseForKursia3\PythonCourse2.0_May23\Useful\for_lec21\system_tests\test_robot_sellib.robot">
+<test id="s1-t1" name="Test Google Search" line="7">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>http://www.google.com</arg>
+<arg>chrome</arg>
+<arg>options=add_experimental_option("excludeSwitches", ["enable-logging"])</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20230804 18:05:16.395" level="TRACE">Arguments: [ 'http://www.google.com' | 'chrome' | options='add_experimental_option("excludeSwitches", ["enable-logging"])' ]</msg>
+<msg timestamp="20230804 18:05:16.395" level="INFO">Opening browser 'chrome' to base url 'http://www.google.com'.</msg>
+<msg timestamp="20230804 18:05:16.420" level="DEBUG">Started executable: `C:\Soft\ForPython\chromedriver-win64\chromedriver.EXE` in a child process with pid: 14208</msg>
+<msg timestamp="20230804 18:05:16.938" level="DEBUG">POST http://localhost:62820/session {"capabilities": {"firstMatch": [{}], "alwaysMatch": {"browserName": "chrome", "pageLoadStrategy": "normal", "goog:chromeOptions": {"excludeSwitches": ["enable-logging"], "extensions": [], "args": []}}}}</msg>
+<msg timestamp="20230804 18:05:16.939" level="DEBUG">Starting new HTTP connection (1): localhost:62820</msg>
+<msg timestamp="20230804 18:05:17.638" level="DEBUG">http://localhost:62820 "POST /session HTTP/1.1" 200 0</msg>
+<msg timestamp="20230804 18:05:17.638" level="DEBUG">Remote response: status=200 | data={"value":{"capabilities":{"acceptInsecureCerts":false,"browserName":"chrome","browserVersion":"115.0.5790.110","chrome":{"chromedriverVersion":"115.0.5790.102 (90efd4b0ad6aa15eeafcdabd5817ae939f7ba059-refs/branch-heads/5790_90@{#9})","userDataDir":"C:\\Users\\Stmadm\\AppData\\Local\\Temp\\scoped_dir14208_980171044"},"goog:chromeOptions":{"debuggerAddress":"localhost:62823"},"networkConnectionEnabled":false,"pageLoadStrategy":"normal","platformName":"windows","proxy":{},"setWindowRect":true,"strictFileInteractability":false,"timeouts":{"implicit":0,"pageLoad":300000,"script":30000},"unhandledPromptBehavior":"dismiss and notify","webauthn:extension:credBlob":true,"webauthn:extension:largeBlob":true,"webauthn:extension:minPinLength":true,"webauthn:extension:prf":true,"webauthn:virtualAuthenticators":true},"sessionId":"34371a5177e30e6abee2f1c95be64260"}} | headers=HTTPHeaderDict({'Content-Length': '862', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})</msg>
+<msg timestamp="20230804 18:05:17.638" level="DEBUG">Finished Request</msg>
+<msg timestamp="20230804 18:05:17.638" level="DEBUG">POST http://localhost:62820/session/34371a5177e30e6abee2f1c95be64260/timeouts {"script": 5000}</msg>
+<msg timestamp="20230804 18:05:17.640" level="DEBUG">http://localhost:62820 "POST /session/34371a5177e30e6abee2f1c95be64260/timeouts HTTP/1.1" 200 0</msg>
+<msg timestamp="20230804 18:05:17.640" level="DEBUG">Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})</msg>
+<msg timestamp="20230804 18:05:17.640" level="DEBUG">Finished Request</msg>
+<msg timestamp="20230804 18:05:17.640" level="DEBUG">POST http://localhost:62820/session/34371a5177e30e6abee2f1c95be64260/timeouts {"implicit": 0}</msg>
+<msg timestamp="20230804 18:05:17.641" level="DEBUG">http://localhost:62820 "POST /session/34371a5177e30e6abee2f1c95be64260/timeouts HTTP/1.1" 200 0</msg>
+<msg timestamp="20230804 18:05:17.641" level="DEBUG">Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})</msg>
+<msg timestamp="20230804 18:05:17.642" level="DEBUG">Finished Request</msg>
+<msg timestamp="20230804 18:05:17.642" level="DEBUG">POST http://localhost:62820/session/34371a5177e30e6abee2f1c95be64260/timeouts {"pageLoad": 300000}</msg>
+<msg timestamp="20230804 18:05:17.643" level="DEBUG">http://localhost:62820 "POST /session/34371a5177e30e6abee2f1c95be64260/timeouts HTTP/1.1" 200 0</msg>
+<msg timestamp="20230804 18:05:17.643" level="DEBUG">Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})</msg>
+<msg timestamp="20230804 18:05:17.643" level="DEBUG">Finished Request</msg>
+<msg timestamp="20230804 18:05:17.643" level="DEBUG">POST http://localhost:62820/session/34371a5177e30e6abee2f1c95be64260/url {"url": "http://www.google.com"}</msg>
+<msg timestamp="20230804 18:05:18.287" level="DEBUG">http://localhost:62820 "POST /session/34371a5177e30e6abee2f1c95be64260/url HTTP/1.1" 200 0</msg>
+<msg timestamp="20230804 18:05:18.287" level="DEBUG">Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})</msg>
+<msg timestamp="20230804 18:05:18.287" level="DEBUG">Finished Request</msg>
+<msg timestamp="20230804 18:05:18.287" level="DEBUG">Opened browser with session id 34371a5177e30e6abee2f1c95be64260.</msg>
+<msg timestamp="20230804 18:05:18.287" level="TRACE">Return: 1</msg>
+<status status="PASS" starttime="20230804 18:05:16.395" endtime="20230804 18:05:18.287"/>
 </kw>
-<kw name="File Should Exist" library="OperatingSystem">
-<arg>${src_file}</arg>
-<doc>Fails unless the given ``path`` points to an existing file.</doc>
-<msg timestamp="20221024 20:57:06.931" level="INFO" html="true">File '&lt;a href="file://C:\Users\Stmadm\Documents\PythonCourseProject2\PythonCourse2.0_August22\Useful\for_lec21\system_tests\source.txt"&gt;C:\Users\Stmadm\Documents\PythonCourseProject2\PythonCourse2.0_August22\Useful\for_lec21\system_tests\source.txt&lt;/a&gt;' exists.</msg>
-<status status="PASS" starttime="20221024 20:57:06.931" endtime="20221024 20:57:06.931"/>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=q</arg>
+<arg>Cheese!</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230804 18:05:18.288" level="TRACE">Arguments: [ 'name=q' | 'Cheese!' ]</msg>
+<msg timestamp="20230804 18:05:18.288" level="INFO">Typing text 'Cheese!' into text field 'name=q'.</msg>
+<msg timestamp="20230804 18:05:18.288" level="DEBUG">POST http://localhost:62820/session/34371a5177e30e6abee2f1c95be64260/elements {"using": "css selector", "value": "[name=\"q\"]"}</msg>
+<msg timestamp="20230804 18:05:18.297" level="DEBUG">http://localhost:62820 "POST /session/34371a5177e30e6abee2f1c95be64260/elements HTTP/1.1" 200 0</msg>
+<msg timestamp="20230804 18:05:18.297" level="DEBUG">Remote response: status=200 | data={"value":[{"element-6066-11e4-a52e-4f735466cecf":"6502A84DD8CC453C9B0E9D8AB0B58A46_element_2"}]} | headers=HTTPHeaderDict({'Content-Length': '96', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})</msg>
+<msg timestamp="20230804 18:05:18.297" level="DEBUG">Finished Request</msg>
+<msg timestamp="20230804 18:05:18.297" level="DEBUG">POST http://localhost:62820/session/34371a5177e30e6abee2f1c95be64260/element/6502A84DD8CC453C9B0E9D8AB0B58A46_element_2/clear {"id": "6502A84DD8CC453C9B0E9D8AB0B58A46_element_2"}</msg>
+<msg timestamp="20230804 18:05:18.320" level="DEBUG">http://localhost:62820 "POST /session/34371a5177e30e6abee2f1c95be64260/element/6502A84DD8CC453C9B0E9D8AB0B58A46_element_2/clear HTTP/1.1" 200 0</msg>
+<msg timestamp="20230804 18:05:18.321" level="DEBUG">Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})</msg>
+<msg timestamp="20230804 18:05:18.321" level="DEBUG">Finished Request</msg>
+<msg timestamp="20230804 18:05:18.321" level="DEBUG">POST http://localhost:62820/session/34371a5177e30e6abee2f1c95be64260/element/6502A84DD8CC453C9B0E9D8AB0B58A46_element_2/value {"text": "Cheese!", "value": ["C", "h", "e", "e", "s", "e", "!"], "id": "6502A84DD8CC453C9B0E9D8AB0B58A46_element_2"}</msg>
+<msg timestamp="20230804 18:05:18.370" level="DEBUG">http://localhost:62820 "POST /session/34371a5177e30e6abee2f1c95be64260/element/6502A84DD8CC453C9B0E9D8AB0B58A46_element_2/value HTTP/1.1" 200 0</msg>
+<msg timestamp="20230804 18:05:18.370" level="DEBUG">Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})</msg>
+<msg timestamp="20230804 18:05:18.371" level="DEBUG">Finished Request</msg>
+<msg timestamp="20230804 18:05:18.371" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20230804 18:05:18.288" endtime="20230804 18:05:18.371"/>
 </kw>
-<status status="PASS" starttime="20221024 20:57:06.929" endtime="20221024 20:57:06.931"/>
+<kw name="Submit Form" library="SeleniumLibrary">
+<doc>Submits a form identified by ``locator``.</doc>
+<msg timestamp="20230804 18:05:18.371" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20230804 18:05:18.371" level="INFO">Submitting form 'None'.</msg>
+<msg timestamp="20230804 18:05:18.371" level="DEBUG">POST http://localhost:62820/session/34371a5177e30e6abee2f1c95be64260/elements {"using": "tag name", "value": "form"}</msg>
+<msg timestamp="20230804 18:05:18.381" level="DEBUG">http://localhost:62820 "POST /session/34371a5177e30e6abee2f1c95be64260/elements HTTP/1.1" 200 0</msg>
+<msg timestamp="20230804 18:05:18.381" level="DEBUG">Remote response: status=200 | data={"value":[{"element-6066-11e4-a52e-4f735466cecf":"6502A84DD8CC453C9B0E9D8AB0B58A46_element_18"}]} | headers=HTTPHeaderDict({'Content-Length': '97', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})</msg>
+<msg timestamp="20230804 18:05:18.381" level="DEBUG">Finished Request</msg>
+<msg timestamp="20230804 18:05:18.381" level="DEBUG">GET http://localhost:62820/session/34371a5177e30e6abee2f1c95be64260/element/6502A84DD8CC453C9B0E9D8AB0B58A46_element_18/name {"id": "6502A84DD8CC453C9B0E9D8AB0B58A46_element_18"}</msg>
+<msg timestamp="20230804 18:05:18.388" level="DEBUG">http://localhost:62820 "GET /session/34371a5177e30e6abee2f1c95be64260/element/6502A84DD8CC453C9B0E9D8AB0B58A46_element_18/name HTTP/1.1" 200 0</msg>
+<msg timestamp="20230804 18:05:18.388" level="DEBUG">Remote response: status=200 | data={"value":"form"} | headers=HTTPHeaderDict({'Content-Length': '16', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})</msg>
+<msg timestamp="20230804 18:05:18.388" level="DEBUG">Finished Request</msg>
+<msg timestamp="20230804 18:05:18.389" level="DEBUG">POST http://localhost:62820/session/34371a5177e30e6abee2f1c95be64260/execute/sync {"script": "/* submitForm */var form = arguments[0];\nwhile (form.nodeName != \"FORM\" &amp;&amp; form.parentNode) {\n  form = form.parentNode;\n}\nif (!form) { throw Error('Unable to find containing form element'); }\nif (!form.ownerDocument) { throw Error('Unable to find owning document'); }\nvar e = form.ownerDocument.createEvent('Event');\ne.initEvent('submit', true, true);\nif (form.dispatchEvent(e)) { HTMLFormElement.prototype.submit.call(form) }\n", "args": [{"element-6066-11e4-a52e-4f735466cecf": "6502A84DD8CC453C9B0E9D8AB0B58A46_element_18"}]}</msg>
+<msg timestamp="20230804 18:05:18.485" level="DEBUG">http://localhost:62820 "POST /session/34371a5177e30e6abee2f1c95be64260/execute/sync HTTP/1.1" 200 0</msg>
+<msg timestamp="20230804 18:05:18.486" level="DEBUG">Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})</msg>
+<msg timestamp="20230804 18:05:18.486" level="DEBUG">Finished Request</msg>
+<msg timestamp="20230804 18:05:18.486" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20230804 18:05:18.371" endtime="20230804 18:05:18.486"/>
 </kw>
-<kw name="File Should Not Exist" library="OperatingSystem">
-<arg>${dst_file}</arg>
-<doc>Fails if the given path points to an existing file.</doc>
-<msg timestamp="20221024 20:57:06.933" level="FAIL">File 'C:\Users\Stmadm\Documents\PythonCourseProject2\PythonCourse2.0_August22\Useful\for_lec21\system_tests\destination.txt' exists.</msg>
-<status status="FAIL" starttime="20221024 20:57:06.932" endtime="20221024 20:57:06.933"/>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<arg>10s</arg>
+<arg>2s</arg>
+<arg>Title Should Be</arg>
+<arg>Cheese! - Поиск в Google</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<msg timestamp="20230804 18:05:18.487" level="TRACE">Arguments: [ '10s' | '2s' | 'Title Should Be' | 'Cheese! - Поиск в Google' ]</msg>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Cheese! - Поиск в Google</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20230804 18:05:18.487" level="TRACE">Arguments: [ 'Cheese! - Поиск в Google' ]</msg>
+<msg timestamp="20230804 18:05:18.487" level="DEBUG">GET http://localhost:62820/session/34371a5177e30e6abee2f1c95be64260/title {}</msg>
+<msg timestamp="20230804 18:05:20.205" level="DEBUG">http://localhost:62820 "GET /session/34371a5177e30e6abee2f1c95be64260/title HTTP/1.1" 200 0</msg>
+<msg timestamp="20230804 18:05:20.205" level="DEBUG">Remote response: status=200 | data={"value":"Cheese! - Поиск в Google"} | headers=HTTPHeaderDict({'Content-Length': '42', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})</msg>
+<msg timestamp="20230804 18:05:20.205" level="DEBUG">Finished Request</msg>
+<msg timestamp="20230804 18:05:20.205" level="INFO">Page title is 'Cheese! - Поиск в Google'.</msg>
+<msg timestamp="20230804 18:05:20.205" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20230804 18:05:18.487" endtime="20230804 18:05:20.205"/>
 </kw>
-<kw name="Run" library="OperatingSystem">
-<arg>${copy_script}</arg>
-<doc>Runs the given command in the system and returns the output.</doc>
-<status status="NOT RUN" starttime="20221024 20:57:06.933" endtime="20221024 20:57:06.933"/>
+<msg timestamp="20230804 18:05:20.205" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20230804 18:05:18.486" endtime="20230804 18:05:20.205"/>
 </kw>
-<kw name="File Should Exist" library="OperatingSystem">
-<arg>${dst_file}</arg>
-<doc>Fails unless the given ``path`` points to an existing file.</doc>
-<status status="NOT RUN" starttime="20221024 20:57:06.933" endtime="20221024 20:57:06.933"/>
-</kw>
-<kw name="Get File" library="OperatingSystem">
-<var>${content}</var>
-<arg>${dst_file}</arg>
-<doc>Returns the contents of a specified file.</doc>
-<status status="NOT RUN" starttime="20221024 20:57:06.934" endtime="20221024 20:57:06.934"/>
-</kw>
-<kw name="Should Be True" library="BuiltIn">
-<arg>'${content}' == '${exp_content}'</arg>
-<doc>Fails if the given condition is not true.</doc>
-<status status="NOT RUN" starttime="20221024 20:57:06.934" endtime="20221024 20:57:06.934"/>
-</kw>
-<kw name="On Test Teardown" type="TEARDOWN">
-<kw name="Remove File" library="OperatingSystem">
-<arg>${src_file}</arg>
-<doc>Removes a file with the given path.</doc>
-<msg timestamp="20221024 20:57:06.935" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\Stmadm\Documents\PythonCourseProject2\PythonCourse2.0_August22\Useful\for_lec21\system_tests\source.txt"&gt;C:\Users\Stmadm\Documents\PythonCourseProject2\PythonCourse2.0_August22\Useful\for_lec21\system_tests\source.txt&lt;/a&gt;'.</msg>
-<status status="PASS" starttime="20221024 20:57:06.935" endtime="20221024 20:57:06.935"/>
-</kw>
-<kw name="Remove File" library="OperatingSystem">
-<arg>${dst_file}</arg>
-<doc>Removes a file with the given path.</doc>
-<msg timestamp="20221024 20:57:06.936" level="INFO" html="true">Removed file '&lt;a href="file://C:\Users\Stmadm\Documents\PythonCourseProject2\PythonCourse2.0_August22\Useful\for_lec21\system_tests\destination.txt"&gt;C:\Users\Stmadm\Documents\PythonCourseProject2\PythonCourse2.0_August22\Useful\for_lec21\system_tests\destination.txt&lt;/a&gt;'.</msg>
-<status status="PASS" starttime="20221024 20:57:06.935" endtime="20221024 20:57:06.936"/>
-</kw>
-<status status="PASS" starttime="20221024 20:57:06.934" endtime="20221024 20:57:06.936"/>
-</kw>
-<doc>Test file copy script</doc>
-<tag>DEBUG</tag>
-<status status="FAIL" starttime="20221024 20:57:06.929" endtime="20221024 20:57:06.936">File 'C:\Users\Stmadm\Documents\PythonCourseProject2\PythonCourse2.0_August22\Useful\for_lec21\system_tests\destination.txt' exists.</status>
+<status status="PASS" starttime="20230804 18:05:16.394" endtime="20230804 18:05:20.206"/>
 </test>
-<doc>Check file actions</doc>
-<status status="FAIL" starttime="20221024 20:57:06.897" endtime="20221024 20:57:06.937"/>
+<doc>Test google search</doc>
+<status status="PASS" starttime="20230804 18:05:16.222" endtime="20230804 18:05:20.207"/>
 </suite>
 <statistics>
 <total>
-<stat pass="0" fail="1" skip="0">All Tests</stat>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="0" fail="1" skip="0">DEBUG</stat>
 </tag>
 <suite>
-<stat pass="0" fail="1" skip="0" id="s1" name="Test Copy File">Test Copy File</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="Test Robot Sellib">Test Robot Sellib</stat>
 </suite>
 </statistics>
 <errors>
