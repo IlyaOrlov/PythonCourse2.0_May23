@@ -13,6 +13,7 @@ def decrypt_words(words):
     decrypted_words = [dictionary[word] if word in dictionary else "Unknown" for word in words]
     return decrypted_words
 
+
 def main():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
         server_socket.bind(("127.0.0.1", 12345))
@@ -30,8 +31,8 @@ def main():
         response = ','.join(decrypted_words).encode()
 
         client_socket.send(response)
+        client_socket.close()
 
-    server_socket.close()
 
 if __name__ == "__main__":
     main()

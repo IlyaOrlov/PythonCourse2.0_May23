@@ -30,5 +30,6 @@ if __name__ == '__main__':
     p2_result = p2_result_queue.get()
     p3_result = p3_result_queue.get()
 
-
-("List result:", list_result)
+    print("Process 1 Result:", p1_result)
+    print("Process 2 Result:", p2_result)
+    print("Process 3 Result:", p3_result)
