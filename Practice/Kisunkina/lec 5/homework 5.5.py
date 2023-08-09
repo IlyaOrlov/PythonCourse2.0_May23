@@ -4,14 +4,14 @@
 # табуляции (в зависимости от опции, указанной пользователем).
 
 def file_change (name, x):
-    with open(name, "r") as filename:
-        fileread = filename.read()
+    with open(name, "r") as file:
+        fileread = file.read()
         if action == "1":
             fileread = fileread.replace('\t', '    ')
         else:
             fileread = fileread.replace('    ', '\t')
-    with open(name, "w") as new_filename:
-        new_filename.write(fileread)
+    with open(name, "w") as new_file:
+        new_file.write(fileread)
 
 
 action = int(input("Для замены табуляции на четыре символа пробела в файле нажмите 1, "

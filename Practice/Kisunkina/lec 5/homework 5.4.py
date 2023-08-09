@@ -5,8 +5,6 @@ import random
 
 
 def search_columns(matrix):
-    number = int(input("Введите число от 0 до 10"
-                       " Столбец, содержащий заданную цифру будет удалён из матрицы: "))
     arr = set()
     for line in matrix:
         for _id, elem in enumerate(line):
@@ -32,6 +30,8 @@ if __name__ == '__main__':
     print("Получилась такая матрица:")
     for i in range(lines):
         print(matrix[i])
+    number = int(input("Введите число от 0 до 10"
+                       " Столбец, содержащий заданную цифру будет удалён из матрицы: "))
     arr = search_columns(matrix)
     del_columns(matrix, arr)
 
