@@ -1,21 +1,6 @@
 from threading import Thread
-from math import sqrt
 import time
-
-
-def find_primes(start, end):
-    lst = []
-    if start > 1:
-        for i in range(start, end+1):
-            for j in range(2, int(sqrt(i))+1):
-                if j > int((sqrt(i))+1):
-                    lst.append(i)
-                    break
-                if i % j == 0:
-                    break
-            else:
-                lst.append(i)
-    print(lst)
+from fun_10 import find_primes
 
 
 if __name__ == '__main__':
