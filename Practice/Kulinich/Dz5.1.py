@@ -9,10 +9,11 @@ def minimal_lst(lst):
 
 
 arr = [0,3,24,2,3,7]
-i = 1
+i = 0
 while i < len(arr):
     index, min_value = minimal_lst(arr[i:])
-    arr[index + i] = arr[i]
-    arr[i] = min_value
+    if index > 0:
+        arr[index + i] = arr[i]
+        arr[i] = min_value
     i += 1
 print(arr) 
