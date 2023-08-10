@@ -4,7 +4,7 @@
 import random
 
 
-def search_columns(matrix):
+def search_columns(matrix, number):
     arr = set()
     for line in matrix:
         for _id, elem in enumerate(line):
@@ -32,7 +32,7 @@ if __name__ == '__main__':
         print(matrix[i])
     number = int(input("Введите число от 0 до 10"
                        " Столбец, содержащий заданную цифру будет удалён из матрицы: "))
-    arr = search_columns(matrix)
+    arr = search_columns(matrix, number)
     del_columns(matrix, arr)
 
 
