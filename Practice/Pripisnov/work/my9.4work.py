@@ -32,10 +32,10 @@ def deserialize_humans(file_path):
 humans = create_humans(3)
 
 # Сериализуем и сохраняем экземпляры в файл human.data
-serialize_humans(humans, "human.data")
+serialize_humans(humans, "tak/human.data")
 
 # Читаем и десериализуем содержимое файла human.data
-deserialized_humans = deserialize_humans("human.data")
+deserialized_humans = deserialize_humans("tak/human.data")
 
 # Выводим результат на печать
 for human in deserialized_humans:
