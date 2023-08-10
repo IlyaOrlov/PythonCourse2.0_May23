@@ -10,7 +10,7 @@ class ReadPar:
         return self
 
     def __next__(self):
-        if self._i < len(self._text):
+        while self._i < len(self._text):
             if self._text[self._i] == self._symbol:
                 res = self._text[self._s: self._i]
                 self._s = self._i + 1

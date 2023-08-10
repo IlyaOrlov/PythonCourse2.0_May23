@@ -9,27 +9,19 @@ import itertools
 
 
 def fun1(a, b, c):
-    lst = []
-    elm = itertools.chain(a, b, c)
-    for i in elm:
-        lst.append(i)
-    return lst
+    return list(itertools.chain(a, b, c))
 
 
 def fun2(arr):
-    lst = []
-    for i in arr:
-        if len(i) >= 5:
-            lst.append(i)
-    return lst
+    return list(itertools.filterfalse(check, arr))
+
+
+def check(x):
+    return len(x) < 5
 
 
 def fun3(s):
-    res = []
-    r = itertools.combinations_with_replacement(s, 4)
-    for elm in r:
-        res.append(elm)
-    return res
+    return list(itertools.combinations_with_replacement(s, 4))
 
 
 # Задание 1
