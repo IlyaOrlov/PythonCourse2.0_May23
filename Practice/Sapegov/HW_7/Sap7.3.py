@@ -9,14 +9,14 @@ class Atms:
 
     def replenishment(self, change):
         self._cash += change
-        print(f'В банкомат {self._nomber} внесено {change} руб.')
+        print(f'На счет банкомата {self._nomber} внесено {change} руб.')
 
     def withdrawal(self, change):
         if self._cash >= change:
             self._cash -= change
-            print(f'С банкомата {self._nomber} снято {change} руб.')
+            print(f'Со счета банкомата {self._nomber} списано {change} руб.')
         else:
-            print('В банкомате недостаточно средств')
+            print(f'На счете банкомата {self._nomber} недостаточно средств')
 
 
 class AtmSimple(Atms):
@@ -27,12 +27,10 @@ class AtmOnline(Atms):
 
     def online_pay(self):
         recipient = input('Введите счет, либо телефон получателя: ')
-        money = int(input('Введите сумму для перевода: '))
-        if self._cash >= money:
-            self._cash -= money
-            print(f'Вы перевели {money} руб. на счет {recipient}')
-        else:
-            print('В банкомате недостаточно средств')
+        change = int(input('Введите сумму для перевода: '))
+        super().withdrawal(change)
+        if self._cash >= change:
+            print(f'Вы совершили онлайн перевод на счет {recipient}')
 
 
 atm1 = AtmSimple('№111', 10000)
