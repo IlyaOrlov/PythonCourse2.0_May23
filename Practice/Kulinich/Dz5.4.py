@@ -1,9 +1,9 @@
 def transp(arr):
-    arrTrans = [[0 for j in range(len(arr))] for i in range(len(arr[0]))]
+    arr_trans = [[0 for j in range(len(arr))] for i in range(len(arr[0]))]
     for i in range(len(arr)):
         for j in range(len(arr[0])):
-            arrTrans[j][i] = arr[i][j]
-    return arrTrans
+            arr_trans[j][i] = arr[i][j]
+    return arr_trans
 
 
 def del_column(arr,a):

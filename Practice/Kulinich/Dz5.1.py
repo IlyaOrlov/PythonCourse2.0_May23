@@ -1,5 +1,4 @@
-arr = [0,3,24,2,3,7]
-def min(lst):
+def minimal_lst(lst):
     a = float('inf')
     b = 0
     for index, value in enumerate(lst):
@@ -9,9 +8,10 @@ def min(lst):
     return b, a
 
 
-i = 0
+arr = [0,3,24,2,3,7]
+i = 1
 while i < len(arr):
-    index, min_value = min(arr[i:])
+    index, min_value = minimal_lst(arr[i:])
     arr[index + i] = arr[i]
     arr[i] = min_value
     i += 1

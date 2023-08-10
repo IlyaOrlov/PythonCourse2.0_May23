@@ -1,13 +1,14 @@
-def Dec_mydec(fun):
-    def mydec():
+def dec_mydec(fun):
+    def my_dec(*args, **kwargs):
         print("===========")
-        fun()
+        res = fun(*args, **kwargs)
         print("===========")
-    return mydec
+        return res
+    return my_dec
 
-@Dec_mydec
-def Hello():
+@dec_mydec
+def hello():
     print("Hello World")
 
-
+hello()
 
