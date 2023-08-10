@@ -1,3 +1,8 @@
+import time
+import multiprocessing
+import timeit
+
+
 def is_prime(num):
     if num <= 1:
         return False
@@ -14,8 +19,6 @@ def find_primes(start=3, end=100):
     return primes
 
 
-import time
-
 # Запуск три раза последовательно
 for i in range(3):
     start_time = time.time()
@@ -23,8 +26,6 @@ for i in range(3):
     end_time = time.time()
     print(f"Простые числа от 3 до 10000 найдены за {end_time - start_time} секунд.")
 
-
-import multiprocessing
 
 # Запуск три раза в отдельных процессах
 processes = []
@@ -40,7 +41,6 @@ for i in range(3):
 # основной поток (или процесс) может завершиться раньше, чем дочерние потоки (или процессы),
 # и результаты выполнения могут быть непредсказуемыми или даже ошибочными.
 
-import timeit
 
 # Замер времени исполнения функции find_primes для каждого диапазона
 time_seq_1 = timeit.timeit(lambda: find_primes(3, 10000), number=1)
