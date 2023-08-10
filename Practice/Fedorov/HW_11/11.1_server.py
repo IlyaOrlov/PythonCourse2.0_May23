@@ -13,16 +13,17 @@ def deshifrator(lst):
         res.append(slovar.get(i))
     return res
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-host = "127.0.0.1"
-port = 12345
-s.bind((host, port))
-s.listen(5)
-while True:
-    conn, addr = s.accept()
-    data = pickle.loads(conn.recv(1024))
-    print(f"Получено от клиента {addr} сообщение {data}")
-    data = deshifrator(data)
-    conn.send(pickle.dumps(data))
-    conn.close()
-s.close()
+if __name__ == "__main__"
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    host = "127.0.0.1"
+    port = 12345
+    s.bind((host, port))
+    s.listen(5)
+    while True:
+        conn, addr = s.accept()
+        data = pickle.loads(conn.recv(1024))
+        print(f"Получено от клиента {addr} сообщение {data}")
+        data = deshifrator(data)
+        conn.send(pickle.dumps(data))
+        conn.close()
+    s.close()
