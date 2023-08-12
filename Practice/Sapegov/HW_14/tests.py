@@ -5,14 +5,18 @@ from Sap14_1 import to_roman
 
 class TestSap14Suite:
 
-    def test_to_roman1(self):
-        assert(to_roman('8') == 'VIII')
+    @pytest.fixture(
+        scope='function',
+        params=[('8', 'VIII'), ('4509', 'MMMMDIX'), ('5000', 'MMMMM')],
+        ids=lambda args: f"Test with args: '{args}'"
+    )
+    def positive_parametrs(self, request):
+        return request.param
 
-    def test_to_roman2(self):
-        assert(to_roman('4509') == 'MMMMDIX')
-
-    def test_to_roman3(self):
-        assert(to_roman('5000') == 'MM')
+    def test_to_roman1(self, positive_parametrs):
+        arg = positive_parametrs[0]
+        res = positive_parametrs[1]
+        assert to_roman(arg) == res
 
     @pytest.fixture(
         scope='function',

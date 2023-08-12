@@ -33,9 +33,9 @@ def to_roman(x):
             elif ind == 3:
                 s = 'M' * raz + s
 
-    except NonValidInputError:
+    except NonValidInputError as ex:
         print('Вы ввели не число, либо число вышло из диапазона')
-        raise NonValidInputError('NonValidInput')
+        raise ex
     return s
 
 
