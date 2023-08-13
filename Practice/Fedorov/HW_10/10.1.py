@@ -43,15 +43,14 @@ if __name__ == '__main__':
     print(f"Время работы последовательно: {int(time.perf_counter() - start_time)}")
     start_tread = time.perf_counter()
     threads = []
-    thr = threading.Thread(target=find_primes, args=(3, 10000))
-    thr.start()
-    threads.append(thr)
-    thr = threading.Thread(target=find_primes, args=(10001, 20000))
-    thr.start()
-    threads.append(thr)
-    thr = threading.Thread(target=find_primes, args=(20001, 30000))
-    thr.start()
-    threads.append(thr)
+    num1 = 3
+    num2 = 10000
+    for x in range(2):
+        thr = threading.Thread(target=find_primes, args=(num1, num2))
+        thr.start()
+        threads.append(thr)
+        num1 += 10000
+        num2 += 10000
 
     for thr in threads:
         thr.join()
@@ -71,4 +70,4 @@ if __name__ == '__main__':
 
     for mult in multi:
         mult.join()
-    print(f"Время работы чере мульти-поток: {int(time.perf_counter() - start_multi)}")
+    print(f"Время работы чере multiprocess: {int(time.perf_counter() - start_multi)}")
