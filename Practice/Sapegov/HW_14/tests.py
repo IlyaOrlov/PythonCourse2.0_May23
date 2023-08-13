@@ -14,8 +14,7 @@ class TestSap14Suite:
         return request.param
 
     def test_to_roman1(self, positive_parametrs):
-        arg = positive_parametrs[0]
-        res = positive_parametrs[1]
+        arg, res = positive_parametrs
         assert to_roman(arg) == res
 
     @pytest.fixture(
