@@ -1,0 +1,16 @@
+{% extends 'coolapp/base.html' %}
+{% block content %}
+<h1><a href="/">Нажми на меня, чтобы вернуться на главную страницу!</a></h1>
+
+{% for film in films %}
+<h2> {{ film.name }} </h2>
+<p> {{ film.desc }} </p>
+{% if film.pub_date %}
+<p> Film date - {{ film.pub_date }}! </p>
+{% else %}
+<p> Film date - Unknown! </p>
+{% endif %}
+<p> {{ film.rate }} </p>
+{% endfor %}
+
+{% endblock content %}
