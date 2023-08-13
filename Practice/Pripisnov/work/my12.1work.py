@@ -43,5 +43,5 @@ with SQLiteWrapper(db_name) as db:
 # Выбираем и выводим данные в формате JSON
 with SQLiteWrapper(db_name) as db:
     select_query = "SELECT * FROM users WHERE age > ?"
-    json_result = db.select(select_query, (26,))
+    json_result = db.select(select_query, (25,))
     print(json_result)
