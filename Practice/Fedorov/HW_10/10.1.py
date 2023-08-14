@@ -11,7 +11,7 @@ import threading
 import multiprocessing
 
 
-def isPrime(n):
+def isprime(n):
     if n % 2 == 0:
         return n == 2
     d = 3
@@ -20,7 +20,7 @@ def isPrime(n):
     return d * d > n
 
 
-def isPrimeon(n):
+def isprimeon(n):
     d = 2
     while n % d != 0:
         d += 1
@@ -30,10 +30,25 @@ def isPrimeon(n):
 def find_primes(start, end):
     res = []
     while start < end:
-        if isPrimeon(start):
+        if isprimeon(start):
             res.append(start)
         start += 1
     return res
+
+def krasivo(my_lst, istread):
+    num1 = 3
+    num2 = 10000
+    for x in range(2):
+        if istread:
+            my_lst = threading.Thread(target=find_primes, args=(num1, num2))
+        else:
+            my_lst = multiprocessing.Process(target=find_primes, args=(num1, num2))
+        my_lst.start()
+        my_lst.append(my_lst)
+        num1 += 10000
+        num2 += 10000
+    return my_lst
+
 
 if __name__ == '__main__':
     start_time = time.perf_counter()
@@ -43,14 +58,7 @@ if __name__ == '__main__':
     print(f"Время работы последовательно: {int(time.perf_counter() - start_time)}")
     start_tread = time.perf_counter()
     threads = []
-    num1 = 3
-    num2 = 10000
-    for x in range(2):
-        thr = threading.Thread(target=find_primes, args=(num1, num2))
-        thr.start()
-        threads.append(thr)
-        num1 += 10000
-        num2 += 10000
+    krasivo(threads, True)
 
     for thr in threads:
         thr.join()
@@ -58,15 +66,7 @@ if __name__ == '__main__':
 
     start_multi = time.perf_counter()
     multi = []
-    mult = multiprocessing.Process(target=find_primes, args=(3, 10000))
-    mult.start()
-    multi.append(mult)
-    mult = multiprocessing.Process(target=find_primes, args=(10001, 20000))
-    mult.start()
-    multi.append(mult)
-    mult = multiprocessing.Process(target=find_primes, args=(20001, 30000))
-    mult.start()
-    multi.append(mult)
+    krasivo(multi, False)
 
     for mult in multi:
         mult.join()
