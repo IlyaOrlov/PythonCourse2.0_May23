@@ -28,7 +28,7 @@ with set_obj_attrs(m, new_conf):
     print(m.server_addr)
     print(m.server_port)
 print("======================")
-print(m.server_addr)  # '192.168.1.1' # print(getattr(m, "server_addr"))
+print(m.server_addr)  # '192.168.1.1'
 print(m.server_port)  # 1212
 
 
