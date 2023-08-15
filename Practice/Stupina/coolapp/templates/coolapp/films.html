@@ -1,0 +1,18 @@
+{% extends 'coolapp/base.html' %}
+{% block content %}
+
+<!-- {процент .. процент} - язык шаблонов Django -->
+{% for film in films %}
+
+<h2><a href="/{{film.id}}">{{ film.name }} </a></h2>
+<p><b> Описание</b>:  {{ film.desc }} </p>
+{% if film.pub_date %}
+<p><b>  Дата публикации</b> : - {{ film.pub_date }} </p>
+{% else %}
+<p><b>  Дата публикации</b>:  - Unknown </p>
+{% endif %}
+<p><b>  Оценка</b> : {{ film.rate }} </p>
+{% endfor %}
+
+
+{% endblock content %}

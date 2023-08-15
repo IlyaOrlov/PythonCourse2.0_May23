@@ -1,0 +1,16 @@
+{% extends 'coolapp/base.html' %}
+{% block content %}
+
+
+
+<h1>Добавление нового фильма</h1>
+{% if flag %}
+<form method="POST">{% csrf_token %}
+{{ form.as_p }}
+<button type="submit">Save</button>
+</form>
+{% else %}
+<p> Ошибка: У Вас нет прав для данной операции! </p>
+{% endif %}
+
+{% endblock content %}
