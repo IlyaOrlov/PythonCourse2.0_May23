@@ -1,0 +1,25 @@
+{% extends 'coolapp/base.html' %}
+{% block content %}
+
+
+<h2> {{ film.name }} </h2>
+<p> Страна :  - {{ film.state }} </p>
+<p> Описание:  {{ film.desc }} </p>
+<p> Дата создания:  {{ film.date_exist }} </p>
+{% if film.pub_date %}
+<p> Дата публикации отзыва:  - {{ film.pub_date }} </p>
+{% else %}
+<p> Дата публикации отзыва:  - Unknown </p>
+{% endif %}
+<p> Оценка:  {{ film.rate }} </p>
+{% for com in comm %}
+<p> Комментарии:  {{com.comment }} </p>
+{% endfor %}
+
+<p><u>Оставить комментарий:</u></p>
+<form method="POST">{% csrf_token %}
+    {{ com_form.as_p }}
+
+    <button type="submit">Save</button>
+</form>
+{% endblock content %}
